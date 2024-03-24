@@ -12,7 +12,7 @@ while running:
             running = False
         if event.type == pygame.MOUSEBUTTONDOWN:
             pass
-    BoardInstance = Board(['test'], screen, 1, 0) #you can comment this out aswell
+    BoardInstance = Board(['test','player2','player3'], screen, 1, 0) #you can comment this out aswell
     if BoardInstance.gameStatus:
         Board.render(BoardInstance) #comment this out aswell
     

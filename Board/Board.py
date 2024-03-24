@@ -11,7 +11,12 @@ class Board:
     screen = None
     curr_font = pygame.font.get_default_font()
     levelNum = None
-
+    duck = pygame.image.load("./assets/transparentduck.png")
+    scaled_duck_end = pygame.transform.scale(duck, (100, 100))
+    scaled_duck_player = pygame.transform.scale(duck, (50, 50))
+    arrow = pygame.image.load("./assets/arrow.png")
+    arrow_scaled = pygame.transform.scale(arrow, (50, 50))
+    arrow_down = pygame.transform.rotate(arrow_scaled, 270)
 
     def __init__(self, playerList, screen, level, playerIndex, newGame = False) -> None:
         self.playerCount = len(playerList)
@@ -22,12 +27,8 @@ class Board:
         for i in range(NUMROWS):
             for j in range(NUMCOLS):
                 if (i+j==self.playerIndex):
-                    self.board[i][j] == 1
+                    self.board[i][j] = 1
         self.gameStatus = True
-        if newGame:
-            self.playerIndex = 0
-        else:
-            self.playerIndex = playerIndex
         self.screen = screen
         self.level = level
 
@@ -46,11 +47,6 @@ class Board:
         pygame.draw.rect(win, WHITE, (innerBoardStartX, innerBoardStartY, innerBoardWidth, innerBoardHeight))
         #draw inner squares
         currSquareColor = None
-        duck = pygame.image.load("./assets/transparentduck.png")
-        scaled_duck = pygame.transform.scale(duck, (100, 100))
-        arrow = pygame.image.load("./assets/arrow.png")
-        arrow_scaled = pygame.transform.scale(arrow, (50, 50))
-        arrow_down = pygame.transform.rotate(arrow_scaled, 270)
         for row in range(NUMROWS):
             for col in range(NUMCOLS):
                 if row == 0:
@@ -59,16 +55,17 @@ class Board:
                     currSquareColor = PURPLESQUARE
                 else:
                     currSquareColor = BLUESQUARE
-
                 squareXCoord = innerBoardStartX+20+(col*(150+20.5))
                 squareYCoord = innerBoardStartY+41+(row*(150+30))
                 pygame.draw.rect(win, BLACK, (squareXCoord, squareYCoord, 150, 150))
                 pygame.draw.rect(win, currSquareColor, (squareXCoord+BOARD_OUTLINE_OFFSET, squareYCoord+BOARD_OUTLINE_OFFSET, 150-(2*BOARD_OUTLINE_OFFSET), 150-(2*BOARD_OUTLINE_OFFSET)))
+                if (row+col == self.playerIndex):
+                    self.addPlayers(squareXCoord,squareYCoord)
                 if row == 0 and col == 0:
                     self.drawText("Start", self.curr_font, 25, BLACK, squareXCoord+40, squareYCoord+120)
                 if row == 2 and col == 4:
                     self.drawText("End", self.curr_font, 25, BLACK, squareXCoord+40, squareYCoord+120)
-                    self.screen.blit(scaled_duck, (squareXCoord+200, squareYCoord+20))
+                    self.screen.blit(self.scaled_duck_end, (squareXCoord+200, squareYCoord+20))
                 # if (row == 0 and col == 4) or (row == 1 and col == 0):
                 #     self.screen.blit(arrow_down, (squareXCoord+48, squareYCoord+100))
 
@@ -81,5 +78,9 @@ class Board:
         font = pygame.font.Font(fontname, fontsize)
         text_surface = font.render(text, True, text_col)
         self.screen.blit(text_surface, ((x, y)))
-    def addPlayers(self, index, firstSquareX, firstSquareY):
-        return
+    def addPlayers(self, firstSquareX, firstSquareY):
+        for i in range(self.playerCount):
+            if (i == 0):
+                self.screen.blit(self.scaled_duck_player, (10 + firstSquareX, firstSquareY + 50))
+            else:
+                self.screen.blit(self.scaled_duck_player, (10+ firstSquareX + PLAYERDIST*i, firstSquareY + 50))
