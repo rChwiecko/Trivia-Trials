@@ -5,7 +5,7 @@ screen = pygame.display.set_mode((1280, 800))
 clock = pygame.time.Clock()
 pygame.display.set_caption("Trivia Trials")
 running = True
-boardInstance = Board(['player1','player2'],screen, 1, 0)
+boardInstance = Board(['player1'],screen, 1, 0)
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -23,3 +23,4 @@ while running:
     clock.tick(60)  # limits FPS to 60
 
 pygame.quit()
+

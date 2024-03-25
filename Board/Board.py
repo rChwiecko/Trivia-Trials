@@ -56,11 +56,13 @@ class Board:
                     currSquareColor = PURPLESQUARE
                 else:
                     currSquareColor = BLUESQUARE
+                player_row = self.playerIndex // NUMCOLS
+                player_col = self.playerIndex % NUMCOLS    
                 squareXCoord = innerBoardStartX+20+(col*(150+20.5))
                 squareYCoord = innerBoardStartY+41+(row*(150+30))
                 pygame.draw.rect(win, BLACK, (squareXCoord, squareYCoord, 150, 150))
                 pygame.draw.rect(win, currSquareColor, (squareXCoord+BOARD_OUTLINE_OFFSET, squareYCoord+BOARD_OUTLINE_OFFSET, 150-(2*BOARD_OUTLINE_OFFSET), 150-(2*BOARD_OUTLINE_OFFSET)))
-                if (NUMROWS*col + row == self.playerIndex):
+                if (row == player_row and col == player_col):
                     self.renderPlayers(squareXCoord,squareYCoord)
                 if row == 0 and col == 0:
                     self.drawText("Start", self.curr_font, 25, BLACK, squareXCoord+40, squareYCoord+120)
@@ -72,6 +74,7 @@ class Board:
 
     def render(self):
         self.drawBoard(self.screen)
+        self.drawQuestion(1, 2)
 
     def pause(self):
         pass    
@@ -86,7 +89,10 @@ class Board:
             else:
                 self.screen.blit(self.scaled_duck_player, (10+ firstSquareX + PLAYERDIST*i, firstSquareY + 50))
     def movePlayers(self):
-        if self.playerIndex < 15:
+        if self.playerIndex < 14:
             self.playerIndex += 1
         else:
             raise endOfBoardException("End of board")
+        
+    def drawQuestion(self, level, square_col):
+        pygame.draw.rect(self.screen, BLACK, (50, 50, 150, 150))
