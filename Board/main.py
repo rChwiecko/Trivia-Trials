@@ -1,31 +1,22 @@
 import pygame
-from Board import * #this import wont work for you Sahej, so you can comment it out for now
+from Board import * 
 pygame.init()
 screen = pygame.display.set_mode((1280, 800))
 clock = pygame.time.Clock()
 pygame.display.set_caption("Trivia Trials")
 running = True
-
+boardInstance = Board(['player1','player2'],screen, 1, 0)
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            pass
-    BoardInstance = Board(['test','player2','player3'], screen, 1, 0) #you can comment this out aswell
-    if BoardInstance.gameStatus:
-        Board.render(BoardInstance) #comment this out aswell
-    
-    #Add your render method and anything necessary to show your main menu here, 
-    #try to limit it to just making a main menu instance and calling your render method
-    #so youll probably have to add 2 lines below this comment
+        # You could check for a keyboard event here and move the ducks when a key is pressed
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:  # Let's say SPACE key will move the ducks
+                boardInstance.movePlayers()  # This method could move the player based on the game logic
 
-    #*** here ***#
-
-
-
-    screen
-
+    # Render the board and the players in their current positions
+    boardInstance.render()
 
     pygame.display.flip()
 

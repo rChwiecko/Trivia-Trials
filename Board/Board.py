@@ -1,5 +1,6 @@
-import pygame
+import pygame, time
 from const import *
+import endOfBoardException
 pygame.init()
 class Board:
     gameStatus = False
@@ -59,8 +60,8 @@ class Board:
                 squareYCoord = innerBoardStartY+41+(row*(150+30))
                 pygame.draw.rect(win, BLACK, (squareXCoord, squareYCoord, 150, 150))
                 pygame.draw.rect(win, currSquareColor, (squareXCoord+BOARD_OUTLINE_OFFSET, squareYCoord+BOARD_OUTLINE_OFFSET, 150-(2*BOARD_OUTLINE_OFFSET), 150-(2*BOARD_OUTLINE_OFFSET)))
-                if (row+col == self.playerIndex):
-                    self.addPlayers(squareXCoord,squareYCoord)
+                if (NUMROWS*col + row == self.playerIndex):
+                    self.renderPlayers(squareXCoord,squareYCoord)
                 if row == 0 and col == 0:
                     self.drawText("Start", self.curr_font, 25, BLACK, squareXCoord+40, squareYCoord+120)
                 if row == 2 and col == 4:
@@ -78,9 +79,14 @@ class Board:
         font = pygame.font.Font(fontname, fontsize)
         text_surface = font.render(text, True, text_col)
         self.screen.blit(text_surface, ((x, y)))
-    def addPlayers(self, firstSquareX, firstSquareY):
+    def renderPlayers(self, firstSquareX, firstSquareY):
         for i in range(self.playerCount):
             if (i == 0):
                 self.screen.blit(self.scaled_duck_player, (10 + firstSquareX, firstSquareY + 50))
             else:
                 self.screen.blit(self.scaled_duck_player, (10+ firstSquareX + PLAYERDIST*i, firstSquareY + 50))
+    def movePlayers(self):
+        if self.playerIndex < 15:
+            self.playerIndex += 1
+        else:
+            raise endOfBoardException("End of board")
