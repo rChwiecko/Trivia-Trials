@@ -12,7 +12,8 @@ class Developer:
         self.__developerStatus = True # store whether or not the user can progress as an devleoper or not 
         self.__developerPin = 374666 # stores the devleoper pin (temporary for now)
         # add parameter for any changes they would make
-        self.__playerScore = 0
+        # changes to leaderboard
+        self.__scoreChange = 0
     
     # verifies whether the pin entered by user matches the developer pin or not and returns a boolean of the status 
     def verifyDeveloperPin(self, pinInput): # recieve input from user and store it 
@@ -22,13 +23,13 @@ class Developer:
             self.__developerStatus = False # set the developer status to false, to deny access of the developer mode 
         return self.__developerStatus # return the developer status 
     
-    def setPlayerScore(self, score):
-        self.__playerScore = score
+    def setPlayerScore(self, scoreInput):
+        self.__scoreChange = scoreInput
 
     def getplayerScore(self):
-        return self.__playerScore
+        return self.__scoreChange
     
-    def changeHighScore(self,newScore):
+    def changeHighScore(self, newScore):
         return 
     
     def changeCurrlevel(self, level):
