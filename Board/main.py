@@ -63,25 +63,30 @@ while running:
         else:
             delay_start_time = pygame.time.get_ticks()
             gameState = "MOVE_PLAYER_DELAY"  # Example of moving to the next state
-
     elif gameState == "ANSWER_AWAIT":
         time_taken = (pygame.time.get_ticks() - lastAction)  # Corrected time difference calculation
-        if time_taken < 3000:  # 30 seconds in milliseconds
+        if time_taken < 3000:
             boardInstance.drawQuestion("Ryan", 1, 2, time_taken / 1000)
         else:
             playersAsked += 1  # Move to the next player
             gameState = "QUESTION_SHOW"  # Reset to show the next question
-
     elif gameState == "MOVE_PLAYERS":
         boardInstance.movePlayers()
-        # Ensure the gameState is set to the correct value to restart the question cycle
-        gameState = "QUESTION_SHOW"  # Reset to this state to start questions again
         playersAsked = 0  # Resetting the playersAsked counter if needed
-    if gameState == "MOVE_PLAYER_DELAY":
+        delay_start_time = pygame.time.get_ticks()
+        gameState = "SHOW_QUESTION_DELAY"
+
+    #All delay states
+    elif gameState == "MOVE_PLAYER_DELAY":
         current_time = pygame.time.get_ticks()
         if (current_time - delay_start_time) >= 3000:
             # Delay period is over, switch to the next desired state
             gameState = "MOVE_PLAYERS"
+    elif gameState == "SHOW_QUESTION_DELAY":
+        current_time = pygame.time.get_ticks()
+        if (current_time - delay_start_time) >= 1000:
+            # Delay period is over, switch to the next desired state
+            gameState = "QUESTION_SHOW"
     pygame.display.flip()
     clock.tick(60)  # Limits FPS to 60
 pygame.quit()
