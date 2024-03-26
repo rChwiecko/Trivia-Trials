@@ -42,10 +42,11 @@ clock = pygame.time.Clock()
 pygame.display.set_caption("Trivia Trials")
 running = True
 #preliminaries for main loop
-boardInstance = Board(['player1','ryan','sonia'], screen, 1, 0)
-gameState = "QUESTION_SHOW"  # Corrected state name
+players = ['player1','ryan','sonia']
+boardInstance = Board(players, screen, 1, 0)
+gameState = "INITIAL"  # Corrected state name
 playersAsked = 0
-lastAction = pygame.time.get_ticks()
+beginning = pygame.time.get_ticks()
 delay_start_time = None
 #main loop
 while running:
@@ -63,10 +64,15 @@ while running:
         else:
             delay_start_time = pygame.time.get_ticks()
             gameState = "MOVE_PLAYER_DELAY"  # Example of moving to the next state
+    elif gameState == "INITIAL":
+        if beginning > 2000:
+            gameState = "QUESTION_SHOW"
+        else:
+            beginning = pygame.time.get_ticks()
     elif gameState == "ANSWER_AWAIT":
         time_taken = (pygame.time.get_ticks() - lastAction)  # Corrected time difference calculation
         if time_taken < 3000:
-            boardInstance.drawQuestion("Ryan", 1, 2, time_taken / 1000)
+            boardInstance.drawQuestion(players[playersAsked], 1, 2, time_taken / 1000)
         else:
             playersAsked += 1  # Move to the next player
             gameState = "QUESTION_SHOW"  # Reset to show the next question

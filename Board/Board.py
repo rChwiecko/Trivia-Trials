@@ -106,4 +106,6 @@ class Board:
         innerBoardStartY = rect_y+BOARD_OUTLINE_OFFSET
         pygame.draw.rect(self.screen, WHITE, (innerBoardStartX, innerBoardStartY, innerBoardWidth, innerBoardHeight))
         self.drawText(str(playersQuestion+"'s Question"), self.curr_font, 50, BLACK, rect_x*2, rect_y+40)
-        pygame.draw.rect(self.screen, BLACK, (rect_x+20, rect_y+100, 100*time_elapsed, 600))
+        pygame.draw.rect(self.screen, BLACK, (rect_x+200, rect_y+410, 480, 90))
+        pygame.draw.rect(self.screen, WHITE, (rect_x+200+BOARD_OUTLINE_OFFSET, rect_y+410+BOARD_OUTLINE_OFFSET, 480-(BOARD_OUTLINE_OFFSET*2), 90-(BOARD_OUTLINE_OFFSET*2)))
+        pygame.draw.rect(self.screen, GREEN, (rect_x+200+BOARD_OUTLINE_OFFSET, rect_y+410+BOARD_OUTLINE_OFFSET, 16*time_elapsed, 90-(BOARD_OUTLINE_OFFSET*2)))
