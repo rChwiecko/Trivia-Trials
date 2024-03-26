@@ -1,14 +1,16 @@
 import pygame, time
+import random
 from const import *
 import endOfBoardException
 pygame.init()
 class Board:
     gameStatus = False
+    time = None
+    questionStatus = False
     font = pygame.font.Font(None, 36)
     playerCount = None
     playerIndex = None
     playerList = None
-    board = None
     screen = None
     curr_font = pygame.font.get_default_font()
     levelNum = None
@@ -74,7 +76,6 @@ class Board:
 
     def render(self):
         self.drawBoard(self.screen)
-        self.drawQuestion(1, 2)
 
     def pause(self):
         pass    
@@ -92,7 +93,17 @@ class Board:
         if self.playerIndex < 14:
             self.playerIndex += 1
         else:
-            raise endOfBoardException("End of board")
+            raise endOfBoardException.endOfBoardException("End of board")
         
-    def drawQuestion(self, level, square_col):
-        pygame.draw.rect(self.screen, BLACK, (50, 50, 150, 150))
+    def drawQuestion(self, playersQuestion, level, square_col, time_elapsed): 
+        pygame.draw.rect(self.screen, WHITE, (0, 0, 1280, 800))
+        rect_x = (WIDTH - 880) // 2
+        rect_y = (HEIGHT - 600) // 2
+        pygame.draw.rect(self.screen, BLACK, (rect_x, rect_y, 880, 600))
+        innerBoardWidth = 880-(BOARD_OUTLINE_OFFSET*2)
+        innerBoardHeight = 600-(BOARD_OUTLINE_OFFSET*2)
+        innerBoardStartX = rect_x+BOARD_OUTLINE_OFFSET
+        innerBoardStartY = rect_y+BOARD_OUTLINE_OFFSET
+        pygame.draw.rect(self.screen, WHITE, (innerBoardStartX, innerBoardStartY, innerBoardWidth, innerBoardHeight))
+        self.drawText(str(playersQuestion+"'s Question"), self.curr_font, 50, BLACK, rect_x*2, rect_y+40)
+        pygame.draw.rect(self.screen, BLACK, (rect_x+20, rect_y+100, 100*time_elapsed, 600))
