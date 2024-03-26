@@ -115,6 +115,6 @@ class Board:
     def showPlayersTurn(self, name, time):
         rect_x = (WIDTH - 880) // 2
         rect_y = (HEIGHT - 600) // 2
-        pygame.draw.rect(self.screen, WHITE, (rect_x+BOARD_OUTLINE_OFFSET, rect_y+BOARD_OUTLINE_OFFSET, 480-(BOARD_OUTLINE_OFFSET*2), 90-(BOARD_OUTLINE_OFFSET*2)))
-        self.drawText(str(name+"'s turn"), self.curr_font, 50, BLACK, rect_x*2, rect_y+40)
-        self.drawText(str(time), self.curr_font, 50, BLACK, rect_x*2, rect_y+150)
+        pygame.draw.rect(self.screen, WHITE, (rect_x+BOARD_OUTLINE_OFFSET, rect_y+BOARD_OUTLINE_OFFSET, 880-(BOARD_OUTLINE_OFFSET*2), 600-(BOARD_OUTLINE_OFFSET*2)))
+        self.drawText(str(name+"'s turn"), self.curr_font, 50, BLACK, rect_x*2+50, rect_y+70)
+        self.drawText(str(time), self.curr_font, 50, BLACK, rect_x+400, rect_y+250)

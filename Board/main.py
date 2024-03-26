@@ -19,7 +19,6 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    boardInstance.render()
 
     if gameState == "QUESTION_SHOW":
         if playersAsked < boardInstance.playerCount:
@@ -30,6 +29,7 @@ while running:
             delay_start_time = pygame.time.get_ticks()
             gameState = "MOVE_PLAYER_DELAY"  # Example of moving to the next state
     elif gameState == "INITIAL":
+        boardInstance.render()
         if beginning > 2000:
             gameState = "SHOW_PLAYER_TURN"
         else:
@@ -43,6 +43,7 @@ while running:
             gameState = "SHOW_PLAYER_TURN"  # Reset to show the next question
     elif gameState == "MOVE_PLAYERS":
         boardInstance.movePlayers()
+        boardInstance.render()
         playersAsked = 0  # Resetting the playersAsked counter if needed
         delay_start_time = pygame.time.get_ticks()
         gameState = "SHOW_QUESTION_DELAY"
@@ -58,6 +59,7 @@ while running:
 
     #All delay states
     elif gameState == "MOVE_PLAYER_DELAY":
+        boardInstance.render()
         current_time = pygame.time.get_ticks()
         if (current_time - delay_start_time) >= 3000:
             # Delay period is over, switch to the next desired state
@@ -70,8 +72,8 @@ while running:
 
     elif gameState == "3_SECOND_COUNTDOWN":
         current_time = pygame.time.get_ticks()
-        if (current_time - lastAction) < 3000:
-            boardInstance.showPlayersTurn(players[playersAsked], (current_time - lastAction)//1000)
+        if (current_time - lastAction) < 5000:
+            boardInstance.showPlayersTurn(players[playersAsked], 5 - (current_time - lastAction)//1000)
 
         else:
             gameState = "QUESTION_SHOW"
