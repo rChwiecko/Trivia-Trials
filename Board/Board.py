@@ -109,3 +109,12 @@ class Board:
         pygame.draw.rect(self.screen, BLACK, (rect_x+200, rect_y+410, 480, 90))
         pygame.draw.rect(self.screen, WHITE, (rect_x+200+BOARD_OUTLINE_OFFSET, rect_y+410+BOARD_OUTLINE_OFFSET, 480-(BOARD_OUTLINE_OFFSET*2), 90-(BOARD_OUTLINE_OFFSET*2)))
         pygame.draw.rect(self.screen, GREEN, (rect_x+200+BOARD_OUTLINE_OFFSET, rect_y+410+BOARD_OUTLINE_OFFSET, 16*time_elapsed, 90-(BOARD_OUTLINE_OFFSET*2)))
+
+    def showResults():
+        pass
+    def showPlayersTurn(self, name, time):
+        rect_x = (WIDTH - 880) // 2
+        rect_y = (HEIGHT - 600) // 2
+        pygame.draw.rect(self.screen, WHITE, (rect_x+BOARD_OUTLINE_OFFSET, rect_y+BOARD_OUTLINE_OFFSET, 480-(BOARD_OUTLINE_OFFSET*2), 90-(BOARD_OUTLINE_OFFSET*2)))
+        self.drawText(str(name+"'s turn"), self.curr_font, 50, BLACK, rect_x*2, rect_y+40)
+        self.drawText(str(time), self.curr_font, 50, BLACK, rect_x*2, rect_y+150)
