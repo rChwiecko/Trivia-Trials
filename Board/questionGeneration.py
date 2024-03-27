@@ -184,7 +184,7 @@ class questionGeneration:
             velocity = round(a / area, 2) # velocity = flow rate / area
             newVelocity = round(a / newArea, 2) # new velocity = flow rate / new area
             solution = round((velocity - newVelocity)*(velocity - newVelocity) / 2 / 9.81, 2) # loss of head = (v1 - v2)^2 / 2g, will be in m of water
-            return [f"A {b}m diameter pipe carries water at a velocity of {a}m/s. If the diameter of the pipe is increased to {c}m, determine the loss of head in the pipe",velocity, newVelocity, solution]
+            return [f"A {b}m diameter pipe carries water at a velocity of {a}m/s. If the diameter of the pipe is increased to {c}m, determine the loss of head in the pipe", solution]
 
 class addition(questionGeneration):
     '''Subclass of questionGeneration that generates addition questions'''
