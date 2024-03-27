@@ -1,5 +1,4 @@
-import numpy as np
-import pygame, time
+import pygame
 from questionGeneration import *
 import random
 from const import *
@@ -22,14 +21,14 @@ class Board:
     scaled_duck_player = pygame.transform.scale(duck, (50, 50))
     pause = pygame.image.load("./assets/pauseButton.png")
     scaled_pause = pygame.transform.scale(pause,(40,40))
-    player1, player2, player3 = np.zeros(NUMCOLS*NUMROWS), np.zeros(NUMCOLS*NUMROWS), np.zeros(NUMCOLS*NUMROWS)
     #instantiating question generation class
-    add_easy, add_medium, add_hard = addition('easy'), addition('medium'), addition('hard')
-    sub_easy, sub_medium, sub_hard = subtraction('easy'), subtraction('medium'), subtraction('hard')
-    mult_easy, mult_medium, mult_hard = multiplication('easy'), multiplication('medium'), multiplication('hard')
-    div_easy, div_medium, div_hard = division('easy'), division('medium'), division('hard')
-    quad_easy, quad_medium, quad_hard = quadratic('easy'), quadratic('medium'), quadratic('hard')
-    lin_easy, lin_medium, lin_hard = linear('easy'), linear('medium'), linear('hard')
+    # add_easy, add_medium, add_hard = addition('easy'), addition('medium'), addition('hard')
+    # sub_easy, sub_medium, sub_hard = subtraction('easy'), subtraction('medium'), subtraction('hard')
+    # mult_easy, mult_medium, mult_hard = multiplication('easy'), multiplication('medium'), multiplication('hard')
+    # div_easy, div_medium, div_hard = division('easy'), division('medium'), division('hard')
+    # quad_easy, quad_medium, quad_hard = quadratic('easy'), quadratic('medium'), quadratic('hard')
+    # lin_easy, lin_medium, lin_hard = linear('easy'), linear('medium'), linear('hard')
+    # flu_easy, flu_medium, flu_hard = fluidDynamics('easy'), fluidDynamics('medium'), fluidDynamics('hard')
 
     #constructor
     def __init__(self, playerList, screen, level, playerIndex, newGame = False) -> None:
@@ -144,8 +143,25 @@ class Board:
         pygame.draw.rect(self.screen, WHITE, (rect_x+200+BOARD_OUTLINE_OFFSET, rect_y+410+BOARD_OUTLINE_OFFSET, 480-(BOARD_OUTLINE_OFFSET*2), 90-(BOARD_OUTLINE_OFFSET*2)))
         pygame.draw.rect(self.screen, GREEN, (rect_x+200+BOARD_OUTLINE_OFFSET, rect_y+410+BOARD_OUTLINE_OFFSET, 16*time_elapsed, 90-(BOARD_OUTLINE_OFFSET*2)))
         #---------------------
-        if (gen_new_question):      
-            self.curr_question = self.quad_hard.generateQuestion()
+        if (gen_new_question): 
+            player_row = self.playerIndex // NUMCOLS
+            que_type = random.randint(1,2)
+            if(player_row == 0):
+                if que_type == 1:
+                    self.curr_question = addition(self.levelNum).generateQuestion()
+                else:
+                    self.curr_question = subtraction(self.levelNum).generateQuestion()
+            elif(player_row == 1):
+                if que_type == 1:
+                    self.curr_question = multiplication(self.levelNum).generateQuestion()
+                else:
+                    self.curr_question = division(self.levelNum).generateQuestion()
+            else:
+                if que_type == 2:
+                    self.curr_question = quadratic(self.levelNum).generateQuestion()
+                else:
+                    self.curr_question = linear(self.levelNum).generateQuestion()
+            self.curr_question = self.flu_hard.generateQuestion()
         self.drawText(self.curr_question[0], self.curr_font, 30, BLACK, innerBoardStartX+200, innerBoardStartY+250)
     def showResults():
         pass
