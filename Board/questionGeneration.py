@@ -55,7 +55,7 @@ class questionGeneration:
             b = random.randint(0, 1000)
 
         solution = a + b
-        return [f"What is {a} + {b}?",a, b, solution]
+        return [f"What is {a} + {b}?", " ", a, b, solution]
 
     def subtraction(self):
         #Generates a subtraction question based on the difficulty
@@ -70,7 +70,7 @@ class questionGeneration:
             b = random.randint(0, 1000)
 
         solution = a - b
-        return [f"What is {a} - {b}?", a, b, solution]
+        return [f"What is {a} - {b}?", " ", a, b, solution]
 
     def multiplication(self):
         #Generates a multiplication question based on the difficulty
@@ -85,7 +85,7 @@ class questionGeneration:
             b = random.randint(0, 1000)
 
         solution = a * b
-        return [f"What is {a} x {b}?", a, b, solution]
+        return [f"What is {a} x {b}?", " ", a, b, solution]
 
     def division(self):
         #Generates a division question based on the difficulty
@@ -100,7 +100,7 @@ class questionGeneration:
             b = random.randint(1, 1000)
 
         solution = round(a / b, 2)
-        return [f"What is {a} / {b}?\nRound to 2 decimal places", a, b, solution]
+        return [f"What is {a} / {b}?","Round to 2 decimal places", a, b, solution]
     
     def quadratic(self):
         #Generates a quadratic question based on the difficulty, done in this way to ensure that the roots are real numbers without use of an external library
@@ -128,7 +128,7 @@ class questionGeneration:
         # roots are the solutions to the equation ax^2 + bx + cx + d = 0
         roots = [round((-c) / a, 2) , round((-d) / b, 2)]
 
-        return [f"Find the roots of the function given by {first}x^2 + {second}x + {third}\nRound to 2 decimal places", first, second, third, roots]
+        return [f"Find the roots of the function given by", "{first}x^2 + {second}x + {third}, Round to 2 decimal places", first, second, third, roots]
             
     
     def linear(self):
@@ -153,7 +153,7 @@ class questionGeneration:
         second = b * c
         constant = round(d - (first + second), 2)
 
-        return f"Determine the integral of the function given by {a}x + {b}, use ∫({c}) = {d} to find C\nRound to 2 decimal places",a,b,f"{round(a/2, 2)}x^2, {b}x + {constant}"   
+        return [f"Determine the integral of the function given by", "{a}x + {b}, use ∫({c}) = {d} to find C, Round to 2 decimal places",a,b,f"{round(a/2, 2)}x^2, {b}x + {constant}"]
     
     def fluidDynamics(self):
         #Generates a fluid dynamics question based on the difficulty
