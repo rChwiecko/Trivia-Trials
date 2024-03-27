@@ -236,11 +236,3 @@ class fluidDynamics(questionGeneration):
     def __init__(self, difficulty):
         '''Initializes the fluidDynamics class with the difficulty'''
         super().__init__("fluidDynamics", difficulty)
-
-test = fluidDynamics("easy")
-print(test.generateQuestion(), "\n")
-test = fluidDynamics("medium")
-print(test.generateQuestion(), "\n")
-test = fluidDynamics("hard")
-print(test.generateQuestion(), "\n")
-
