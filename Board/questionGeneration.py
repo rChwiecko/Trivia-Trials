@@ -44,13 +44,13 @@ class questionGeneration:
 
     def addition(self):
         #Generates an addition question based on the difficulty
-        if self.difficulty == "easy":
+        if self.difficulty == "1":
             a = random.randint(0, 10)
             b = random.randint(0, 10)
-        elif self.difficulty == "medium":
+        elif self.difficulty == "2":
             a = random.randint(0, 100)
             b = random.randint(0, 100)
-        elif self.difficulty == "hard":
+        elif self.difficulty == "3":
             a = random.randint(0, 1000)
             b = random.randint(0, 1000)
 
@@ -59,13 +59,13 @@ class questionGeneration:
 
     def subtraction(self):
         #Generates a subtraction question based on the difficulty
-        if self.difficulty == "easy":
+        if self.difficulty == "1":
             a = random.randint(0, 10)
             b = random.randint(0, 10)
-        elif self.difficulty == "medium":
+        elif self.difficulty == "2":
             a = random.randint(0, 100)
             b = random.randint(0, 100)
-        elif self.difficulty == "hard":
+        elif self.difficulty == "3":
             a = random.randint(0, 1000)
             b = random.randint(0, 1000)
 
@@ -74,13 +74,13 @@ class questionGeneration:
 
     def multiplication(self):
         #Generates a multiplication question based on the difficulty
-        if self.difficulty == "easy":
+        if self.difficulty == "1":
             a = random.randint(0, 10)
             b = random.randint(0,10)
-        elif self.difficulty == "medium":
+        elif self.difficulty == "2":
             a = random.randint(0, 100)
             b = random.randint(0, 100)
-        elif self.difficulty == "hard":
+        elif self.difficulty == "3":
             a = random.randint(0, 1000)
             b = random.randint(0, 1000)
 
@@ -89,13 +89,13 @@ class questionGeneration:
 
     def division(self):
         #Generates a division question based on the difficulty
-        if self.difficulty == "easy":
+        if self.difficulty == "1":
             a = random.randint(0, 10)
             b = random.randint(1,10)
-        elif self.difficulty == "medium":
+        elif self.difficulty == "2":
             a = random.randint(0, 100)
             b = random.randint(1, 100)
-        elif self.difficulty == "hard":
+        elif self.difficulty == "3":
             a = random.randint(0, 1000)
             b = random.randint(1, 1000)
 
@@ -104,17 +104,17 @@ class questionGeneration:
     
     def quadratic(self):
         #Generates a quadratic question based on the difficulty, done in this way to ensure that the roots are real numbers without use of an external library
-        if self.difficulty == "easy":
+        if self.difficulty == "1":
             a = random.randint(1, 10)
             b = random.randint(1, 10)
             c = random.randint(1, 10)
             d = random.randint(1, 10)
-        elif self.difficulty == "medium":
+        elif self.difficulty == "2":
             a = random.randint(5, 15)
             b = random.randint(5, 15)
             c = random.randint(5, 15)
             d = random.randint(5, 15)
-        elif self.difficulty == "hard":
+        elif self.difficulty == "3":
             a = random.randint(5, 20)
             b = random.randint(5, 20)
             c = random.randint(5, 20)
@@ -133,17 +133,17 @@ class questionGeneration:
     
     def linear(self):
         #Generates a linear question based on the difficulty
-        if self.difficulty == "easy":
+        if self.difficulty == "1":
             a = random.randint(1, 10)
             b = random.randint(1, 10)
             c = random.randint(1, 10)
             d = random.randint(1, 100)
-        elif self.difficulty == "medium":
+        elif self.difficulty == "2":
             a = random.randint(5, 15)
             b = random.randint(5, 15)
             c = random.randint(1, 15)
             d = random.randint(1, 100)
-        elif self.difficulty == "hard":
+        elif self.difficulty == "3":
             a = random.randint(5, 20)
             b = random.randint(5, 20)
             c = random.randint(1, 20)
@@ -157,7 +157,7 @@ class questionGeneration:
     
     def fluidDynamics(self):
         #Generates a fluid dynamics question based on the difficulty
-        if self.difficulty == "easy":
+        if self.difficulty == "1":
             a = random.randint(1, 3)
             b = random.randint(1, 10)
             specificWeight = b * 1000 * a # specific weight = weight / volume
@@ -165,7 +165,7 @@ class questionGeneration:
             specificGravity = round(density / 1000, 2) # specific gravity = density of the liquid / density of water, 
             return [f"Calculate the specific gravity of {a}L of a liquid that weighs {b}N", specificWeight, density, specificGravity]
         
-        elif self.difficulty == "medium":
+        elif self.difficulty == "2":
             a = random.randint(1, 5)
             b = random.randint(1, 5)
             c = random.randint(1, 10)
@@ -175,7 +175,7 @@ class questionGeneration:
             centerPressure = round(massMomentofInertia / area * (c + b/2), 2) # center pressure = I / A * x, will be in m
             return [f"Calculate the total pressure and center of pressure of a {a}m long x {b}m wide rectangular plate. It is immersed vertically in water where its 3m side is parallel to the water surface and is 1m deep below it", totalPressure, centerPressure]
         
-        elif self.difficulty == "hard":
+        elif self.difficulty == "3":
             a = random.randint(1, 10)/10
             b = random.randint(1, 10)/10
             c = b*random.randint(1, 3)
