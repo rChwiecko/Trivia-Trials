@@ -14,7 +14,7 @@ class Player:
     """Function to allow user to input a name
     @params: name String
     """
-    def setName(self, name):
+    def setName(self, name):        # make notAstringException
         self.__playerName = name    # get from user input, query would take from this method
 
     # so Main Menu would create a new Player object upon every prompt, and then
