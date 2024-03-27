@@ -39,6 +39,8 @@ class questionGeneration:
             return self.quadratic()
         elif self.questionType == "linear":
             return self.linear()
+        elif self.questionType == "fluidDynamics":
+            return self.fluidDynamics()
 
     def addition(self):
         #Generates an addition question based on the difficulty
@@ -153,6 +155,37 @@ class questionGeneration:
 
         return f"Determine the integral of the function given by {a}x + {b}, use ∫({c}) = {d} to find C\nRound to 2 decimal places",a,b,f"{round(a/2, 2)}x^2, {b}x + {constant}"   
     
+    def fluidDynamics(self):
+        #Generates a fluid dynamics question based on the difficulty
+        if self.difficulty == "easy":
+            a = random.randint(1, 3)
+            b = random.randint(1, 10)
+            specificWeight = b * 1000 * a # specific weight = weight / volume
+            density = round(specificWeight / 9.81, 2) # density = specific weight / gravity
+            specificGravity = round(density / 1000, 2) # specific gravity = density of the liquid / density of water, 
+            return [f"Calculate the specific gravity of {a}L of a liquid that weighs {b}N", specificWeight, density, specificGravity]
+        
+        elif self.difficulty == "medium":
+            a = random.randint(1, 5)
+            b = random.randint(1, 5)
+            c = random.randint(1, 10)
+            area = a * b
+            totalPressure = round((c + b/2) * 9.81 * area, 2) # total pressure = wAx where w = weight density(gravity), A = area, x = depth
+            massMomentofInertia = a * b * b * b / 12 # mass moment of inertia = (mass * length^2)
+            centerPressure = round(massMomentofInertia / area * (c + b/2), 2) # center pressure = I / A * x, will be in m
+            return [f"Calculate the total pressure and center of pressure of a {a}m long x {b}m wide rectangular plate. It is immersed vertically in water where its 3m side is parallel to the water surface and is 1m deep below it", totalPressure, centerPressure]
+        
+        elif self.difficulty == "hard":
+            a = random.randint(1, 10)/10
+            b = random.randint(1, 10)/10
+            c = b*random.randint(1, 3)
+            area = round(3.14/4 * b * b, 2) # area = πr^2
+            newArea = round(3.14/4 * c * c, 2) # new area = πr^2
+            velocity = round(a / area, 2) # velocity = flow rate / area
+            newVelocity = round(a / newArea, 2) # new velocity = flow rate / new area
+            solution = round((velocity - newVelocity)*(velocity - newVelocity) / 2 / 9.81, 2) # loss of head = (v1 - v2)^2 / 2g, will be in m of water
+            return [f"A {b}m diameter pipe carries water at a velocity of {a}m/s. If the diameter of the pipe is increased to {c}m, determine the loss of head in the pipe",velocity, newVelocity, solution]
+
 class addition(questionGeneration):
     '''Subclass of questionGeneration that generates addition questions'''
     def __init__(self, difficulty):
@@ -197,3 +230,17 @@ class linear(questionGeneration):
     def __init__(self, difficulty):
         '''Initializes the linear class with the difficulty'''
         super().__init__("linear", difficulty)
+
+class fluidDynamics(questionGeneration):
+    '''Subclass of questionGeneration that generates fluid dynamics questions'''
+    def __init__(self, difficulty):
+        '''Initializes the fluidDynamics class with the difficulty'''
+        super().__init__("fluidDynamics", difficulty)
+
+test = fluidDynamics("easy")
+print(test.generateQuestion(), "\n")
+test = fluidDynamics("medium")
+print(test.generateQuestion(), "\n")
+test = fluidDynamics("hard")
+print(test.generateQuestion(), "\n")
+
