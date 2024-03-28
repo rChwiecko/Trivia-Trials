@@ -1,4 +1,4 @@
-import pygame
+import pygame, pygame_gui
 from Board import * 
 #basic pygame properties
 pygame.init()
@@ -8,7 +8,7 @@ pygame.display.set_caption("Trivia Trials")
 running = True
 #preliminaries for main loop
 players = ['player1','ryan','sonia']
-boardInstance = Board(players, screen, 1, 0)
+boardInstance = Board(players, screen, "1", 0)
 gameState = "INITIAL"  # Corrected state name
 playersAsked = 0
 beginning = pygame.time.get_ticks()

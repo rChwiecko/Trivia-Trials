@@ -43,7 +43,7 @@ class Board:
                     self.board[i][j] = 1
         self.gameStatus = True
         self.screen = screen
-        self.level = level
+        self.levelNum = level
 
 
     #draws board, win is the current window (screen)
@@ -53,7 +53,7 @@ class Board:
         rect_x = (WIDTH - 880) // 2
         rect_y = (HEIGHT - 600) // 2
         pygame.draw.rect(win, BLACK, (rect_x, rect_y, 880, 600))
-        level = "Level "+str(self.level)
+        level = "Level "+str(self.levelNum)
         self.drawText(level, self.curr_font, 30, BLACK, rect_x + 70, rect_y - 30)
         innerBoardWidth = 880-(BOARD_OUTLINE_OFFSET*2)
         innerBoardHeight = 600-(BOARD_OUTLINE_OFFSET*2)
@@ -139,12 +139,13 @@ class Board:
         innerBoardStartY = rect_y+BOARD_OUTLINE_OFFSET
         pygame.draw.rect(self.screen, WHITE, (innerBoardStartX, innerBoardStartY, innerBoardWidth, innerBoardHeight))
         self.drawText(str(playersQuestion+"'s Question"), self.curr_font, 50, BLACK, rect_x*2, rect_y+40)
-        pygame.draw.rect(self.screen, BLACK, (rect_x+200, rect_y+410, 480, 90))
-        pygame.draw.rect(self.screen, WHITE, (rect_x+200+BOARD_OUTLINE_OFFSET, rect_y+410+BOARD_OUTLINE_OFFSET, 480-(BOARD_OUTLINE_OFFSET*2), 90-(BOARD_OUTLINE_OFFSET*2)))
-        pygame.draw.rect(self.screen, GREEN, (rect_x+200+BOARD_OUTLINE_OFFSET, rect_y+410+BOARD_OUTLINE_OFFSET, 16*time_elapsed, 90-(BOARD_OUTLINE_OFFSET*2)))
+        pygame.draw.rect(self.screen, BLACK, (rect_x+200, rect_y+460, 480, 90))
+        pygame.draw.rect(self.screen, WHITE, (rect_x+200+BOARD_OUTLINE_OFFSET, rect_y+460+BOARD_OUTLINE_OFFSET, 480-(BOARD_OUTLINE_OFFSET*2), 90-(BOARD_OUTLINE_OFFSET*2)))
+        pygame.draw.rect(self.screen, GREEN, (rect_x+200+BOARD_OUTLINE_OFFSET, rect_y+460+BOARD_OUTLINE_OFFSET, 16*time_elapsed, 90-(BOARD_OUTLINE_OFFSET*2)))
         #---------------------
         if (gen_new_question): 
-            player_row = self.playerIndex // NUMCOLS
+            # player_row = self.playerIndex // NUMCOLS
+            player_row = 2
             que_type = random.randint(1,2)
             if(player_row == 0):
                 if que_type == 1:
@@ -161,8 +162,9 @@ class Board:
                     self.curr_question = quadratic(self.levelNum).generateQuestion()
                 else:
                     self.curr_question = linear(self.levelNum).generateQuestion()
-            self.curr_question = self.flu_hard.generateQuestion()
-        self.drawText(self.curr_question[0], self.curr_font, 30, BLACK, innerBoardStartX+200, innerBoardStartY+250)
+        self.drawText(self.curr_question[0], self.curr_font, 30, BLACK, innerBoardStartX+100, innerBoardStartY+250)
+        self.drawText(self.curr_question[1], self.curr_font, 30, BLACK, innerBoardStartX+100, innerBoardStartY+280)
+        self.drawText(self.curr_question[2], self.curr_font, 30, BLACK, innerBoardStartX+100, innerBoardStartY+310)
     def showResults():
         pass
     #gives a countdown for which players turn it is
