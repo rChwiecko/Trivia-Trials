@@ -49,6 +49,8 @@ class TestPlayer(unittest.TestCase):
             player = Player()
             player.updateScore(1)
             self.assertEqual(player.getScore(), 1)
+            player.updateScore(2)
+            self.assertEqual(player.getScore(), 3)
 
         def test_updateDuckCount(self, count):   # input from Ryan again, input how much it increases by
             player = Player()

@@ -14,40 +14,40 @@ class Player:
     """Function to allow user to input a name
     @params: name String
     """
-    def setName(self, name):        # make notAstringException
+    def setName(self, name: str) -> None:        # make notAstringException
         self.__playerName = name    # get from user input, query would take from this method
 
     # so Main Menu would create a new Player object upon every prompt, and then
     # it's Sahej's problem to read it in in a way that this object can set it
-    def setID(self, player_id):     # randomize
+    def setID(self, player_id: int) -> None:     # randomize
         self.__playerID = random.randint(0,10000)
 
-    def updateScore(self, score):   # setter, input from Ryan again, input how much it increases by
+    def updateScore(self, score: float) -> None:   # setter, input from Ryan again, input how much it increases by
         self.__score += score
 
-    def updateDuckCount(self, count):   # setter, input from Ryan again, input how much it increases by
+    def updateDuckCount(self, count) -> None:   # setter, input from Ryan again, input how much it increases by
         self.__duckCount += count
     
-    def updateStreakCount(self, streak):
+    def updateStreakCount(self, streak) -> None:
         self.__streakCount += streak
 
-    def updateCorrectCount(self, correct):
+    def updateCorrectCount(self, correct) -> None:
         self.__correctCount += correct
 
-    def getID(self):    
+    def getID(self) -> int:    
         return self.__playerID
 
-    def getName(self):
+    def getName(self) -> str:
         return self.__playerName
 
-    def getScore(self):
+    def getScore(self) -> float:
         return self.__score
 
-    def getDuckCount(self):
+    def getDuckCount(self) -> int:
         return self.__duckCount
 
-    def getStreakCount(self):  # streak counter, make set and get
+    def getStreakCount(self) -> int:  # streak counter, make set and get
         return self.__streakCount
     
-    def getCorrectCount(self):
+    def getCorrectCount(self) -> int:
         return self.__correctCount
