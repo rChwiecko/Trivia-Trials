@@ -25,13 +25,13 @@ class Player:
     def updateScore(self, score: float) -> None:   # setter, input from Ryan again, input how much it increases by
         self.__score += score
 
-    def updateDuckCount(self, count) -> None:   # setter, input from Ryan again, input how much it increases by
+    def updateDuckCount(self, count: int) -> None:   # setter, input from Ryan again, input how much it increases by
         self.__duckCount += count
     
-    def updateStreakCount(self, streak) -> None:
+    def updateStreakCount(self, streak: int) -> None:
         self.__streakCount += streak
 
-    def updateCorrectCount(self, correct) -> None:
+    def updateCorrectCount(self, correct: int) -> None:
         self.__correctCount += correct
 
     def getID(self) -> int:    

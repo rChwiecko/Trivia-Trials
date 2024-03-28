@@ -19,6 +19,7 @@ class TestPlayer(unittest.TestCase):
 
         def test_setID(self, player_id):     # randomize
             player = Player()
+            player.setID
             self.__playerID = random.randint(0,10000)
             print("setID passed")
         
