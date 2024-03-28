@@ -21,45 +21,48 @@ class TestPlayer(unittest.TestCase):
             player = Player()
             self.__playerID = random.randint(0,10000)
             print("setID passed")
+        
+        def test_getID(self):    
+            player = Player()
+            return self.__playerID
+
+        def test_getScore(self):
+            player = Player()
+            return self.__score
+
+        def test_getDuckCount(self):
+            player = Player()
+            return self.__duckCount
+
+        def test_getStreakCount(self):  # streak counter, make set and get
+            player = Player()
+            return self.__streakCount
+
+        def test_getCorrectCount(self):
+            player = Player()
+            return self.__correctCount    
 
         print("setter/getter tests passed")
 
-    def test_updateScore(self, score):   # input from Ryan again, input how much it increases by
-        player = Player()
-        player.updateScore(1)
-        self.assertEqual(player.getScore(), 1)
+    def test_updaters(self):    # these are basically setters of sorts
+        def test_updateScore(self, score):   # input from Ryan again, input how much it increases by
+            player = Player()
+            player.updateScore(1)
+            self.assertEqual(player.getScore(), 1)
 
-    def test_updateDuckCount(self, count):   # input from Ryan again, input how much it increases by
-        player = Player()
-        self.__duckCount += count
-    
-    def test_updateStreakCount(self, streak):
-        player = Player()
-        self.__streakCount += streak
+        def test_updateDuckCount(self, count):   # input from Ryan again, input how much it increases by
+            player = Player()
+            self.__duckCount += count
+        
+        def test_updateStreakCount(self, streak):
+            player = Player()
+            self.__streakCount += streak
 
-    def test_updateCorrectCount(self, correct):
-        player = Player()
-        self.__correctCount += correct
-
-    def test_getID(self):    
-        player = Player()
-        return self.__playerID
-
-    def test_getScore(self):
-        player = Player()
-        return self.__score
-
-    def test_getDuckCount(self):
-        player = Player()
-        return self.__duckCount
-
-    def test_getStreakCount(self):  # streak counter, make set and get
-        player = Player()
-        return self.__streakCount
-
-    def test_getCorrectCount(self):
-        player = Player()
-        return self.__correctCount    
+        def test_updateCorrectCount(self, correct):
+            player = Player()
+            self.__correctCount += correct
+        
+        print("update tests passed")
 
 if __name__ == '__main__':
     unittest.main()
