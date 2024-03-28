@@ -3,23 +3,33 @@ import unittest
 import Player
 
 class TestPlayer(unittest.TestCase):
-    def test_setters(self):
+    def test_settersGetters(self):
         def test_setName(self):     # checks if Player object was created
             player = Player()
             player.setName("name")
-            self.assertEquals(player, "name")
+            self.assertEqual(player.getName(), "name")
             self.assertIsInstance(player, Player)
-            print("setter tests passed")
-    
+            print("setName passed")
+
+        def test_getName(self):
+            player = Player()
+            player.setName("name")
+            self.assertEqual(player.getName(), "name")
+            print("getName passed")
+
         def test_setID(self, player_id):     # randomize
             player = Player()
             self.__playerID = random.randint(0,10000)
+            print("setID passed")
 
-    def test_updateScore(self, score):   # setter, input from Ryan again, input how much it increases by
+        print("setter/getter tests passed")
+
+    def test_updateScore(self, score):   # input from Ryan again, input how much it increases by
         player = Player()
-        self.__score += score
+        player.updateScore(1)
+        self.assertEqual(player.getScore(), 1)
 
-    def test_updateDuckCount(self, count):   # setter, input from Ryan again, input how much it increases by
+    def test_updateDuckCount(self, count):   # input from Ryan again, input how much it increases by
         player = Player()
         self.__duckCount += count
     
@@ -34,10 +44,6 @@ class TestPlayer(unittest.TestCase):
     def test_getID(self):    
         player = Player()
         return self.__playerID
-
-    def test_getName(self):
-        player = Player()
-        return self.__playerName
 
     def test_getScore(self):
         player = Player()
