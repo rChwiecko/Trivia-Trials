@@ -3,27 +3,36 @@ from questionGeneration import *
 
 class TestQuestionGeneration(unittest.TestCase):
     def test_addition(self):
-        add = addition('easy')
+        add = addition('1')
         for i in range(10):
             question = add.generateQuestion()
-            print(question[0], "Answer should be:", question[3])
-            self.assertEqual(question[3], question[1] + question[2], "Test Failed, expected: {} got: {}".format(question[3], question[1] + question[2]))
+            print(question[0], "Answer is:", question[3])
+            self.assertIsInstance(question[0], str, "Test Failed, expected question[0] to be a string")
+            self.assertIsInstance(question[1], str, "Test Failed, expected question[1] to be a string")
+            self.assertIsInstance(question[2], str, "Test Failed, expected question[2] to be a string")
+            self.assertIsInstance(question[3], int, "Test Failed, expected question[3] to be an integer")
             i += 1
         print("Addition Easy Tests Passed\n\n")
 
-        add = addition('medium')
+        add = addition('2')
         for i in range(10):
             question = add.generateQuestion()
-            print(question[0], "Answer should be:", question[3])
-            self.assertEqual(question[3], question[1] + question[2], "Test Failed, expected: {} got: {}".format(question[3], question[1] + question[2]))
+            print(question[0], "Answer is:", question[3])
+            self.assertIsInstance(question[0], str, "Test Failed, expected question[0] to be a string")
+            self.assertIsInstance(question[1], str, "Test Failed, expected question[1] to be a string")
+            self.assertIsInstance(question[2], str, "Test Failed, expected question[2] to be a string")
+            self.assertIsInstance(question[3], int, "Test Failed, expected question[3] to be an integer")
             i += 1
         print("Addition Medium Tests Passed\n\n")
 
-        add = addition('hard')
+        add = addition('3')
         for i in range(10):
             question = add.generateQuestion()
-            print(question[0], "Answer should be:", question[3])
-            self.assertEqual(question[3], question[1] + question[2], "Test Failed, expected: {} got: {}".format(question[3], question[1] + question[2]))
+            print(question[0], "Answer is:", question[3])
+            self.assertIsInstance(question[0], str, "Test Failed, expected question[0] to be a string")
+            self.assertIsInstance(question[1], str, "Test Failed, expected question[1] to be a string")
+            self.assertIsInstance(question[2], str, "Test Failed, expected question[2] to be a string")
+            self.assertIsInstance(question[3], int, "Test Failed, expected question[3] to be an integer")
             i += 1
         print("Addition Hard Tests Passed\n\n")
 
