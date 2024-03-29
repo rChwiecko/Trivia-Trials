@@ -139,10 +139,13 @@ class Board:
         innerBoardStartY = rect_y+BOARD_OUTLINE_OFFSET
         pygame.draw.rect(self.screen, WHITE, (innerBoardStartX, innerBoardStartY, innerBoardWidth, innerBoardHeight))
         self.drawText(str(playersQuestion+"'s Question"), self.curr_font, 50, BLACK, rect_x*2, rect_y+40)
-        pygame.draw.rect(self.screen, BLACK, (rect_x+200, rect_y+460, 480, 90))
-        pygame.draw.rect(self.screen, WHITE, (rect_x+200+BOARD_OUTLINE_OFFSET, rect_y+460+BOARD_OUTLINE_OFFSET, 480-(BOARD_OUTLINE_OFFSET*2), 90-(BOARD_OUTLINE_OFFSET*2)))
-        pygame.draw.rect(self.screen, GREEN, (rect_x+200+BOARD_OUTLINE_OFFSET, rect_y+460+BOARD_OUTLINE_OFFSET, 16*time_elapsed, 90-(BOARD_OUTLINE_OFFSET*2)))
+        pygame.draw.rect(self.screen, BLACK, (rect_x+200, rect_y+400, 480, 90))
+        pygame.draw.rect(self.screen, WHITE, (rect_x+200+BOARD_OUTLINE_OFFSET, rect_y+400+BOARD_OUTLINE_OFFSET, 480-(BOARD_OUTLINE_OFFSET*2), 90-(BOARD_OUTLINE_OFFSET*2)))
+        pygame.draw.rect(self.screen, GREEN, (rect_x+200+BOARD_OUTLINE_OFFSET, rect_y+400+BOARD_OUTLINE_OFFSET, 16*time_elapsed, 90-(BOARD_OUTLINE_OFFSET*2)))
         #---------------------
+        pygame.draw.rect(self.screen, BLACK, (innerBoardStartX+100, innerBoardStartY+285, 290, 50))
+        pygame.draw.rect(self.screen, WHITE, (innerBoardStartX+100+BOARD_OUTLINE_OFFSET, innerBoardStartY+285+BOARD_OUTLINE_OFFSET, 290-(BOARD_OUTLINE_OFFSET*2), 50-(BOARD_OUTLINE_OFFSET*2)))
+        
         if (gen_new_question): 
             # player_row = self.playerIndex // NUMCOLS
             player_row = 2
@@ -162,9 +165,9 @@ class Board:
                     self.curr_question = quadratic(self.levelNum).generateQuestion()
                 else:
                     self.curr_question = linear(self.levelNum).generateQuestion()
-        self.drawText(self.curr_question[0], self.curr_font, 30, BLACK, innerBoardStartX+100, innerBoardStartY+250)
-        self.drawText(self.curr_question[1], self.curr_font, 30, BLACK, innerBoardStartX+100, innerBoardStartY+280)
-        self.drawText(self.curr_question[2], self.curr_font, 30, BLACK, innerBoardStartX+100, innerBoardStartY+310)
+        self.drawText(self.curr_question[0], self.curr_font, 30, BLACK, innerBoardStartX+100, innerBoardStartY+175)
+        self.drawText(self.curr_question[1], self.curr_font, 30, BLACK, innerBoardStartX+100, innerBoardStartY+205)
+        self.drawText(self.curr_question[2], self.curr_font, 30, BLACK, innerBoardStartX+100, innerBoardStartY+235)
     def showResults():
         pass
     #gives a countdown for which players turn it is

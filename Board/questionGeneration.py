@@ -128,7 +128,7 @@ class questionGeneration:
         # roots are the solutions to the equation ax^2 + bx + cx + d = 0
         roots = [round((-c) / a, 2) , round((-d) / b, 2)]
 
-        return [f"Find the roots of the function given by",f"{first}x^2 + {second}x + {third}","Round to 2 decimal places",roots]
+        return [f"Find the roots of the function given by",f"{first}x^2 + {second}x + {third}","Round to 2 decimal places, separate with commas",roots]
             
     
     def linear(self):
