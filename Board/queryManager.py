@@ -29,7 +29,7 @@ game = {
 result = games.update_one({"game_id": game["game_id"]}, {"$set": game}, upsert=True)
 
 # Print the id of the inserted document
-print("Inserted game with id %s" % result.inserted_id)
+print("Inserted game with id %s" % result.upserted_id)
 
 # Find the game with the game_id 1
 game = games.find_one({"game_id": 1})
