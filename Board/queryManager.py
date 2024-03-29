@@ -26,7 +26,7 @@ game = {
 }
 
 # Insert the game into the 'games' collection
-result = games.insert_one(game)
+result = games.update_one({"game_id": game["game_id"]}, {"$set": game}, upsert=True)
 
 # Print the id of the inserted document
 print("Inserted game with id %s" % result.inserted_id)
