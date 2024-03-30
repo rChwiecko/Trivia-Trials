@@ -173,7 +173,7 @@ def draw_exit_screen():
     pygame.draw.rect(screen, 'black', [exit_menu_x, exit_menu_y, exit_menu_width, exit_menu_height])
     # pygame.draw.rect(screen, 'green', [exit_menu_x, exit_menu_y, exit_menu_width, exit_menu_height], 3)
 
-    exit_text = font.render("Do you want to save before exiting?", True, 'white')
+    exit_text = font.render("Do you want to exit?", True, 'white')
     screen.blit(exit_text, (exit_menu_x + 20, exit_menu_y + 20))
 
     yes_button = Button('Yes', (exit_menu_x + 50, exit_menu_y + 80), width=100, height=40)
@@ -187,12 +187,10 @@ def draw_exit_screen():
             sys.exit()
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if yes_button.check_clicked():
-                # Add code here to save the game before exiting
                 pygame.quit()
                 sys.exit()
             elif no_button.check_clicked():
-                pygame.quit()
-                sys.exit()
+                exit_menu = False
 
 
 run = True
