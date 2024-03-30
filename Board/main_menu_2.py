@@ -129,12 +129,11 @@ def draw_save_screen():
             sys.exit()
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if save1_btn.check_clicked():
-                return 1
+                return find_game_by_id(1)
             elif save2_btn.check_clicked():
-                return 2
+                return find_game_by_id(2)
             elif save3_btn.check_clicked():
-                return 3
-
+                return find_game_by_id(3)
     return 0
 
 
@@ -185,7 +184,7 @@ while run:
             if draw_back_button():
                 main_menu = True
             if save_command != 0:
-                print(f'Save {save_command}')
+                print(f'{save_command}')
                 main_menu = True
         elif menu_command == 3:  # Highscore button pressed
             draw_highscore_screen()
