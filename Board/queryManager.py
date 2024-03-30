@@ -25,24 +25,28 @@ game = {
   ]
 }
 
-# Insert the game into the 'games' collection
-result = games.update_one({"game_id": game["game_id"]}, {"$set": game}, upsert=True)
+def insert_game(game):
+  # Insert the game into the 'games' collection
+  result = games.update_one({"game_id": game["game_id"]}, {"$set": game}, upsert=True)
+  return result
 
-# Print the id of the inserted document
-print("Inserted game with id %s" % result.upserted_id)
+# # Print the id of the inserted document
+# print("Inserted game with id %s" % result.upserted_id)
 
-# Find the game with the game_id 1
-game = games.find_one({"game_id": 1})
-print(game)
+def find_game_by_id(game_id):
+  # Find the game with the specified game_id
+  game = games.find_one({"game_id": game_id})
+  return game
 
-# Initialize the player_scores dictionary
-player_scores = {}
+def get_player_scores():
+  # Initialize the player_scores dictionary
+  player_scores = {}
 
-# for each game_id, print the player names and scores
-for game in games.find():
+  # for each game_id, print the player names and scores
+  for game in games.find():
     # print("Game %s" % game["game_id"])
     for player in game["players"]:
-        # Store the player names and scores in the dictionary
-        player_scores[player["name"]] = player["score"]
+      # Store the player names and scores in the dictionary
+      player_scores[player["name"]] = player["score"]
     # print(player_scores)
-print(player_scores)
+  return player_scores
