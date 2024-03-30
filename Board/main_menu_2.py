@@ -69,7 +69,7 @@ def draw_menu():
     button3 = Button('Highscore', (menu_x + 20, menu_y + 200))  # Adjusted position
     button3.draw()
 
-    exit_button = Button('Exit Menu', (menu_x + 20, menu_y + 260))  # Adjusted position
+    exit_button = Button('Exit Game', (menu_x + 20, menu_y + 260))  # Adjusted position
     exit_button.draw()
 
     if tutorials_button.check_clicked():
@@ -165,34 +165,6 @@ def draw_back_button():
     return False
 
 
-def draw_exit_screen():
-    exit_menu_width = 400
-    exit_menu_height = 200
-    exit_menu_x = (WIDTH - exit_menu_width) // 2
-    exit_menu_y = (HEIGHT - exit_menu_height) // 2
-    pygame.draw.rect(screen, 'black', [exit_menu_x, exit_menu_y, exit_menu_width, exit_menu_height])
-    # pygame.draw.rect(screen, 'green', [exit_menu_x, exit_menu_y, exit_menu_width, exit_menu_height], 3)
-
-    exit_text = font.render("Do you want to exit?", True, 'white')
-    screen.blit(exit_text, (exit_menu_x + 20, exit_menu_y + 20))
-
-    yes_button = Button('Yes', (exit_menu_x + 50, exit_menu_y + 80), width=100, height=40)
-    no_button = Button('No', (exit_menu_x + 250, exit_menu_y + 80), width=100, height=40)
-    yes_button.draw()
-    no_button.draw()
-
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
-        elif event.type == pygame.MOUSEBUTTONDOWN:
-            if yes_button.check_clicked():
-                pygame.quit()
-                sys.exit()
-            elif no_button.check_clicked():
-                exit_menu = False
-
-
 run = True
 while run:
     screen.fill('black')
@@ -205,9 +177,8 @@ while run:
         if menu_command != -1:
             main_menu = False
             if menu_command == 5:  # Exit Menu button pressed
-                exit_menu = True
-    elif exit_menu:
-        draw_exit_screen()
+                pygame.quit()
+                sys.exit()
     else:
         if menu_command == 2:
             save_command = draw_save_screen()
@@ -264,7 +235,8 @@ while run:
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 if main_menu:  # Only show exit menu in the main menu screen
-                    exit_menu = True
+                    pygame.quit()
+                    sys.exit()
 
     pygame.display.flip()
 
