@@ -9,11 +9,12 @@ debugging, and modification.
 
 class Developer:   
     def __init__(self):
-        self.__developerStatus = True # store whether or not the user can progress as an devleoper or not 
+        self.__developerStatus = False # give developer status default = False
         self.__developerPin = 374666 # stores the devleoper pin (temporary for now)
         # add parameter for any changes they would make
         # changes to leaderboard
         self.__scoreChange = 0
+
     
     # verifies whether the pin entered by user matches the developer pin or not and returns a boolean of the status 
     def verifyDeveloperPin(self, pinInput): # recieve input from user and store it 
@@ -34,3 +35,5 @@ class Developer:
     
     def changeCurrlevel(self, level):
         return
+    
+    # def 
