@@ -1,7 +1,7 @@
 import pygame
 import sys
 from queryManager import *
-
+from main import *
 pygame.init()
 
 WIDTH = 1280
@@ -220,8 +220,7 @@ while run:
                         # Perform actions for instructor
                         pass
                     elif player_button.check_clicked():
-                        # Perform actions for player
-                        pass
+                        game()
                     elif menu_btn.check_clicked():
                         main_menu = True
 
