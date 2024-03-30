@@ -1,5 +1,6 @@
 import pygame
 import sys
+from queryManager import *
 
 pygame.init()
 
@@ -147,12 +148,8 @@ def draw_highscore_screen():
                      5)
 
     # Display high scores
-    # Example:
-    high_scores = {
-        'Player 1': 5000,
-        'Player 2': 4500,
-        'Player 3': 4000
-    }
+    high_scores = get_player_scores() # Get high scores from the database
+
     y_offset = highscore_menu_y + 50
     for player, score in high_scores.items():
         text_surface = font.render(f'{player}: {score}', True, 'white')
