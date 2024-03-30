@@ -64,7 +64,7 @@ def draw_menu():
 
     button1 = Button('Start', (menu_x + 20, menu_y + 80))  # Adjusted position
     button1.draw()
-    button2 = Button('Load Previous', (menu_x + 20, menu_y + 140))  # Adjusted position
+    button2 = Button('Load Save', (menu_x + 20, menu_y + 140))  # Adjusted position
     button2.draw()
     button3 = Button('Highscore', (menu_x + 20, menu_y + 200))  # Adjusted position
     button3.draw()
@@ -182,6 +182,8 @@ while run:
     else:
         if menu_command == 2:
             save_command = draw_save_screen()
+            if draw_back_button():
+                main_menu = True
             if save_command != 0:
                 print(f'Save {save_command}')
                 main_menu = True
