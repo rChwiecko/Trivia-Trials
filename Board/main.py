@@ -1,7 +1,7 @@
 import pygame, pygame_gui
 from Board import * 
 #basic pygame properties
-def game():
+def game(new_game, game_data = None, player_list = None):
     pygame.init()
     screen = pygame.display.set_mode((1280, 800))
     clock = pygame.time.Clock()
