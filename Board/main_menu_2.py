@@ -11,6 +11,10 @@ screen = pygame.display.set_mode([WIDTH, HEIGHT])
 pygame.display.set_caption('Trivia Trials')
 main_menu = False
 exit_menu = False
+show_too_many_user_error = False
+show_no_user_error = False
+show_empty_name = False
+show_existing_user = False
 entering_user_data = False
 username_enter = ''
 password_enter = ''
@@ -198,16 +202,18 @@ def draw_player_login():
     pygame.draw.rect(screen, 'black', [rect_x+275+USER_ENTER_OFFSET, rect_y+270+USER_ENTER_OFFSET, 220-(USER_ENTER_OFFSET*2), 40-(USER_ENTER_OFFSET*2)])
     drawText(username_enter, other_font, 30, WHITE, rect_x+277, rect_y+205)
     drawText(str("*"*len(password_enter)), other_font, 30, WHITE, rect_x+277, rect_y+275)
-    add_new_user_button = Button('Add User', (rect_x + 160, rect_y + 500))
+    add_new_user_button = Button('Add User', ((WIDTH - 880) // 2 + 160, (HEIGHT - 600) // 2 + 500))
     add_new_user_button.draw()
-    add_new_user_button = Button('Start Game', (rect_x + 450, rect_y + 500))
+    add_new_user_button = Button('Start Game', ((WIDTH - 880) // 2 + 450, (HEIGHT - 600) // 2 + 500))
     add_new_user_button.draw()
-    if add_new_user_button.check_clicked():
-        if len(player_list) < 3:
-            player_list.append(1)
-        else:
-            drawText("Too Many Users Added To Game", other_font, 30, RED, rect_x+277, rect_y+350)
-
+    if show_too_many_user_error:
+        drawText("Too Many Users Added To Game", other_font, 30, RED, (WIDTH - 880) // 2 + 230, (HEIGHT - 600) // 2 +400)
+    elif show_no_user_error:
+        drawText("No Users Added", other_font, 30, RED, (WIDTH - 880) // 2+ 320, (HEIGHT - 600) // 2+ 400)
+    elif show_empty_name:
+        drawText("You Must Fill In Username and Password Field", other_font, 30, RED, (WIDTH - 880) // 2+ 130, (HEIGHT - 600) // 2+ 400)
+    elif show_existing_user:
+        drawText("Name Taken", other_font, 30, RED, (WIDTH - 880) // 2+ 325, (HEIGHT - 600) // 2+ 400)
 run = True
 while run:
     screen.fill('black')
@@ -294,6 +300,40 @@ while run:
                     elif (WIDTH - 880) // 2 + 275 <= mouse_pos[0] <= (WIDTH - 880) // 2 + 495 and (HEIGHT - 600) // 2 + 270 <= mouse_pos[1] <=(HEIGHT - 600) // 2 + 310:
                         username_enter_active = False
                         password_enter_active = True
+                    elif (WIDTH - 880) // 2 + 160 <= mouse_pos[0] <= (WIDTH - 880) // 2 + 420 and (HEIGHT - 600) // 2 + 500 <= mouse_pos[1] <= (HEIGHT - 600) // 2 + 540:
+                        if len(player_list) < 3 and username_enter != '' and password_enter != '' and username_enter not in player_list:
+                            player_list.append({"name":username_enter,"password":password_enter,"streak":0,"duck_count":0,"score":0})
+                            username_enter = ''
+                            password_enter = ''
+                            show_no_user_error = False
+                            show_empty_name = False
+                            show_existing_user = False
+                            show_too_many_user_error = False
+                        elif username_enter == '' or password_enter == '':
+                            show_empty_name = True
+                            show_no_user_error = False
+                            show_too_many_user_error = False
+                            show_existing_user = False
+                        elif username_enter in player_list:
+                            show_existing_user = True
+                            show_empty_name = False
+                            show_no_user_error = False
+                            show_too_many_user_error = False
+                        else:
+                            show_too_many_user_error = True
+                            show_no_user_error = False
+                            show_empty_name = False
+                            show_existing_user = False
+
+                    elif (WIDTH - 880) // 2 + 450 <= mouse_pos[0] <= (WIDTH - 880) // 2 + 710 and (HEIGHT - 600) // 2 + 500 <= mouse_pos[1] <= (HEIGHT - 600) // 2 + 540:
+                        if len(player_list) > 0:
+                            game(True, player_list=player_list)
+                            username_enter = ''
+                            password_enter = ''
+                        else:
+                            show_too_many_user_error = False
+                            show_empty_name = False
+                            show_no_user_error = True
                     else:
                         username_enter_active = False
                         password_enter_active = False
