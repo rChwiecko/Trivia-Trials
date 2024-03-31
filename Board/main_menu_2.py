@@ -20,7 +20,7 @@ ball = pygame.transform.scale(pygame.image.load('transparentduck.png'), (150, 15
 menu_command = 0
 
 # Load logo image
-logo = pygame.image.load('transparentduck.png')  # Replace 'logo.png' with the path to your logo image
+logo = pygame.image.load('transparentduck.png')
 logo = pygame.transform.scale(logo, (100, 100))  # Scale the logo to an appropriate size
 
 
@@ -147,7 +147,6 @@ def draw_highscore_screen():
                      5)
 
     # Display high scores
-    # Example:
     high_scores = {
         'Player 1': 5000,
         'Player 2': 4500,
@@ -174,7 +173,6 @@ def draw_exit_screen():
     exit_menu_x = (WIDTH - exit_menu_width) // 2
     exit_menu_y = (HEIGHT - exit_menu_height) // 2
     pygame.draw.rect(screen, 'black', [exit_menu_x, exit_menu_y, exit_menu_width, exit_menu_height])
-    # pygame.draw.rect(screen, 'green', [exit_menu_x, exit_menu_y, exit_menu_width, exit_menu_height], 3)
 
     exit_text = font.render("Do you want to save before exiting?", True, 'white')
     screen.blit(exit_text, (exit_menu_x + 20, exit_menu_y + 20))
@@ -190,7 +188,6 @@ def draw_exit_screen():
             sys.exit()
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if yes_button.check_clicked():
-                # Add code here to save the game before exiting
                 pygame.quit()
                 sys.exit()
             elif no_button.check_clicked():
