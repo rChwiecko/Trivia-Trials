@@ -132,14 +132,15 @@ def draw_save_screen():
             if save1_btn.check_clicked():
                 game_data =  find_game_by_id(1)
                 new_game = False
-                game(new_game=new_game, game_data=game_data)
             elif save2_btn.check_clicked():
                 game_data =  find_game_by_id(2)
                 new_game = False
-                game(new_game=new_game, game_data=game_data)
             elif save3_btn.check_clicked():
                 game_data =  find_game_by_id(3)
                 new_game = False
+            if game_data == None:
+                pass
+            else:
                 game(new_game=new_game, game_data=game_data)
     return 0
 
