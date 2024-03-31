@@ -26,6 +26,8 @@ class Board:
     scaled_checkMark = pygame.transform.scale(checkMark, (150, 150))
     RedX = pygame.image.load("./assets/redX.png")
     scaled_RedX = pygame.transform.scale(RedX, (150, 150))
+    streak = pygame.image.load("./assets/StreakIcon.png")
+    scaled_streak = pygame.transform.scale(streak, (50, 50))
 
     #constructor
     def __init__(self, playerList, screen, level, playerIndex, newGame = False) -> None:
@@ -255,6 +257,11 @@ class Board:
         rect_x = (WIDTH - 880) // 2
         rect_y = (HEIGHT - 600) // 2
         pygame.draw.rect(self.screen, WHITE, (0, 0, 1280, 800))
-        self.drawText("Scores", self.curr_font, 50, BLACK, rect_x*2, rect_y+70)
+        pygame.draw.rect(self.screen, BLACK, (rect_x, rect_y, 880, 600))
+        pygame.draw.rect(self.screen, WHITE, (rect_x+BOARD_OUTLINE_OFFSET, rect_y+BOARD_OUTLINE_OFFSET, 880-(2*BOARD_OUTLINE_OFFSET), 600-(2*BOARD_OUTLINE_OFFSET)))
+        self.drawText("Scores", self.curr_font, 50, BLACK, rect_x*2+200, rect_y+70)
         for i in range(self.playerCount):
-            self.drawText(self.playerList[i]["name"]+":   "+str(self.playerList[i]["score"]), self.curr_font, 35, BLACK, rect_x, rect_y+250+(150*i))
+            self.drawText(self.playerList[i]["name"]+":   "+str(self.playerList[i]["score"]), self.curr_font, 35, BLACK, rect_x+100, rect_y+250+(80*i))
+            if (self.playerList[i]["streak"] > 0):
+                self.screen.blit(self.scaled_streak, (rect_x + 400, rect_y+244+(80*i)))
+                self.drawText(str(self.playerList[i]["streak"]), self.curr_font, 35, BLACK, rect_x + 445, rect_y+250+(80*i))

@@ -78,6 +78,7 @@ def game(new_game, game_data = None, player_list = None):
                 player_answering = True
                 gameState = "ANSWER_AWAIT"
             else:
+                print("here")
                 gameState = "SHOW_RESULTS"
         elif gameState == "INITIAL":
             boardInstance.render()
@@ -102,7 +103,9 @@ def game(new_game, game_data = None, player_list = None):
                 player_answering = True
             else:
                 playersAsked += 1  # Move to the next player
-                player_answering = False
+                if (player_answering):
+                    player_answer_recorded, player_answer = '', ''
+                    player_answering = False
                 start_delay = pygame.time.get_ticks()
                 gameState = "SHOW_ANSWER_FEEDBACK"  # Reset to show the next question
         elif gameState == "MOVE_PLAYERS":
@@ -122,7 +125,7 @@ def game(new_game, game_data = None, player_list = None):
                 gameState = "3_SECOND_COUNTDOWN"
             else: 
                 delay_start_time = pygame.time.get_ticks()
-                gameState = "MOVE_PLAYER_DELAY"
+                gameState = "SHOW_RESULTS"
         elif gameState == "PAUSED":
             boardInstance.pause(paused, dataSaved)
 
@@ -133,7 +136,7 @@ def game(new_game, game_data = None, player_list = None):
                 gameState = "MOVE_PLAYER_DELAY"
             else:
                 boardInstance.show_player_scores()
-                
+
         elif gameState == "3_SECOND_DELAY_FEEDBACK":
             current_time = pygame.time.get_ticks()
             if (current_time - start_delay) >= 2000:
