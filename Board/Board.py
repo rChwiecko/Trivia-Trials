@@ -258,13 +258,23 @@ class Board:
         pygame.draw.rect(self.screen, WHITE, (0, 0, 1280, 800))
         pygame.draw.rect(self.screen, BLACK, (rect_x, rect_y, 880, 600))
         pygame.draw.rect(self.screen, WHITE, (rect_x+BOARD_OUTLINE_OFFSET, rect_y+BOARD_OUTLINE_OFFSET, 880-(2*BOARD_OUTLINE_OFFSET), 600-(2*BOARD_OUTLINE_OFFSET)))
-        self.drawText("Scores", self.curr_font, 50, BLACK, rect_x*2+200, rect_y+70)
+        self.drawText("Scores", self.curr_font, 50, BLACK, rect_x*2+200, rect_y+70) 
+        player_score_max = -1
+        winning_player_name = ''
+        if self.playerIndex == 14:
+            for i in range(self.playerCount):
+                if player_score_max < self.playerList[i]['score']:
+                    player_score_max = self.playerList[i]['score']
+                    winning_player_name = self.playerList[i]['name']
         for i in range(self.playerCount):
-            self.drawText(self.playerList[i]["name"]+":   "+str(self.playerList[i]["score"]), self.curr_font, 35, BLACK, rect_x+100, rect_y+250+(80*i))
+            self.drawText(self.playerList[i]["name"]+":   "+str(round(self.playerList[i]["score"],2)), self.curr_font, 35, BLACK, rect_x+100, rect_y+250+(80*i))
             if (self.playerList[i]["streak"] > 0):
                 self.screen.blit(self.scaled_streak, (rect_x + 400, rect_y+244+(80*i)))
                 self.drawText(str(self.playerList[i]["streak"]), self.curr_font, 35, BLACK, rect_x + 445, rect_y+250+(80*i))
-
+                if self.playerIndex == 14 and self.playerList[i]["name"] == winning_player_name:
+                    self.screen.blit(self.scaled_duck_player, (rect_x + 500, rect_y+244+(80*i)))
+                    self.drawText('+1', self.curr_font, 35, BLACK, rect_x + 510, rect_y+250+(80*i))
+                    self.playerList[i]["duck_count"] += 1
     def save_game(self, playerlist, id_override = None):
         if id_override == None:
             rect_x = (WIDTH - 880) // 2
