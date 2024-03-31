@@ -135,6 +135,16 @@ def draw_password_screen():
         screen.blit(username_text, username_text_rect)
         pygame.draw.rect(screen, 'lightgrey' if username_active else 'white', username_rect, 2)  
         submit_button.draw()
+
+        password_label = font.render("Password:", True, 'white')
+        screen.blit(password_label, (password_rect.x + password_rect.width + 10, password_rect.y))
+        
+        username_label = font.render("Username:", True, 'white')
+        screen.blit(username_label, (username_rect.x + username_rect.width + 10, username_rect.y))
+
+        if draw_back_button():
+            return 0
+        
         pygame.display.flip()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -201,7 +211,8 @@ def draw_player_details():
     player_info = get_player_info()
     y_offset = 500
     if draw_back_button():
-        draw_password_screen()
+        # main menu
+        return 0
     for player, info in player_info.items():
         text_surface = font.render(f'{player}: {info}', True, 'white')
         screen.blit(text_surface, (50, y_offset))
@@ -238,6 +249,16 @@ def draw_god_mode():
         screen.blit(username_text, username_text_rect)
         pygame.draw.rect(screen, 'lightgrey' if username_active else 'white', username_rect, 2)  
         submit_button.draw()
+        
+        password_label = font.render("Password:", True, 'white')
+        screen.blit(password_label, (password_rect.x + password_rect.width + 10, password_rect.y))
+        
+        username_label = font.render("Username:", True, 'white')
+        screen.blit(username_label, (username_rect.x + username_rect.width + 10, username_rect.y))
+
+        if draw_back_button():
+            return 0
+
         pygame.display.flip()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -258,22 +279,14 @@ def draw_god_mode():
                 
                 if submit_button.check_clicked():
                     if password == '1234':
-                        running = True
-                        while running:
-                            for event in pygame.event.get():
-                                if event.type == pygame.QUIT:
-                                    running = False
-                                    pygame.quit()
-                                    sys.exit()
-                            generate_game_data()
-                            pygame.display.flip()
+                        generate_game_data()
                         return password, username
                     
             if event.type == pygame.KEYDOWN:
                 if password_active:
                     if event.key == pygame.K_RETURN:
                         if password == '1234':
-                            draw_player_details()
+                            generate_game_data()
                             return password, username
                     elif event.key == pygame.K_BACKSPACE:
                         password = password[:-1]
@@ -287,7 +300,7 @@ def draw_god_mode():
                 if username_active:
                     if event.key == pygame.K_RETURN:
                         if password == '1234':
-                            draw_player_details()
+                            generate_game_data()
                         return password, username
                     elif event.key == pygame.K_BACKSPACE:
                         username = username[:-1]
@@ -366,8 +379,25 @@ def generate_game_data():
         pygame.draw.rect(screen, 'lightgrey' if duck_count_active else 'white', duck_count_rect, 2)
         screen.blit(score_text, score_text_rect)
         pygame.draw.rect(screen, 'lightgrey' if score_active else 'white', score_rect, 2)
+
+        level_label = level_font.render("Level:", True, 'white')
+        screen.blit(level_label, (level_rect.x + level_rect.width + 10, level_rect.y))
+        
+        index_label = index_font.render("Index:", True, 'white')
+        screen.blit(index_label, (index_rect.x + index_rect.width + 10, index_rect.y))
+        
+        streak_label = streak_font.render("Streak:", True, 'white')
+        screen.blit(streak_label, (streak_rect.x + streak_rect.width + 10, streak_rect.y))
+        
+        duck_count_label = duck_count_font.render("Duck Count:", True, 'white')
+        screen.blit(duck_count_label, (duck_count_rect.x + duck_count_rect.width + 10, duck_count_rect.y))
+        
+        score_label = score_font.render("Score:", True, 'white')
+        screen.blit(score_label, (score_rect.x + score_rect.width + 10, score_rect.y))
+
         if draw_back_button():
-            draw_god_mode()
+            # main menu
+            return 0
         pygame.display.flip()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
