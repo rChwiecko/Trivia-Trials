@@ -1,8 +1,8 @@
 from queryManager import *
 game = {
-  "game_id": 2,
-  "level_number": 3,
-  "player_index": 5,
+  "game_id": 1,
+  "level_number": 2,
+  "player_index": 14,
   "players": [
     {
       "name": "Player4",

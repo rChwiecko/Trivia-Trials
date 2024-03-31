@@ -8,6 +8,9 @@ def game(new_game, game_data = None, player_list = None):
     clock = pygame.time.Clock()
     pygame.display.set_caption("Trivia Trials")
     running = True
+    player_answering = False
+    player_answer = ''
+    player_answer_recorded = ''
     #preliminaries for main loop
     # players = ['player1','ryan','sonia']
     # boardInstance = Board(players, screen, "1", 0)
@@ -28,27 +31,33 @@ def game(new_game, game_data = None, player_list = None):
     paused = None
     dataSaved = None
     pauseState = None
+    question = ''
     #main loop
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_p:  # Use "P" key to toggle pause
+                if event.key == pygame.K_ESCAPE:
                     if gameState != "PAUSED":
-                        pauseState = gameState  # Save the current state
-                        gameState = "PAUSED"  # Change to paused state
+                        pauseState = gameState
+                        gameState = "PAUSE"
+                        paused = True
                     else:
-                        gameState = pauseState  # Restore the previous state
-                        pauseState = None  # Clear the saved state
-                elif event.key == pygame.K_ESCAPE and gameState != "PAUSED":
-                    pauseState = gameState
-                    gameState = "PAUSE"
-                    paused = True
-                elif event.key == pygame.K_ESCAPE and gameState == "PAUSED":
-                    gameState = pauseState
-                    pausedState = None
-                    paused = False
+                        gameState = pauseState
+                        pausedState = None
+                        paused = False
+                elif player_answering:
+                    if event.key == pygame.K_BACKSPACE:
+                        player_answer = player_answer[0:-1]
+                    elif event.key == pygame.K_RETURN and player_answer != "":
+                        boardInstance.answer_check(player_answer, question, players[playersAsked])
+                        player_answering = False
+                        player_answer_recorded = player_answer
+                        player_answer = ''
+                    else:
+                        player_answer += event.unicode
+
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
                 if 1280/2-100 <= mouse_pos[0] <=1280/2+100 and 250 <= mouse_pos[1] <= 300:  # Check if mouse click is on "Resume" button
@@ -64,27 +73,39 @@ def game(new_game, game_data = None, player_list = None):
         boardInstance.render()
         if gameState == "QUESTION_SHOW":
             if playersAsked < boardInstance.playerCount:
-                boardInstance.drawQuestion(players[playersAsked], 1, 2, 0, True)
-                lastAction = pygame.time.get_ticks()  # Set last action time to now
+                question = boardInstance.drawQuestion(players[playersAsked], 1, 2, 0, True, player_answer)
+                lastAction = pygame.time.get_ticks()
+                player_answering = True
                 gameState = "ANSWER_AWAIT"
             else:
                 delay_start_time = pygame.time.get_ticks()
-                gameState = "MOVE_PLAYER_DELAY"  # Example of moving to the next state
+                gameState = "MOVE_PLAYER_DELAY" 
         elif gameState == "INITIAL":
             boardInstance.render()
-            if beginning > 2000:
+            if beginning > 4000:
                 gameState = "SHOW_PLAYER_TURN"
             else:
                 beginning = pygame.time.get_ticks()
+
+        elif gameState == "SHOW_ANSWER_FEEDBACK":
+            boardInstance.show_answer_feedback(player_answer_recorded, question[-1])
+            gameState = "3_SECOND_DELAY_FEEDBACK"
+
         elif gameState == "ANSWER_AWAIT":
             time_taken = (pygame.time.get_ticks() - lastAction)  # Corrected time difference calculation
-            if time_taken <= 30000:
-                boardInstance.drawQuestion(players[playersAsked], 1, 2, time_taken / 1000, False)
+            if time_taken <= 30000 and player_answering:
+                boardInstance.drawQuestion(players[playersAsked], 1, 2, time_taken / 1000, False, player_answer)
+                player_answering = True
             else:
                 playersAsked += 1  # Move to the next player
-                gameState = "SHOW_PLAYER_TURN"  # Reset to show the next question
+                player_answering = False
+                start_delay = pygame.time.get_ticks()
+                gameState = "SHOW_ANSWER_FEEDBACK"  # Reset to show the next question
         elif gameState == "MOVE_PLAYERS":
-            boardInstance.movePlayers()
+            try:
+                boardInstance.movePlayers()
+            except:
+                boardInstance = Board(players, screen, str(int(level_num)+1), 0)
             boardInstance.render()
             playersAsked = 0  # Resetting the playersAsked counter if needed
             delay_start_time = pygame.time.get_ticks()
@@ -102,6 +123,12 @@ def game(new_game, game_data = None, player_list = None):
             boardInstance.pause(paused, dataSaved)
 
         #All delay states
+        elif gameState == "3_SECOND_DELAY_FEEDBACK":
+            current_time = pygame.time.get_ticks()
+            if (current_time - start_delay) >= 2000:
+                gameState = "SHOW_PLAYER_TURN"
+            else:
+                boardInstance.show_answer_feedback(player_answer_recorded, question[-1])
         elif gameState == "MOVE_PLAYER_DELAY":
             boardInstance.render()
             current_time = pygame.time.get_ticks()
@@ -116,8 +143,8 @@ def game(new_game, game_data = None, player_list = None):
 
         elif gameState == "3_SECOND_COUNTDOWN":
             current_time = pygame.time.get_ticks()
-            if (current_time - lastAction) < 5000:
-                boardInstance.showPlayersTurn(players[playersAsked], 5 - (current_time - lastAction)//1000)
+            if (current_time - lastAction) < 3000:
+                boardInstance.showPlayersTurn(players[playersAsked], 3 - (current_time - lastAction)//1000)
 
             else:
                 gameState = "QUESTION_SHOW"

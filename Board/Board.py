@@ -15,12 +15,17 @@ class Board:
     screen = None
     curr_font = pygame.font.get_default_font()
     levelNum = None
-    curr_question = None
+    curr_question = None 
+    answer_correct = False
     duck = pygame.image.load("./assets/transparentduck.png")
     scaled_duck_end = pygame.transform.scale(duck, (100, 100))
     scaled_duck_player = pygame.transform.scale(duck, (50, 50))
     pause = pygame.image.load("./assets/pauseButton.png")
     scaled_pause = pygame.transform.scale(pause,(40,40))
+    checkMark = pygame.image.load("./assets/checkmark.png")
+    scaled_checkMark = pygame.transform.scale(checkMark, (150, 150))
+    RedX = pygame.image.load("./assets/redX.png")
+    scaled_RedX = pygame.transform.scale(RedX, (150, 150))
 
     #constructor
     def __init__(self, playerList, screen, level, playerIndex, newGame = False) -> None:
@@ -113,7 +118,7 @@ class Board:
             raise endOfBoardException.endOfBoardException("End of board")
         
     #renders question
-    def drawQuestion(self, playersQuestion, level, square_col, time_elapsed, gen_new_question): 
+    def drawQuestion(self, playersQuestion, level, square_col, time_elapsed, gen_new_question, player_answer): 
         pygame.draw.rect(self.screen, WHITE, (0, 0, 1280, 800))
         rect_x = (WIDTH - 880) // 2
         rect_y = (HEIGHT - 600) // 2
@@ -130,10 +135,10 @@ class Board:
         #---------------------
         pygame.draw.rect(self.screen, BLACK, (innerBoardStartX+100, innerBoardStartY+285, 290, 50))
         pygame.draw.rect(self.screen, WHITE, (innerBoardStartX+100+BOARD_OUTLINE_OFFSET, innerBoardStartY+285+BOARD_OUTLINE_OFFSET, 290-(BOARD_OUTLINE_OFFSET*2), 50-(BOARD_OUTLINE_OFFSET*2)))
+        self.drawText(player_answer, self.curr_font, 40, BLACK, innerBoardStartX+103, innerBoardStartY+289)
         
         if (gen_new_question): 
-            # player_row = self.playerIndex // NUMCOLS
-            player_row = 2
+            player_row = self.playerIndex // NUMCOLS
             que_type = random.randint(1,2)
             if(player_row == 0):
                 if que_type == 1:
@@ -153,6 +158,7 @@ class Board:
         self.drawText(self.curr_question[0], self.curr_font, 30, BLACK, innerBoardStartX+100, innerBoardStartY+175)
         self.drawText(self.curr_question[1], self.curr_font, 30, BLACK, innerBoardStartX+100, innerBoardStartY+205)
         self.drawText(self.curr_question[2], self.curr_font, 30, BLACK, innerBoardStartX+100, innerBoardStartY+235)
+        return self.curr_question
     def showResults():
         pass
     #gives a countdown for which players turn it is
@@ -171,3 +177,58 @@ class Board:
             self.drawText(text, self.curr_font, 25, WHITE, x + 25, y + 20)
         else: 
             self.drawText(text, self.curr_font, 25, WHITE, x + 5, y + 22)
+    def answer_check(self, answer, question, player):
+        if isinstance(question[-1], int):
+            try:
+                answer = int(answer)
+                if (answer == question[-1]):
+                    player["score"] += 100
+                    player["streak"] += 1
+                    self.answer_correct = True
+                else:
+                    player["streak"] = 0
+                    self.answer_correct = False
+            except:
+                player["streak"] = 0 
+                self.answer_correct = False
+        elif isinstance(question[-1], list):
+            try:
+                answer = answer.split(',')
+                answer = answer.replace(' ', ' ')
+                if (answer[0] in question[-1] and answer[1] in question[-1]):
+                    player["score"] += 100
+                    player["streak"] += 1
+                    self.answer_correct = True
+                else:
+                    player["streak"] = 0
+                    self.answer_correct = False
+            except:
+                player["streak"] = 0
+                self.answer_correct = False
+        else:
+            try:
+                answer = answer.replace(' ','')
+                question_real = question[-1].replace(' ','')
+                if (answer == question_real):
+                    player["score"] += 100
+                    player["streak"] += 1
+                    print("score",player['score'])
+                    self.answer_correct = True  
+                else:
+                    player['streak'] = 0
+                    self.answer_correct = False
+            except:
+                player['streak'] = 0 
+                self.answer_correct = False
+    def show_answer_feedback(self, answer_recieved, question):
+        rect_x = (WIDTH - 880) // 2
+        rect_y = (HEIGHT - 600) // 2
+        pygame.draw.rect(self.screen, WHITE, (0, 0, 1280, 800))
+        self.drawText("Feedback On Answer", self.curr_font, 50, BLACK, rect_x*2, rect_y+70)
+        self.drawText("Your Answer:    "+str(answer_recieved), self.curr_font, 40, BLACK, rect_x+100, rect_y+250)
+        self.drawText("Correct Answer:    "+str(self.curr_question[-1]), self.curr_font, 40, BLACK, rect_x+100, rect_y+290)
+        if self.answer_correct:
+            self.screen.blit(self.scaled_checkMark, (rect_x+410, rect_y + 380))
+        else:
+            self.screen.blit(self.scaled_RedX, (rect_x+310, rect_y + 420))
+

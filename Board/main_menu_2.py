@@ -151,6 +151,8 @@ def draw_save_screen():
             elif save3_btn.check_clicked():
                 game_data =  find_game_by_id(3)
                 new_game = False
+            else:
+                game_data = None
             if game_data == None:
                 pass
             else:
