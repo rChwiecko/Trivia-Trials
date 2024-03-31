@@ -55,7 +55,7 @@ class Player:
 
     def updateCorrectCount(self) -> None:
         '''Increments by 1 for each correct answer.'''
-        self.__correctCount += 1
+        self.__correctCount += 1    # if correct, Player.updateCorrectCount()
 
     def getID(self) -> int: 
         '''Gets the player ID of a Player object.
