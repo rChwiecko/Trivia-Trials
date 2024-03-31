@@ -2,8 +2,7 @@ import pygame
 import sys
 from queryManager import *
 from main import *
-pygame.init()
-
+from const import *
 WIDTH = 1280
 HEIGHT = 800
 FPS = 60
@@ -12,8 +11,15 @@ screen = pygame.display.set_mode([WIDTH, HEIGHT])
 pygame.display.set_caption('Trivia Trials')
 main_menu = False
 exit_menu = False
+entering_user_data = False
+username_enter = ''
+password_enter = ''
+player_list = []
+username_enter_active = False
+password_enter_active = False
 font_heading = pygame.font.Font('freesansbold.ttf', 36)
 font = pygame.font.Font('freesansbold.ttf', 24)
+other_font = pygame.font.get_default_font()
 game_data = None
 new_game = None
 # Load image
@@ -95,7 +101,10 @@ def draw_game():
     screen.blit(ball, ((WIDTH - 150) // 2, (HEIGHT - 150) // 2))
 
     return menu
-
+def drawText(text, fontname, fontsize, text_col, x, y):
+    font = pygame.font.Font(fontname, fontsize)
+    text_surface = font.render(text, True, text_col)
+    screen.blit(text_surface, ((x, y)))
 
 def draw_save_screen():
     save_menu_width = 300
@@ -171,6 +180,33 @@ def draw_back_button():
         return True
     return False
 
+def draw_player_login():
+    entering_user_data = True
+    rect_x = (WIDTH - 880) // 2
+    rect_y = (HEIGHT - 600) // 2
+    pygame.draw.rect(screen, 'black', [0, 0, 1280, 800])
+    pygame.draw.rect(screen, 'white', [rect_x, rect_y, 880, 600])
+    pygame.draw.rect(screen, 'black', [rect_x+BOARD_OUTLINE_OFFSET, rect_y+BOARD_OUTLINE_OFFSET, 880-(BOARD_OUTLINE_OFFSET*2), 600-(BOARD_OUTLINE_OFFSET*2)])
+    #text, fontname, fontsize, text_col, x, y)
+    drawText("Add Players", other_font, 40, WHITE, rect_x*2+150, rect_y+40)
+    drawText("Username: ", other_font, 30, WHITE, rect_x+90, rect_y+200)
+    pygame.draw.rect(screen, 'white', [rect_x+275, rect_y+200, 220, 40])
+    pygame.draw.rect(screen, 'black', [rect_x+275+USER_ENTER_OFFSET, rect_y+200+USER_ENTER_OFFSET, 220-(USER_ENTER_OFFSET*2), 40-(USER_ENTER_OFFSET*2)])
+    drawText("Password: ", other_font, 30, WHITE, rect_x+90, rect_y+270)
+    drawText(("Player Count: "+str(len(player_list))), other_font, 30, WHITE, rect_x+90, rect_y+340)
+    pygame.draw.rect(screen, 'white', [rect_x+275, rect_y+270, 220, 40])
+    pygame.draw.rect(screen, 'black', [rect_x+275+USER_ENTER_OFFSET, rect_y+270+USER_ENTER_OFFSET, 220-(USER_ENTER_OFFSET*2), 40-(USER_ENTER_OFFSET*2)])
+    drawText(username_enter, other_font, 30, WHITE, rect_x+277, rect_y+205)
+    drawText(str("*"*len(password_enter)), other_font, 30, WHITE, rect_x+277, rect_y+275)
+    add_new_user_button = Button('Add User', (rect_x + 160, rect_y + 500))
+    add_new_user_button.draw()
+    add_new_user_button = Button('Start Game', (rect_x + 450, rect_y + 500))
+    add_new_user_button.draw()
+    if add_new_user_button.check_clicked():
+        if len(player_list) < 3:
+            player_list.append(1)
+        else:
+            drawText("Too Many Users Added To Game", other_font, 30, RED, rect_x+277, rect_y+350)
 
 run = True
 while run:
@@ -227,9 +263,41 @@ while run:
                         # Perform actions for instructor
                         pass
                     elif player_button.check_clicked():
-                        game(new_game=new_game, game_data=game_data)
+                        menu_command = 4
                     elif menu_btn.check_clicked():
                         main_menu = True
+
+        elif menu_command == 4:
+            draw_player_login()
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+                elif event.type == pygame.KEYDOWN and event.key != pygame.K_RETURN:
+                    if (username_enter_active):
+                        if event.key == pygame.K_BACKSPACE:
+                            username_enter = username_enter[0:-1]
+                        else:
+                            username_enter += event.unicode
+                    elif (password_enter_active):
+                        if event.key == pygame.K_BACKSPACE:
+                            password_enter = password_enter[0:-1]
+                        else:
+                            password_enter += event.unicode
+                    else:
+                        pass
+                elif event.type == pygame.MOUSEBUTTONDOWN:
+                    mouse_pos = pygame.mouse.get_pos()
+                    if (WIDTH - 880) // 2 + 275 <= mouse_pos[0] <= (WIDTH - 880) // 2 + 495 and (HEIGHT - 600) // 2 + 200 <= mouse_pos[1] <=(HEIGHT - 600) // 2 + 240:
+                        username_enter_active = True
+                        password_enter_active = False
+                    elif (WIDTH - 880) // 2 + 275 <= mouse_pos[0] <= (WIDTH - 880) // 2 + 495 and (HEIGHT - 600) // 2 + 270 <= mouse_pos[1] <=(HEIGHT - 600) // 2 + 310:
+                        username_enter_active = False
+                        password_enter_active = True
+                    else:
+                        username_enter_active = False
+                        password_enter_active = False
+
 
         else:
             main_menu = draw_game()
@@ -245,7 +313,6 @@ while run:
                 if main_menu:  # Only show exit menu in the main menu screen
                     pygame.quit()
                     sys.exit()
-
     pygame.display.flip()
 
 pygame.quit()

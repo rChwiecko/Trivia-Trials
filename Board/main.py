@@ -19,7 +19,8 @@ def game(new_game, game_data = None, player_list = None):
         player_index = game_data_dict["player_index"]
         boardInstance = Board(players, screen, str(level_num), player_index)
     else:
-        pass
+        players = player_list
+        boardInstance = Board(players, screen, '1', 0)
     gameState = "INITIAL"  # Corrected state name
     playersAsked = 0
     beginning = pygame.time.get_ticks()

@@ -21,14 +21,6 @@ class Board:
     scaled_duck_player = pygame.transform.scale(duck, (50, 50))
     pause = pygame.image.load("./assets/pauseButton.png")
     scaled_pause = pygame.transform.scale(pause,(40,40))
-    #instantiating question generation class
-    # add_easy, add_medium, add_hard = addition('easy'), addition('medium'), addition('hard')
-    # sub_easy, sub_medium, sub_hard = subtraction('easy'), subtraction('medium'), subtraction('hard')
-    # mult_easy, mult_medium, mult_hard = multiplication('easy'), multiplication('medium'), multiplication('hard')
-    # div_easy, div_medium, div_hard = division('easy'), division('medium'), division('hard')
-    # quad_easy, quad_medium, quad_hard = quadratic('easy'), quadratic('medium'), quadratic('hard')
-    # lin_easy, lin_medium, lin_hard = linear('easy'), linear('medium'), linear('hard')
-    # flu_easy, flu_medium, flu_hard = fluidDynamics('easy'), fluidDynamics('medium'), fluidDynamics('hard')
 
     #constructor
     def __init__(self, playerList, screen, level, playerIndex, newGame = False) -> None:
@@ -78,8 +70,6 @@ class Board:
                 if row == 2 and col == 4:
                     self.drawText("End", self.curr_font, 25, BLACK, squareXCoord+40, squareYCoord+120)
                     self.screen.blit(self.scaled_duck_end, (squareXCoord+200, squareYCoord+20))
-                # if (row == 0 and col == 4) or (row == 1 and col == 0):
-                #     self.screen.blit(arrow_down, (squareXCoord+48, squareYCoord+100))
 
     #runs draw method
     def render(self):
