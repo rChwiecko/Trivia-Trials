@@ -366,6 +366,8 @@ def generate_game_data():
         pygame.draw.rect(screen, 'lightgrey' if duck_count_active else 'white', duck_count_rect, 2)
         screen.blit(score_text, score_text_rect)
         pygame.draw.rect(screen, 'lightgrey' if score_active else 'white', score_rect, 2)
+        if draw_back_button():
+            draw_god_mode()
         pygame.display.flip()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
