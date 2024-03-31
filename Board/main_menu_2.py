@@ -151,13 +151,24 @@ def draw_password_screen():
                 username_color = 'white' if username_active else 'black'
                 
                 if submit_button.check_clicked():
-                    # print(password, username)
-                    return password, username
+                    if password == '1234':
+                        running = True
+                        while running:
+                            for event in pygame.event.get():
+                                if event.type == pygame.QUIT:
+                                    running = False
+                                    pygame.quit()
+                                    sys.exit()
+                            draw_player_details()
+                            pygame.display.flip()
+                        return password, username
                     
             if event.type == pygame.KEYDOWN:
                 if password_active:
                     if event.key == pygame.K_RETURN:
-                        return password, username
+                        if password == '1234':
+                            draw_player_details()
+                            return password, username
                     elif event.key == pygame.K_BACKSPACE:
                         password = password[:-1]
                     else:
@@ -169,6 +180,8 @@ def draw_password_screen():
                     
                 if username_active:
                     if event.key == pygame.K_RETURN:
+                        if password == '1234':
+                            draw_player_details()
                         return password, username
                     elif event.key == pygame.K_BACKSPACE:
                         username = username[:-1]
@@ -180,6 +193,16 @@ def draw_password_screen():
                     username_rect.w = max(200, username_text_rect.width + 10)
         pygame.display.flip()
 
+def draw_player_details():
+    # use get_player_info() to get the player info, then display it on the screen
+    player_info = get_player_info()
+    y_offset = 500
+    if draw_back_button():
+        draw_password_screen()
+    for player, info in player_info.items():
+        text_surface = font.render(f'{player}: {info}', True, 'white')
+        screen.blit(text_surface, (50, y_offset))
+        y_offset += 40
 
 
 def draw_game():
@@ -190,6 +213,7 @@ def draw_game():
     screen.blit(ball, ((WIDTH - 150) // 2, (HEIGHT - 150) // 2))
 
     return menu
+
 def drawText(text, fontname, fontsize, text_col, x, y):
     font = pygame.font.Font(fontname, fontsize)
     text_surface = font.render(text, True, text_col)
