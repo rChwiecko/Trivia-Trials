@@ -177,12 +177,13 @@ class Board:
             self.drawText(text, self.curr_font, 25, WHITE, x + 25, y + 20)
         else: 
             self.drawText(text, self.curr_font, 25, WHITE, x + 5, y + 22)
+
     def answer_check(self, answer, question, player):
         if isinstance(question[-1], int):
             try:
                 answer = int(answer)
                 if (answer == question[-1]):
-                    player["score"] += 100
+                    player["score"] += self.update_points(player)
                     player["streak"] += 1
                     self.answer_correct = True
                 else:
@@ -191,12 +192,13 @@ class Board:
             except:
                 player["streak"] = 0 
                 self.answer_correct = False
+
         elif isinstance(question[-1], list):
             try:
                 answer = answer.split(',')
                 answer = answer.replace(' ', ' ')
                 if (answer[0] in question[-1] and answer[1] in question[-1]):
-                    player["score"] += 100
+                    player["score"] += self.update_points(player)
                     player["streak"] += 1
                     self.answer_correct = True
                 else:
@@ -210,9 +212,8 @@ class Board:
                 answer = answer.replace(' ','')
                 question_real = question[-1].replace(' ','')
                 if (answer == question_real):
-                    player["score"] += 100
+                    player["score"] += self.update_points(player)
                     player["streak"] += 1
-                    print("score",player['score'])
                     self.answer_correct = True  
                 else:
                     player['streak'] = 0
@@ -220,6 +221,7 @@ class Board:
             except:
                 player['streak'] = 0 
                 self.answer_correct = False
+
     def show_answer_feedback(self, answer_recieved, question):
         rect_x = (WIDTH - 880) // 2
         rect_y = (HEIGHT - 600) // 2
@@ -232,3 +234,27 @@ class Board:
         else:
             self.screen.blit(self.scaled_RedX, (rect_x+310, rect_y + 420))
 
+    def update_points(self, player):
+        multiplier = 1.1
+        row_1_base = 50
+        row_2_base = 75
+        row_3_base = 100
+        player_row = self.playerIndex // NUMCOLS
+        if player_row == 0:
+            base_points = row_1_base
+        elif player_row == 1:
+            base_points = row_2_base
+        else:
+            base_points = row_3_base
+        
+        base_points = base_points*(2**(int(self.levelNum)))
+        score = base_points * (multiplier**player["streak"])
+        return score
+    
+    def show_player_scores(self):
+        rect_x = (WIDTH - 880) // 2
+        rect_y = (HEIGHT - 600) // 2
+        pygame.draw.rect(self.screen, WHITE, (0, 0, 1280, 800))
+        self.drawText("Scores", self.curr_font, 50, BLACK, rect_x*2, rect_y+70)
+        for i in range(self.playerCount):
+            self.drawText(self.playerList[i]["name"]+":   "+str(self.playerList[i]["score"]), self.curr_font, 35, BLACK, rect_x, rect_y+250+(150*i))
