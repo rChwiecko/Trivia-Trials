@@ -4,6 +4,7 @@ class Player:
     '''A class to represent a player.
     
     Attributes:
+        permissionValue (int): Permission value to indicate Player (0), Instructor (1), or Developer (2)
         playerID (int): Player ID, automatically and randomly generated. 
         playerName (str): Player name, input by user.
         score (int): Current game score of player.
@@ -13,12 +14,22 @@ class Player:
     '''
 
     def __init__(self):
+        self.__permissionValue = 0  # level of permission
         self.__playerID = None      # player id, randomized
         self.__playerName = None    # player name, input by user
         self.__score = 0            # current game score
         self.__duckCount = 0        # number of ducks a player has
         self.__streakCount = 0      # number questions right in a row
         self.__correctCount = 0     # number questions correct
+
+    def setPermission(self, pinInput) -> None:
+        '''Set permission level of this player.
+        
+        Args: 
+            permission (int): Indicates permission level of player, only allowed 1 and 2 
+            with correct pin input.
+        '''
+        self.__permissionValue = 0
 
     def setName(self, name: str) -> None:        # make notAstringException
         '''Set name of player.
@@ -56,6 +67,13 @@ class Player:
     def updateCorrectCount(self) -> None:
         '''Increments by 1 for each correct answer.'''
         self.__correctCount += 1    # if correct, Player.updateCorrectCount()
+
+    def getPermission(self) -> int:
+        '''Gets the permission level of this object, should be 0.
+        
+        Returns:
+            int: The permission level of this user.'''
+        return self.__permissionValue
 
     def getID(self) -> int: 
         '''Gets the player ID of a Player object.

@@ -1,6 +1,7 @@
 import pygame, pygame_gui
 from Board import * 
 import json
+from const import *
 #basic pygame properties
 def game(new_game, game_data = None, player_list = None):
     pygame.init()
@@ -11,6 +12,8 @@ def game(new_game, game_data = None, player_list = None):
     player_answering = False
     player_answer = ''
     player_answer_recorded = ''
+    save_choosen = False
+    game_save_choice = None
     #preliminaries for main loop
     # players = ['player1','ryan','sonia']
     # boardInstance = Board(players, screen, "1", 0)
@@ -28,7 +31,7 @@ def game(new_game, game_data = None, player_list = None):
     playersAsked = 0
     beginning = pygame.time.get_ticks()
     delay_start_time = None
-    paused = None
+    paused = False
     dataSaved = None
     pauseState = None
     question = ''
@@ -41,7 +44,7 @@ def game(new_game, game_data = None, player_list = None):
                 if event.key == pygame.K_ESCAPE:
                     if gameState != "PAUSED":
                         pauseState = gameState
-                        gameState = "PAUSE"
+                        gameState = "PAUSED"
                         paused = True
                     else:
                         gameState = pauseState
@@ -65,11 +68,27 @@ def game(new_game, game_data = None, player_list = None):
                     paused = False
                 elif 350 <= mouse_pos[1] <= 400:  # Check if mouse click is on "Save and Quit" button
                     dataSaved = True
+                    gameState = "CHOOSE_SAVE"
                 elif 450 <= mouse_pos[1] <= 500:  # Check if mouse click is on "Don't Save and Quit" button
+                    dataSaved = False
                     running = False
                 elif 10 <= mouse_pos[0] <= 50 and 10 <= mouse_pos[1] <= 50:
-                    gameState = "PAUSED"
-                    paused = True
+                    if (gameState != "PAUSED"):
+                        pauseState = gameState
+                        gameState = "PAUSED"
+                        paused = True
+                        rect_x = (WIDTH - 880) // 2
+                        rect_y = (HEIGHT - 600) // 2
+                elif gameState == "AWAIT_SAVE_CHOICE" and (WIDTH - 880) // 2 + 340 <= mouse_pos[0] <= (WIDTH - 880) // 2 + 580 and (HEIGHT - 600) // 2 + 200 <= mouse_pos[1] <= (HEIGHT - 600) // 2 + 260:
+                    save_choosen = True
+                    game_save_choice = 1
+                elif gameState == "AWAIT_SAVE_CHOICE" and (WIDTH - 880) // 2 + 340 <= mouse_pos[0] <= (WIDTH - 880) // 2 + 580 and (HEIGHT - 600) // 2 + 300 <= mouse_pos[1] <= (HEIGHT - 600) // 2 + 360:
+                    save_choosen = True
+                    game_save_choice = 2
+                elif gameState == "AWAIT_SAVE_CHOICE" and (WIDTH - 880) // 2 + 340 <= mouse_pos[0] <= (WIDTH - 880) // 2 + 580 and (HEIGHT - 600) // 2 + 400 <= mouse_pos[1] <= (HEIGHT - 600) // 2 + 460:
+                    save_choosen = True
+                    game_save_choice = 3
+
         boardInstance.render()
         if gameState == "QUESTION_SHOW":
             if playersAsked < boardInstance.playerCount:
@@ -108,6 +127,11 @@ def game(new_game, game_data = None, player_list = None):
                     player_answering = False
                 start_delay = pygame.time.get_ticks()
                 gameState = "SHOW_ANSWER_FEEDBACK"  # Reset to show the next question
+        elif gameState == "CHOOSE_SAVE":
+            boardInstance.save_game(players)
+            save_choosen = False
+            gameState = "AWAIT_SAVE_CHOICE"
+
         elif gameState == "MOVE_PLAYERS":
             try:
                 boardInstance.movePlayers()
@@ -162,9 +186,15 @@ def game(new_game, game_data = None, player_list = None):
 
             else:
                 gameState = "QUESTION_SHOW"
+        elif gameState == "AWAIT_SAVE_CHOICE":
+            if not save_choosen:
+                boardInstance.save_game(players)
+            else:
+                boardInstance.save_game(players, game_save_choice)
+                save_choosen = False
+                running = False
 
         pygame.display.flip()
         clock.tick(60)  # Limits FPS to 60
-    pygame.quit()
 
 

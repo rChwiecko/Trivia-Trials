@@ -538,6 +538,7 @@ def draw_save_screen():
                 pass
             else:
                 game(new_game=new_game, game_data=game_data)
+                menu_command = 0
     return 0
 
 
@@ -574,7 +575,6 @@ def draw_player_login():
     pygame.draw.rect(screen, 'black', [0, 0, 1280, 800])
     pygame.draw.rect(screen, 'white', [rect_x, rect_y, 880, 600])
     pygame.draw.rect(screen, 'black', [rect_x+BOARD_OUTLINE_OFFSET, rect_y+BOARD_OUTLINE_OFFSET, 880-(BOARD_OUTLINE_OFFSET*2), 600-(BOARD_OUTLINE_OFFSET*2)])
-    #text, fontname, fontsize, text_col, x, y)
     drawText("Add Players", other_font, 40, WHITE, rect_x*2+150, rect_y+40)
     drawText("Username: ", other_font, 30, WHITE, rect_x+90, rect_y+200)
     pygame.draw.rect(screen, 'white', [rect_x+275, rect_y+200, 220, 40])
@@ -713,6 +713,7 @@ while run:
                     elif (WIDTH - 880) // 2 + 450 <= mouse_pos[0] <= (WIDTH - 880) // 2 + 710 and (HEIGHT - 600) // 2 + 500 <= mouse_pos[1] <= (HEIGHT - 600) // 2 + 540:
                         if len(player_list) > 0:
                             game(True, player_list=player_list)
+                            menu_command = 0
                             username_enter = ''
                             password_enter = ''
                         else:
