@@ -3,17 +3,6 @@ import pygame
 import sys
 from queryManager import *
 
-# pygame.init()
-
-
-# WIDTH = 1280
-# HEIGHT = 800
-# FPS = 60
-
-# screen = pygame.display.set_mode([WIDTH, HEIGHT])
-# font = pygame.font.Font('freesansbold.ttf', 24)
-
-
 class Button:
     def __init__(self, txt, pos, width=260, height=40):
         self.text = txt
