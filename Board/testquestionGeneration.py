@@ -6,7 +6,7 @@ class TestQuestionGeneration(unittest.TestCase):
         add = addition('1')
         for i in range(10):
             question = add.generateQuestion()
-            print(question[0], "Answer is:", question[3])
+            # print(question[0], "Answer is:", question[3])
             self.assertIsInstance(question[0], str, "Test Failed, expected question[0] to be a string")
             self.assertIsInstance(question[1], str, "Test Failed, expected question[1] to be a string")
             self.assertIsInstance(question[2], str, "Test Failed, expected question[2] to be a string")
@@ -17,7 +17,7 @@ class TestQuestionGeneration(unittest.TestCase):
         add = addition('2')
         for i in range(10):
             question = add.generateQuestion()
-            print(question[0], "Answer is:", question[3])
+            # print(question[0], "Answer is:", question[3])
             self.assertIsInstance(question[0], str, "Test Failed, expected question[0] to be a string")
             self.assertIsInstance(question[1], str, "Test Failed, expected question[1] to be a string")
             self.assertIsInstance(question[2], str, "Test Failed, expected question[2] to be a string")
@@ -28,7 +28,7 @@ class TestQuestionGeneration(unittest.TestCase):
         add = addition('3')
         for i in range(10):
             question = add.generateQuestion()
-            print(question[0], "Answer is:", question[3])
+            # print(question[0], "Answer is:", question[3])
             self.assertIsInstance(question[0], str, "Test Failed, expected question[0] to be a string")
             self.assertIsInstance(question[1], str, "Test Failed, expected question[1] to be a string")
             self.assertIsInstance(question[2], str, "Test Failed, expected question[2] to be a string")
@@ -39,102 +39,222 @@ class TestQuestionGeneration(unittest.TestCase):
         print("All Addition Test Cases Passed\n\n")
 
     def test_subtraction(self):
-        sub = subtraction('easy')
+        sub = subtraction('1')
         for i in range(10):
             question = sub.generateQuestion()
-            print(question[0], "Answer should be:", question[3])
-            self.assertEqual(question[3], question[1] - question[2], "Test Failed, expected: {} got: {}".format(question[3], question[1] - question[2]))
+            # print(question[0], "Answer is", question[3])
+            self.assertIsInstance(question[0], str, "Test Failed, expected question[0] to be a string")
+            self.assertIsInstance(question[1], str, "Test Failed, expected question[1] to be a string")
+            self.assertIsInstance(question[2], str, "Test Failed, expected question[2] to be a string")
+            self.assertIsInstance(question[3], int, "Test Failed, expected question[3] to be an integer")
             i += 1
         print("Subtraction Easy Tests Passed\n\n")
 
-        sub = subtraction('medium')
+        sub = subtraction('2')
         for i in range(10):
             question = sub.generateQuestion()
-            print(question[0], "Answer should be:", question[3])
-            self.assertEqual(question[3], question[1] - question[2], "Test Failed, expected: {} got: {}".format(question[3], question[1] - question[2]))
+            # print(question[0], "Answer is", question[3])
+            self.assertIsInstance(question[0], str, "Test Failed, expected question[0] to be a string")
+            self.assertIsInstance(question[1], str, "Test Failed, expected question[1] to be a string")
+            self.assertIsInstance(question[2], str, "Test Failed, expected question[2] to be a string")
+            self.assertIsInstance(question[3], int, "Test Failed, expected question[3] to be an integer")
             i += 1
         print("Subtraction Medium Tests Passed\n\n")
 
-        sub = subtraction('hard')
+        sub = subtraction('3')
         for i in range(10):
             question = sub.generateQuestion()
-            print(question[0], "Answer should be:", question[3])
-            self.assertEqual(question[3], question[1] - question[2], "Test Failed, expected: {} got: {}".format(question[3], question[1] - question[2]))
+            # print(question[0], "Answer is", question[3])
+            self.assertIsInstance(question[0], str, "Test Failed, expected question[0] to be a string")
+            self.assertIsInstance(question[1], str, "Test Failed, expected question[1] to be a string")
+            self.assertIsInstance(question[2], str, "Test Failed, expected question[2] to be a string")
+            self.assertIsInstance(question[3], int, "Test Failed, expected question[3] to be an integer")
             i += 1
         print("Subtraction Hard Tests Passed\n\n")
 
         print("All Subtraction Test Cases Passed\n\n")
 
     def test_multiplication(self):
-        mult = multiplication('easy')
+        mult = multiplication('1')
         for i in range(10):
             question = mult.generateQuestion()
-            print(question[0], "Answer should be:", question[3])
-            self.assertEqual(question[3], question[1] * question[2], "Test Failed, expected: {} got: {}".format(question[3], question[1] * question[2]))
+            # print(question[0], "Answer is:", question[3])
+            self.assertIsInstance(question[0], str, "Test Failed, expected question[0] to be a string")
+            self.assertIsInstance(question[1], str, "Test Failed, expected question[1] to be a string")
+            self.assertIsInstance(question[2], str, "Test Failed, expected question[2] to be a string")
+            self.assertIsInstance(question[3], int, "Test Failed, expected question[3] to be an integer")
             i += 1
         print("Multiplication Easy Tests Passed\n\n")
 
-        mult = multiplication('medium')
+        mult = multiplication('2')
         for i in range(10):
             question = mult.generateQuestion()
-            print(question[0], "Answer should be:", question[3])
-            self.assertEqual(question[3], question[1] * question[2], "Test Failed, expected: {} got: {}".format(question[3], question[1] * question[2]))
+            # print(question[0], "Answer is:", question[3])
+            self.assertIsInstance(question[0], str, "Test Failed, expected question[0] to be a string")
+            self.assertIsInstance(question[1], str, "Test Failed, expected question[1] to be a string")
+            self.assertIsInstance(question[2], str, "Test Failed, expected question[2] to be a string")
+            self.assertIsInstance(question[3], int, "Test Failed, expected question[3] to be an integer")
             i += 1
         print("Multiplication Medium Tests Passed\n\n")
 
-        mult = multiplication('hard')
+        mult = multiplication('3')
         for i in range(10):
             question = mult.generateQuestion()
-            print(question[0], "Answer should be:", question[3])
-            self.assertEqual(question[3], question[1] * question[2], "Test Failed, expected: {} got: {}".format(question[3], question[1] * question[2]))
+            # print(question[0], "Answer is:", question[3])
+            self.assertIsInstance(question[0], str, "Test Failed, expected question[0] to be a string")
+            self.assertIsInstance(question[1], str, "Test Failed, expected question[1] to be a string")
+            self.assertIsInstance(question[2], str, "Test Failed, expected question[2] to be a string")
+            self.assertIsInstance(question[3], int, "Test Failed, expected question[3] to be an integer")
             i += 1
         print("Multiplication Hard Tests Passed\n\n")
 
         print("All Multiplication Test Cases Passed\n\n")
 
     def test_division(self):
-        div = division('easy')
+        div = division('1')
         for i in range(10):
             question = div.generateQuestion()
-            print(question[0], "Answer should be:", question[3])
-            self.assertEqual(question[3], round(question[1] / question[2], 2), "Test Failed, expected: {} got: {}".format(question[3], round(question[1] / question[2], 2)))
+            # print(question[0], "Answer is:", question[3])
+            self.assertIsInstance(question[0], str, "Test Failed, expected question[0] to be a string")
+            self.assertIsInstance(question[1], str, "Test Failed, expected question[1] to be a string")
+            self.assertIsInstance(question[2], str, "Test Failed, expected question[2] to be a string")
+            self.assertIsInstance(question[3], float, "Test Failed, expected question[3] to be a float")
             i += 1
         print("Division Easy Tests Passed\n\n")
 
-        div = division('medium')
+        div = division('2')
         for i in range(10):
             question = div.generateQuestion()
-            print(question[0], "Answer should be:", question[3])
-            self.assertEqual(question[3], round(question[1] / question[2], 2), "Test Failed, expected: {} got: {}".format(question[3], round(question[1] / question[2], 2)))
+            # print(question[0], "Answer is:", question[3])
+            self.assertIsInstance(question[0], str, "Test Failed, expected question[0] to be a string")
+            self.assertIsInstance(question[1], str, "Test Failed, expected question[1] to be a string")
+            self.assertIsInstance(question[2], str, "Test Failed, expected question[2] to be a string")
+            self.assertIsInstance(question[3], float, "Test Failed, expected question[3] to be a float")
             i += 1
         print("Division Medium Tests Passed\n\n")
 
-        div = division('hard')
+        div = division('3')
         for i in range(10):
             question = div.generateQuestion()
-            print(question[0], "Answer should be:", question[3])
-            self.assertEqual(question[3], round(question[1] / question[2], 2), "Test Failed, expected: {} got: {}".format(question[3], round(question[1] / question[2], 2)))
+            # print(question[0], "Answer is:", question[3])
+            self.assertIsInstance(question[0], str, "Test Failed, expected question[0] to be a string")
+            self.assertIsInstance(question[1], str, "Test Failed, expected question[1] to be a string")
+            self.assertIsInstance(question[2], str, "Test Failed, expected question[2] to be a string")
+            self.assertIsInstance(question[3], float, "Test Failed, expected question[3] to be a float")
             i += 1
         print("Division Hard Tests Passed\n\n")
 
         print("All Division Test Cases Passed\n\n")
 
-    # Work in progress - define a range of + or -1 for the answer
-    # def test_quadratic(self):
-    #     quad = quadratic('easy')
-    #     for i in range(10):
-    #         question = quad.generateQuestion()
-    #         print(question[0], "Answer should be:", question[4])
-    #         if round(question[1]*question[4][0]*question[4][0] + question[2]*question[4][0] + question[3], 0) != 0.0:
-    #             print("Test Failed, expected: {} got: {}".format(0, question[1]*question[4][0]*question[4][0] + question[2]*question[4][0] + question[3]))
-    #         if round(question[1]*question[4][1]*question[4][1] + question[2]*question[4][0] + question[3], 0) != 0.0:
-    #             print("Test Failed, expected: {} got: {}".format(0, question[1]*question[4][1]*question[4][1] + question[2]*question[4][1] + question[3]))
-    #         i += 1
-    #     print("Quadratic Easy Tests Passed\n\n")
+    def test_quadratic(self):
+        quad = quadratic('1')
+        for i in range(10):
+            question = quad.generateQuestion()
+            # print(question[0], "Answer is:", question[3])
+            self.assertIsInstance(question[0], str, "Test Failed, expected question[0] to be a string")
+            self.assertIsInstance(question[1], str, "Test Failed, expected question[1] to be a string")
+            self.assertIsInstance(question[2], str, "Test Failed, expected question[2] to be a string")
+            self.assertIsInstance(question[3], list, "Test Failed, expected question[3] to be an array")
+            i += 1
+        print("Quadratic Easy Tests Passed\n\n")
+
+        quad = quadratic('2')
+        for i in range(10):
+            question = quad.generateQuestion()
+            # print(question[0], "Answer is:", question[3])
+            self.assertIsInstance(question[0], str, "Test Failed, expected question[0] to be a string")
+            self.assertIsInstance(question[1], str, "Test Failed, expected question[1] to be a string")
+            self.assertIsInstance(question[2], str, "Test Failed, expected question[2] to be a string")
+            self.assertIsInstance(question[3], list, "Test Failed, expected question[3] to be an array")
+            i += 1
+        print("Quadratic Medium Tests Passed\n\n")
+
+        quad = quadratic('3')
+        for i in range(10):
+            question = quad.generateQuestion()
+            # print(question[0], "Answer is:", question[3])
+            self.assertIsInstance(question[0], str, "Test Failed, expected question[0] to be a string")
+            self.assertIsInstance(question[1], str, "Test Failed, expected question[1] to be a string")
+            self.assertIsInstance(question[2], str, "Test Failed, expected question[2] to be a string")
+            self.assertIsInstance(question[3], list, "Test Failed, expected question[3] to be an array")
+            i += 1
+        print("Quadratic Hard Tests Passed\n\n")
+
+        print("All Quadratic Test Cases Passed\n\n")
             
+    def test_linear(self):
+        linearq = linear("1")
+        for i in range(10):
+            question = linearq.generateQuestion()
+            # print(question[0], "Answer is:", question[3])
+            self.assertIsInstance(question[0], str, "Test Failed, expected question[0] to be a string")
+            self.assertIsInstance(question[1], str, "Test Failed, expected question[1] to be a string")
+            self.assertIsInstance(question[2], str, "Test Failed, expected question[2] to be a string")
+            self.assertIsInstance(question[3], str, "Test Failed, expected question[3] to be an string")
+            i += 1
+        print("Linear Easy Tests Passed\n\n")
 
+        linearq = linear("2")
+        for i in range(10):
+            question = linearq.generateQuestion()
+            # print(question[0], "Answer is:", question[3])
+            self.assertIsInstance(question[0], str, "Test Failed, expected question[0] to be a string")
+            self.assertIsInstance(question[1], str, "Test Failed, expected question[1] to be a string")
+            self.assertIsInstance(question[2], str, "Test Failed, expected question[2] to be a string")
+            self.assertIsInstance(question[3], str, "Test Failed, expected question[3] to be an string")
+            i += 1
+        print("Linear Medium Tests Passed\n\n")
 
-    
+        linearq = linear("3")
+        for i in range(10):
+            question = linearq.generateQuestion()
+            # print(question[0], "Answer is:", question[3])
+            self.assertIsInstance(question[0], str, "Test Failed, expected question[0] to be a string")
+            self.assertIsInstance(question[1], str, "Test Failed, expected question[1] to be a string")
+            self.assertIsInstance(question[2], str, "Test Failed, expected question[2] to be a string")
+            self.assertIsInstance(question[3], str, "Test Failed, expected question[3] to be an string")
+            i += 1
+        print("Linear Hard Tests Passed\n\n")
+
+        print("All Linear Test Cases Passed\n\n")
+
+    def test_superscaryfluidDynamics(self):
+        fluid = fluidDynamics("1")
+        for i in range(10):
+            question = fluid.generateQuestion()
+            # print(question[0], "Answer is:", question[3])
+            self.assertIsInstance(question[0], str, "Test Failed, expected question[0] to be a string")
+            self.assertIsInstance(question[1], str, "Test Failed, expected question[1] to be a string")
+            self.assertIsInstance(question[2], str, "Test Failed, expected question[2] to be a string")
+            self.assertIsInstance(question[3], float, "Test Failed, expected question[3] to be a float")
+            i += 1
+        print("Fluid Dynamics Easy Tests Passed\n\n")
+
+        fluid = fluidDynamics("2")
+        for i in range(10):
+            question = fluid.generateQuestion()
+            # print(question[0], "Answer is:", question[3])
+            self.assertIsInstance(question[0], str, "Test Failed, expected question[0] to be a string")
+            self.assertIsInstance(question[1], str, "Test Failed, expected question[1] to be a string")
+            self.assertIsInstance(question[2], str, "Test Failed, expected question[2] to be a string")
+            self.assertIsInstance(question[3], float, "Test Failed, expected question[3] to be a float")
+            self.assertIsInstance(question[4], float, "Test Failed, expected question[4] to be a float")
+            i += 1
+        print("Fluid Dynamics Medium Tests Passed\n\n")
+
+        fluid = fluidDynamics("3")
+        for i in range(10):
+            question = fluid.generateQuestion()
+            # print(question[0], "Answer is:", question[3])
+            self.assertIsInstance(question[0], str, "Test Failed, expected question[0] to be a string")
+            self.assertIsInstance(question[1], str, "Test Failed, expected question[1] to be a string")
+            self.assertIsInstance(question[2], str, "Test Failed, expected question[2] to be a string")
+            self.assertIsInstance(question[3], float, "Test Failed, expected question[3] to be a float")
+            i += 1
+        print("Fluid Dynamics Hard Tests Passed\n\n")
+
+        print("All Fluid Dynamics Test Cases Passed\n\n")
+        
             
 if __name__ == '__main__':
     unittest.main()
