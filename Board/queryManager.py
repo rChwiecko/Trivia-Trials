@@ -50,3 +50,4 @@ def get_player_scores():
       player_scores[player["name"]] = player["score"]
     # print(player_scores)
   return player_scores
+

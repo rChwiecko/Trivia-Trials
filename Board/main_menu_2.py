@@ -14,7 +14,8 @@ main_menu = False
 exit_menu = False
 font_heading = pygame.font.Font('freesansbold.ttf', 36)
 font = pygame.font.Font('freesansbold.ttf', 24)
-
+game_data = None
+new_game = None
 # Load image
 bg = pygame.transform.scale(pygame.image.load('assets/transparentduck.png'), (100, 100))
 ball = pygame.transform.scale(pygame.image.load('assets/transparentduck.png'), (150, 150))
@@ -129,11 +130,17 @@ def draw_save_screen():
             sys.exit()
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if save1_btn.check_clicked():
-                return find_game_by_id(1)
+                game_data =  find_game_by_id(1)
+                new_game = False
+                game(new_game=new_game, game_data=game_data)
             elif save2_btn.check_clicked():
-                return find_game_by_id(2)
+                game_data =  find_game_by_id(2)
+                new_game = False
+                game(new_game=new_game, game_data=game_data)
             elif save3_btn.check_clicked():
-                return find_game_by_id(3)
+                game_data =  find_game_by_id(3)
+                new_game = False
+                game(new_game=new_game, game_data=game_data)
     return 0
 
 
@@ -219,7 +226,7 @@ while run:
                         # Perform actions for instructor
                         pass
                     elif player_button.check_clicked():
-                        game()
+                        game(new_game=new_game, game_data=game_data)
                     elif menu_btn.check_clicked():
                         main_menu = True
 

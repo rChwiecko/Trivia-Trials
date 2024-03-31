@@ -36,11 +36,6 @@ class Board:
         self.newGame = newGame
         self.playerIndex = playerIndex
         self.playerList = playerList
-        self.board = [[0, 0, 0, 0, 0],[0, 0, 0, 0, 0],[0, 0, 0, 0, 0]]
-        for i in range(NUMROWS):
-            for j in range(NUMCOLS):
-                if (i+j==self.playerIndex):
-                    self.board[i][j] = 1
         self.gameStatus = True
         self.screen = screen
         self.levelNum = level
@@ -138,7 +133,7 @@ class Board:
         innerBoardStartX = rect_x+BOARD_OUTLINE_OFFSET
         innerBoardStartY = rect_y+BOARD_OUTLINE_OFFSET
         pygame.draw.rect(self.screen, WHITE, (innerBoardStartX, innerBoardStartY, innerBoardWidth, innerBoardHeight))
-        self.drawText(str(playersQuestion+"'s Question"), self.curr_font, 50, BLACK, rect_x*2, rect_y+40)
+        self.drawText(str(playersQuestion["name"]+"'s Question"), self.curr_font, 50, BLACK, rect_x*2, rect_y+40)
         pygame.draw.rect(self.screen, BLACK, (rect_x+200, rect_y+400, 480, 90))
         pygame.draw.rect(self.screen, WHITE, (rect_x+200+BOARD_OUTLINE_OFFSET, rect_y+400+BOARD_OUTLINE_OFFSET, 480-(BOARD_OUTLINE_OFFSET*2), 90-(BOARD_OUTLINE_OFFSET*2)))
         pygame.draw.rect(self.screen, GREEN, (rect_x+200+BOARD_OUTLINE_OFFSET, rect_y+400+BOARD_OUTLINE_OFFSET, 16*time_elapsed, 90-(BOARD_OUTLINE_OFFSET*2)))
@@ -175,7 +170,7 @@ class Board:
         rect_x = (WIDTH - 880) // 2
         rect_y = (HEIGHT - 600) // 2
         pygame.draw.rect(self.screen, WHITE, (rect_x+BOARD_OUTLINE_OFFSET, rect_y+BOARD_OUTLINE_OFFSET, 880-(BOARD_OUTLINE_OFFSET*2), 600-(BOARD_OUTLINE_OFFSET*2)))
-        self.drawText(str(name+"'s turn"), self.curr_font, 50, BLACK, rect_x*2+50, rect_y+70)
+        self.drawText(str(name["name"]+"'s turn"), self.curr_font, 50, BLACK, rect_x*2+50, rect_y+70)
         self.drawText(str(time), self.curr_font, 50, BLACK, rect_x+400, rect_y+250)
     #renders a button
     def draw_button(self, text, x, y):  # Define a function to draw a button on the screen

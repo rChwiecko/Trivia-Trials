@@ -1,5 +1,6 @@
 import pygame, pygame_gui
 from Board import * 
+import json
 #basic pygame properties
 def game(new_game, game_data = None, player_list = None):
     pygame.init()
@@ -8,8 +9,17 @@ def game(new_game, game_data = None, player_list = None):
     pygame.display.set_caption("Trivia Trials")
     running = True
     #preliminaries for main loop
-    players = ['player1','ryan','sonia']
-    boardInstance = Board(players, screen, "1", 0)
+    # players = ['player1','ryan','sonia']
+    # boardInstance = Board(players, screen, "1", 0)
+    if not new_game:
+        print("type ", type(game_data))
+        game_data_dict = game_data
+        players = game_data_dict["players"]
+        level_num = game_data_dict["level_number"]
+        player_index = game_data_dict["player_index"]
+        boardInstance = Board(players, screen, str(level_num), player_index)
+    else:
+        pass
     gameState = "INITIAL"  # Corrected state name
     playersAsked = 0
     beginning = pygame.time.get_ticks()
