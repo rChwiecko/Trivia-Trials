@@ -425,7 +425,8 @@ def generate_game_data():
                         ]
                     }
 
-                    print(game_data)
+                    game(new_game=False, game_data=game_data)
+                    menu_command = 0
                 
                     
             if event.type == pygame.KEYDOWN:

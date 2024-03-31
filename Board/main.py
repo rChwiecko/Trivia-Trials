@@ -18,7 +18,6 @@ def game(new_game, game_data = None, player_list = None):
     # players = ['player1','ryan','sonia']
     # boardInstance = Board(players, screen, "1", 0)
     if not new_game:
-        print("type ", type(game_data))
         game_data_dict = game_data
         players = game_data_dict["players"]
         level_num = game_data_dict["level_number"]
