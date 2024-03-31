@@ -51,3 +51,20 @@ def get_player_scores():
     # print(player_scores)
   return player_scores
 
+def get_player_info():
+  # Initialize the player_info dictionary
+  player_info = {}
+
+  # for each game_id, print the player names and scores
+  for game in games.find():
+    # print("Game %s" % game["game_id"])
+    for player in game["players"]:
+      # Store the player names and scores in the dictionary
+      player_info[player["name"]] = {
+        "streak": player["streak"],
+        "duck_count": player["duck_count"],
+        "score": player["score"]
+      }
+    # print(player_info)
+  return player_info
+
