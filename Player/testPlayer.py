@@ -5,80 +5,105 @@ import Player
 class TestPlayer(unittest.TestCase):
     '''Unit testing Player class methods.'''
     def test_setPermission(self):
-        p = Player()
-        p.setPermission(123456)
-        self.assertEqual(p.getPermission(), 0)
+        player = Player()
+        player.setPermission(123456)
+        self.assertEqual(player.getPermission(), 0)
         print("setPermission passed")
         
     def test_getPermission(self):
-        p = Player()
-        p.setPermission(2468)
-        self.assertEqual(p.getPermission(), 0)
+        player = Player()
+        player.setPermission(2468)
+        self.assertEqual(player.getPermission(), 0)
         print("getPermission passed")        
 
     def test_setName(self):     
-        p = Player()
-        p.setName("John")
-        self.assertEqual(p.getName(), "John")
-        self.assertIsInstance(p, Player)    # confirms if Player object initialized
+        player = Player()
+        player.setName("John")
+        self.assertEqual(player.getName(), "John")
+        self.assertIsInstance(player, Player)    # confirms if Player object initialized
         print("setName passed")
 
     def test_getName(self):
-        p = Player()
-        p.setName("Jane")
-        self.assertEqual(p.getName(), "Jane")
+        player = Player()
+        player.setName("Jane")
+        self.assertEqual(player.getName(), "Jane")
         print("getName passed")
 
     def test_setID(self, player_id):     # randomized, check return value type
-        p = Player()
-        p.setID()
-        self.assertIsInstance(p.getID(), int)
+        player = Player()
+        player.setID()
+        self.assertIsInstance(player.getID(), int)
         print("setID passed")
         
-    def test_getID(self):    
-        p = Player()
-        p.setID()
-        self.assertIsInstance(p.getID(), int)
+    def test_getID(self):   # checks if return value is integer
+        player = Player()
+        player.setID()
+        self.assertIsInstance(player.getID(), int)
         print("getID passed")
         
-    def test_updateScore(self, score):   
+    def test_updateScore(self, score):   # checks if counter increments appropriately
         player = Player()
         player.updateScore(1000)
         self.assertEqual(player.getScore(), 1000)
         player.updateScore(2000)
         self.assertEqual(player.getScore(), 3000)
+        print("updateScore passed")
         
     def test_getScore(self):
         player = Player()
-        return self.__score
+        player.updateScore(1000)
+        self.assertEqual(player.getScore(), 1000)
+        player.updateScore(2000)
+        self.assertEqual(player.getScore(), 3000)
+        print("getScore passed")
         
     def test_updateDuckCount(self, count):   
         player = Player()
-        self.__duckCount += count
+        player.updateDuckCount(1)
+        self.assertEqual(player.getDuckCount(), 1)
+        player.updateDuckCount(2)
+        self.assertEqual(player.getDuckCount(), 3)
+        print("updateDuckCount passed")
 
     def test_getDuckCount(self):
         player = Player()
-        return self.__duckCount
+        player.updateDuckCount(1)
+        self.assertEqual(player.getDuckCount(), 1)
+        player.updateDuckCount(2)
+        self.assertEqual(player.getDuckCount(), 3)
+        print("getDuckCount passed")
         
-    def test_updateStreakCount(self, streak):
+    def test_updateStreakCount(self):
         player = Player()
-        self.__streakCount += streak
+        player.updateStreakCount()
+        self.assertEqual(player.getStreakCount(), 1)
+        player.updateStreakCount()
+        self.assertEqual(player.getStreakCount(), 2)
+        print("updateStreakCount passed")
 
     def test_getStreakCount(self):  # streak counter, make set and get
         player = Player()
-        return self.__streakCount
+        player.updateStreakCount()
+        self.assertEqual(player.getStreakCount(), 1)
+        player.updateStreakCount()
+        self.assertEqual(player.getStreakCount(), 2)
+        print("getStreakCount passed")
 
-    def test_updateCorrectCount(self, correct):
+    def test_updateCorrectCount(self):
         player = Player()
-        self.__correctCount += correct
+        player.updateCorrectCount()
+        self.assertEqual(player.getCorrectCount(), 1)
+        player.updateCorrectCount()
+        self.assertEqual(player.getCorrectCount(), 2)
+        print("updateCorrectCount passed")
 
     def test_getCorrectCount(self):
         player = Player()
-        return self.__correctCount    
-
-    def test_updateDuckCount(self, count):   # input from Ryan again, input how much it increases by
-        player = Player()
-        self.__duckCount += count
+        player.updateCorrectCount()
+        self.assertEqual(player.getCorrectCount(), 1)
+        player.updateCorrectCount()
+        self.assertEqual(player.getCorrectCount(), 2)
+        print("getCorrectCount passed")   
         
     print("Player tests passed")
 
