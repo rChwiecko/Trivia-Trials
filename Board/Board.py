@@ -4,7 +4,6 @@ import random
 from const import *
 import endOfBoardException
 from queryManager import *
-import jsonify
 pygame.init()
 class Board:
     gameStatus = False
@@ -273,7 +272,7 @@ class Board:
             pygame.draw.rect(self.screen, WHITE, (0, 0, 1280, 800))
             pygame.draw.rect(self.screen, BLACK, (rect_x, rect_y, 880, 600))
             pygame.draw.rect(self.screen, WHITE, (rect_x+BOARD_OUTLINE_OFFSET, rect_y+BOARD_OUTLINE_OFFSET, 880-(2*BOARD_OUTLINE_OFFSET), 600-(2*BOARD_OUTLINE_OFFSET)))
-            self.drawText("Choose save slot", self.curr_font, 50, BLACK, rect_x*2+120, rect_y+70)
+            self.drawText("Choose save slot", self.curr_font, 50, BLACK, rect_x*2+60, rect_y+70)
             self.draw_button_new("Save1", (rect_x+340, rect_y + 200))
             self.draw_button_new("Save2", (rect_x+340, rect_y + 300))
             self.draw_button_new("Save3", (rect_x+340, rect_y + 400))
