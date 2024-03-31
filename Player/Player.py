@@ -22,7 +22,7 @@ class Player:
         self.__streakCount = 0      # number questions right in a row
         self.__correctCount = 0     # number questions correct
 
-    def setPermission(self, pinInput) -> None:
+    def setPermission(self, pinInput: int) -> None:
         '''Set permission level of this player.
         
         Args: 
