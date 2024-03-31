@@ -28,7 +28,7 @@ def game(new_game, game_data = None, player_list = None):
     playersAsked = 0
     beginning = pygame.time.get_ticks()
     delay_start_time = None
-    paused = None
+    paused = False
     dataSaved = None
     pauseState = None
     question = ''
@@ -41,7 +41,7 @@ def game(new_game, game_data = None, player_list = None):
                 if event.key == pygame.K_ESCAPE:
                     if gameState != "PAUSED":
                         pauseState = gameState
-                        gameState = "PAUSE"
+                        gameState = "PAUSED"
                         paused = True
                     else:
                         gameState = pauseState
@@ -65,11 +65,15 @@ def game(new_game, game_data = None, player_list = None):
                     paused = False
                 elif 350 <= mouse_pos[1] <= 400:  # Check if mouse click is on "Save and Quit" button
                     dataSaved = True
+                    running = False
                 elif 450 <= mouse_pos[1] <= 500:  # Check if mouse click is on "Don't Save and Quit" button
+                    dataSaved = False
                     running = False
                 elif 10 <= mouse_pos[0] <= 50 and 10 <= mouse_pos[1] <= 50:
-                    gameState = "PAUSED"
-                    paused = True
+                    if (gameState != "PAUSED"):
+                        pauseState = gameState
+                        gameState = "PAUSED"
+                        paused = True
         boardInstance.render()
         if gameState == "QUESTION_SHOW":
             if playersAsked < boardInstance.playerCount:
@@ -108,6 +112,7 @@ def game(new_game, game_data = None, player_list = None):
                     player_answering = False
                 start_delay = pygame.time.get_ticks()
                 gameState = "SHOW_ANSWER_FEEDBACK"  # Reset to show the next question
+
         elif gameState == "MOVE_PLAYERS":
             try:
                 boardInstance.movePlayers()
@@ -165,6 +170,5 @@ def game(new_game, game_data = None, player_list = None):
 
         pygame.display.flip()
         clock.tick(60)  # Limits FPS to 60
-    pygame.quit()
 
 
