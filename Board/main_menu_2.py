@@ -277,6 +277,8 @@ while run:
 
         elif menu_command == 4:
             draw_player_login()
+            if draw_back_button():
+                main_menu = True
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
