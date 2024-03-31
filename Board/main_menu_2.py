@@ -403,8 +403,29 @@ def generate_game_data():
                 score_color = 'white' if score_active else 'black'
                 
                 if submit_button.check_clicked():
-                    print(level, index, streak, duck_count, score)
-                    return level, index, streak, duck_count, score
+                    # turn it into a game data object
+                    sending_level = int(level)
+                    sending_index = int(index)
+                    sending_streak = int(streak)
+                    sending_duck_count = int(duck_count)
+                    sending_score = int(score)
+
+                    game_data = {
+                        "game_id": 4,
+                        "level_number": sending_level,
+                        "player_index": sending_index,
+                        "players": [
+                            {
+                            "name": "God",
+                            "password": "iamgod",
+                            "streak": sending_streak,
+                            "duck_count": sending_duck_count,
+                            "score": sending_score
+                            }
+                        ]
+                    }
+
+                    print(game_data)
                 
                     
             if event.type == pygame.KEYDOWN:
