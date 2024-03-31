@@ -51,26 +51,55 @@ class Player:
     
     def updateStreakCount(self) -> None:
         '''Increments by 1 for each consecutively correct answer.'''
-        self.__streakCount += 1     # if correct, Player.updateStreakCount()
+        self.__streakCount += 1     # if correct and previous correct, Player.updateStreakCount()
 
-    def updateCorrectCount(self, correct: int) -> None:
-        ''''''
-        self.__correctCount += correct
+    def updateCorrectCount(self) -> None:
+        '''Increments by 1 for each correct answer.'''
+        self.__correctCount += 1
 
-    def getID(self) -> int:    
+    def getID(self) -> int: 
+        '''Gets the player ID of a Player object.
+        
+        Returns:
+            int: The randomly generated player ID.
+        '''   
         return self.__playerID
 
     def getName(self) -> str:
+        '''Gets the player name.
+        
+        Returns:
+            str: The name entered by player upon login.
+        '''
         return self.__playerName
 
     def getScore(self) -> float:
+        '''Gets the current score of the player.
+        
+        Returns:
+            float: The score of player in the current game.
+        '''
         return self.__score
 
     def getDuckCount(self) -> int:
+        '''Gets the number of duck boosters in possession of player.
+        
+        Returns:
+            int: The number of ducks a player has.
+        '''
         return self.__duckCount
 
-    def getStreakCount(self) -> int:  # streak counter, make set and get
+    def getStreakCount(self) -> int:  # streak counter
+        '''Gets the number of consecutively correct answers.
+        
+        Returns:
+            int: The number of consecutively correct answers input by player. 
+        '''
         return self.__streakCount
     
     def getCorrectCount(self) -> int:
+        '''Gets the total number of correct answers for instructor to see player metrics.
+        
+        Return:
+            int: The number of correct answers input by player.'''
         return self.__correctCount
