@@ -273,10 +273,10 @@ class Board:
             pygame.draw.rect(self.screen, WHITE, (0, 0, 1280, 800))
             pygame.draw.rect(self.screen, BLACK, (rect_x, rect_y, 880, 600))
             pygame.draw.rect(self.screen, WHITE, (rect_x+BOARD_OUTLINE_OFFSET, rect_y+BOARD_OUTLINE_OFFSET, 880-(2*BOARD_OUTLINE_OFFSET), 600-(2*BOARD_OUTLINE_OFFSET)))
-            self.drawText("Choose save slot", self.curr_font, 50, BLACK, rect_x*2+200, rect_y+70)
-            self.draw_button("Save1", rect_x+440, rect_y + 200)
-            self.draw_button("Save2", rect_x+440, rect_y + 220)
-            self.draw_button("Save3", rect_x+440, rect_y + 240)
+            self.drawText("Choose save slot", self.curr_font, 50, BLACK, rect_x*2+120, rect_y+70)
+            self.draw_button_new("Save1", (rect_x+340, rect_y + 200))
+            self.draw_button_new("Save2", (rect_x+340, rect_y + 300))
+            self.draw_button_new("Save3", (rect_x+340, rect_y + 400))
         else:
               players = []
               for i in range(self.playerCount):
@@ -294,5 +294,15 @@ class Board:
                   "players":players
               }
               insert_game(data)
+            
+    def draw_button_new(self, text, pos, width=240, height = 60):
+        font = pygame.font.Font(self.curr_font, 24)
+        button = pygame.Rect(pos, (width, height))
+        pygame.draw.rect(self.screen, 'light gray', button, 0, 5)
+        pygame.draw.rect(self.screen, 'dark gray', button, 5, 5)
+        text2 = font.render(text, True, 'black')
+        text_rect = text2.get_rect(center=button.center)
+        self.screen.blit(text2, text_rect.topleft)
+
               
               

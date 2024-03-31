@@ -79,13 +79,13 @@ def game(new_game, game_data = None, player_list = None):
                         paused = True
                         rect_x = (WIDTH - 880) // 2
                         rect_y = (HEIGHT - 600) // 2
-                elif gameState == "AWAIT_SAVE_CHOICE" and (WIDTH - 880) // 2 + 440 <= mouse_pos[0] <= (WIDTH - 880) // 2 + 640 and (HEIGHT - 600) // 2 + 200 <= mouse_pos[1] <= (HEIGHT - 600) // 2 + 240:
+                elif gameState == "AWAIT_SAVE_CHOICE" and (WIDTH - 880) // 2 + 340 <= mouse_pos[0] <= (WIDTH - 880) // 2 + 580 and (HEIGHT - 600) // 2 + 200 <= mouse_pos[1] <= (HEIGHT - 600) // 2 + 260:
                     save_choosen = True
                     game_save_choice = 1
-                elif gameState == "AWAIT_SAVE_CHOICE" and (WIDTH - 880) // 2 + 440 <= mouse_pos[0] <= (WIDTH - 880) // 2 + 640 and (HEIGHT - 600) // 2 + 220 <= mouse_pos[1] <= (HEIGHT - 600) // 2 + 260:
+                elif gameState == "AWAIT_SAVE_CHOICE" and (WIDTH - 880) // 2 + 340 <= mouse_pos[0] <= (WIDTH - 880) // 2 + 580 and (HEIGHT - 600) // 2 + 300 <= mouse_pos[1] <= (HEIGHT - 600) // 2 + 360:
                     save_choosen = True
                     game_save_choice = 2
-                elif gameState == "AWAIT_SAVE_CHOICE" and (WIDTH - 880) // 2 + 440 <= mouse_pos[0] <= (WIDTH - 880) // 2 + 640 and (HEIGHT - 600) // 2 + 240 <= mouse_pos[1] <= (HEIGHT - 600) // 2 + 280:
+                elif gameState == "AWAIT_SAVE_CHOICE" and (WIDTH - 880) // 2 + 340 <= mouse_pos[0] <= (WIDTH - 880) // 2 + 580 and (HEIGHT - 600) // 2 + 400 <= mouse_pos[1] <= (HEIGHT - 600) // 2 + 460:
                     save_choosen = True
                     game_save_choice = 3
 
