@@ -81,9 +81,10 @@ def draw_menu():
     button3.draw()
     playerdetailsbutton = Button('Player Details', (menu_x + 20, menu_y + 260))  # Adjusted position
     playerdetailsbutton.draw()
-    
+    godmodebutton = Button('God Mode', (menu_x + 20, menu_y + 320))  # Adjusted position
+    godmodebutton.draw()
 
-    exit_button = Button('Exit Game', (menu_x + 20, menu_y + 320))  # Adjusted position
+    exit_button = Button('Exit Game', (menu_x + 20, menu_y + 380))  # Adjusted position
     exit_button.draw()
 
     if tutorials_button.check_clicked():
@@ -98,6 +99,8 @@ def draw_menu():
         command = 3
     if playerdetailsbutton.check_clicked():
         draw_password_screen()
+    if godmodebutton.check_clicked():
+        draw_god_mode()
 
     return command
 
@@ -204,6 +207,275 @@ def draw_player_details():
         screen.blit(text_surface, (50, y_offset))
         y_offset += 40
 
+def draw_god_mode():
+    password = ''
+    password_rect = pygame.Rect(100, 100, 140, 32)
+    password_active = False
+    password_color = 'white'
+    password_font = pygame.font.Font(None, 32)
+    password_text = password_font.render(password, True, password_color)
+    password_text_rect = password_text.get_rect()
+    password_text_rect.center = password_rect.center
+    password_rect.w = max(200, password_text_rect.width + 10)
+    
+    username = ''
+    username_rect = pygame.Rect(100, 150, 140, 32)
+    username_active = False
+    username_color = 'white'
+    username_font = pygame.font.Font(None, 32)
+    username_text = username_font.render(username, True, username_color)
+    username_text_rect = username_text.get_rect()
+    username_text_rect.center = username_rect.center
+    username_rect.w = max(200, username_text_rect.width + 10)
+    
+    submit_button = Button('Submit', (100, 200), width=100, height=40)
+    
+    active = False
+    while True:
+        screen.fill('black')
+        screen.blit(password_text, password_text_rect)
+        pygame.draw.rect(screen, 'lightgrey' if password_active else 'white', password_rect, 2)  
+        screen.blit(username_text, username_text_rect)
+        pygame.draw.rect(screen, 'lightgrey' if username_active else 'white', username_rect, 2)  
+        submit_button.draw()
+        pygame.display.flip()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if password_rect.collidepoint(event.pos):
+                    password_active = not password_active
+                else:
+                    password_active = False
+                password_color = 'white' if password_active else 'black'
+                
+                if username_rect.collidepoint(event.pos):
+                    username_active = not username_active
+                else:
+                    username_active = False
+                username_color = 'white' if username_active else 'black'
+                
+                if submit_button.check_clicked():
+                    if password == '1234':
+                        running = True
+                        while running:
+                            for event in pygame.event.get():
+                                if event.type == pygame.QUIT:
+                                    running = False
+                                    pygame.quit()
+                                    sys.exit()
+                            generate_game_data()
+                            pygame.display.flip()
+                        return password, username
+                    
+            if event.type == pygame.KEYDOWN:
+                if password_active:
+                    if event.key == pygame.K_RETURN:
+                        if password == '1234':
+                            draw_player_details()
+                            return password, username
+                    elif event.key == pygame.K_BACKSPACE:
+                        password = password[:-1]
+                    else:
+                        password += event.unicode
+                    password_text = password_font.render(password, True, password_color)
+                    password_text_rect = password_text.get_rect()
+                    password_text_rect.center = password_rect.center
+                    password_rect.w = max(200, password_text_rect.width + 10)
+                    
+                if username_active:
+                    if event.key == pygame.K_RETURN:
+                        if password == '1234':
+                            draw_player_details()
+                        return password, username
+                    elif event.key == pygame.K_BACKSPACE:
+                        username = username[:-1]
+                    else:
+                        username += event.unicode
+                    username_text = username_font.render(username, True, username_color)
+                    username_text_rect = username_text.get_rect()
+                    username_text_rect.center = username_rect.center
+                    username_rect.w = max(200, username_text_rect.width + 10)
+        pygame.display.flip()
+
+def generate_game_data():
+    level = ''
+    level_rect = pygame.Rect(100, 100, 140, 32)
+    level_active = False
+    level_color = 'white'
+    level_font = pygame.font.Font(None, 32)
+    level_text = level_font.render(level, True, level_color)
+    level_text_rect = level_text.get_rect()
+    level_text_rect.center = level_rect.center
+    level_rect.w = max(200, level_text_rect.width + 10)
+    
+    index = ''
+    index_rect = pygame.Rect(100, 150, 140, 32)
+    index_active = False
+    index_color = 'white'
+    index_font = pygame.font.Font(None, 32)
+    index_text = index_font.render(index, True, index_color)
+    index_text_rect = index_text.get_rect()
+    index_text_rect.center = index_rect.center
+    index_rect.w = max(200, index_text_rect.width + 10)
+
+    streak = ''
+    streak_rect = pygame.Rect(100, 200, 140, 32)
+    streak_active = False
+    streak_color = 'white'
+    streak_font = pygame.font.Font(None, 32)
+    streak_text = streak_font.render(streak, True, streak_color)
+    streak_text_rect = streak_text.get_rect()
+    streak_text_rect.center = streak_rect.center
+    streak_rect.w = max(200, streak_text_rect.width + 10)
+
+    duck_count = ''
+    duck_count_rect = pygame.Rect(100, 250, 140, 32)
+    duck_count_active = False
+    duck_count_color = 'white'
+    duck_count_font = pygame.font.Font(None, 32)
+    duck_count_text = duck_count_font.render(duck_count, True, duck_count_color)
+    duck_count_text_rect = duck_count_text.get_rect()
+    duck_count_text_rect.center = duck_count_rect.center
+    duck_count_rect.w = max(200, duck_count_text_rect.width + 10)
+    
+    score = ''
+    score_rect = pygame.Rect(100, 300, 140, 32)
+    score_active = False
+    score_color = 'white'
+    score_font = pygame.font.Font(None, 32)
+    score_text = score_font.render(score, True, score_color)
+    score_text_rect = score_text.get_rect()
+    score_text_rect.center = score_rect.center
+    score_rect.w = max(200, score_text_rect.width + 10)
+
+    submit_button = Button('Submit', (100, 350), width=100, height=40)
+
+    active = False
+    while True:
+        screen.fill('black')
+        screen.blit(level_text, level_text_rect)
+        pygame.draw.rect(screen, 'lightgrey' if level_active else 'white', level_rect, 2)  
+        screen.blit(index_text, index_text_rect)
+        pygame.draw.rect(screen, 'lightgrey' if index_active else 'white', index_rect, 2)  
+        submit_button.draw()
+        screen.blit(streak_text, streak_text_rect)
+        pygame.draw.rect(screen, 'lightgrey' if streak_active else 'white', streak_rect, 2)
+        screen.blit(duck_count_text, duck_count_text_rect)
+        pygame.draw.rect(screen, 'lightgrey' if duck_count_active else 'white', duck_count_rect, 2)
+        screen.blit(score_text, score_text_rect)
+        pygame.draw.rect(screen, 'lightgrey' if score_active else 'white', score_rect, 2)
+        pygame.display.flip()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if level_rect.collidepoint(event.pos):
+                    level_active = not level_active
+                else:
+                    level_active = False
+                level_color = 'white' if level_active else 'black'
+                
+                if index_rect.collidepoint(event.pos):
+                    index_active = not index_active
+                else:
+                    index_active = False
+                index_color = 'white' if index_active else 'black'
+                
+                if streak_rect.collidepoint(event.pos):
+                    streak_active = not streak_active
+                else:
+                    streak_active = False
+                streak_color = 'white' if streak_active else 'black'
+                
+                if duck_count_rect.collidepoint(event.pos):
+                    duck_count_active = not duck_count_active
+                else:
+                    duck_count_active = False
+                duck_count_color = 'white' if duck_count_active else 'black'
+                
+                if score_rect.collidepoint(event.pos):
+                    score_active = not score_active
+                else:
+                    score_active = False
+                score_color = 'white' if score_active else 'black'
+                
+                if submit_button.check_clicked():
+                    print(level, index, streak, duck_count, score)
+                    return level, index, streak, duck_count, score
+                
+                    
+            if event.type == pygame.KEYDOWN:
+                if level_active:
+                    if event.key == pygame.K_RETURN:
+
+                        print(level, index, streak, duck_count, score)
+                        return level, index, streak, duck_count, score
+                    elif event.key == pygame.K_BACKSPACE:
+                        level = level[:-1]
+                    else:
+                        level += event.unicode
+                    level_text = level_font.render(level, True, level_color)
+                    level_text_rect = level_text.get_rect()
+                    level_text_rect.center = level_rect.center
+                    level_rect.w = max(200, level_text_rect.width + 10)
+                    
+                if index_active:
+                    if event.key == pygame.K_RETURN:
+
+                        print(level, index, streak, duck_count, score)
+                        return level, index, streak, duck_count, score
+                    elif event.key == pygame.K_BACKSPACE:
+                        index = index[:-1]
+                    else:
+                        index += event.unicode
+                    index_text = index_font.render(index, True, index_color)
+                    index_text_rect = index_text.get_rect()
+                    index_text_rect.center = index_rect.center
+                    index_rect.w = max(200, index_text_rect.width + 10)
+
+                if streak_active:
+                    if event.key == pygame.K_RETURN:
+
+                        print(level, index, streak, duck_count, score)
+                        return level, index, streak, duck_count, score
+                    elif event.key == pygame.K_BACKSPACE:
+                        streak = streak[:-1]
+                    else:
+                        streak += event.unicode
+                    streak_text = streak_font.render(streak, True, streak_color)
+                    streak_text_rect = streak_text.get_rect()
+                    streak_text_rect.center = streak_rect.center
+                    streak_rect.w = max(200, streak_text_rect.width + 10)
+
+                if duck_count_active:
+                    if event.key == pygame.K_RETURN:
+                        print(level, index, streak, duck_count, score)
+                        return level, index, streak, duck_count, score
+                    elif event.key == pygame.K_BACKSPACE:
+                        duck_count = duck_count[:-1]
+                    else:
+                        duck_count += event.unicode
+                    duck_count_text = duck_count_font.render(duck_count, True, duck_count_color)
+                    duck_count_text_rect = duck_count_text.get_rect()
+                    duck_count_text_rect.center = duck_count_rect.center
+                    duck_count_rect.w = max(200, duck_count_text_rect.width + 10)
+
+                if score_active:
+                    if event.key == pygame.K_RETURN:
+                        print(level, index, streak, duck_count, score)
+                        return level, index, streak, duck_count, score
+                    elif event.key == pygame.K_BACKSPACE:
+                        score = score[:-1]
+                    else:
+                        score += event.unicode
+                    score_text = score_font.render(score, True, score_color)
+                    score_text_rect = score_text.get_rect()
+                    score_text_rect.center = score_rect.center
+                    score_rect.w = max(200, score_text_rect.width + 10)
+        pygame.display.flip()
 
 def draw_game():
     menu_btn = Button('Main Menu', ((WIDTH - 200) // 2, HEIGHT - 150))
