@@ -3,6 +3,8 @@ from questionGeneration import *
 import random
 from const import *
 import endOfBoardException
+from queryManager import *
+import jsonify
 pygame.init()
 class Board:
     gameStatus = False
@@ -161,8 +163,6 @@ class Board:
         self.drawText(self.curr_question[1], self.curr_font, 30, BLACK, innerBoardStartX+100, innerBoardStartY+205)
         self.drawText(self.curr_question[2], self.curr_font, 30, BLACK, innerBoardStartX+100, innerBoardStartY+235)
         return self.curr_question
-    def showResults():
-        pass
     #gives a countdown for which players turn it is
     def showPlayersTurn(self, name, time):
         rect_x = (WIDTH - 880) // 2
@@ -172,7 +172,7 @@ class Board:
         self.drawText(str(time), self.curr_font, 50, BLACK, rect_x+400, rect_y+250)
     #renders a button
     def draw_button(self, text, x, y):  # Define a function to draw a button on the screen
-        pygame.draw.rect(self.screen, BLACK, (x, y, 200, 50))  # Draw the button rectangle
+        pygame.draw.rect(self.screen, BLACK, (x, y, 200, 40))  # Draw the button rectangle
         if y == 250:  # Adjust text position based on button position
             self.drawText(text, self.curr_font, 25, WHITE, x + 60, y + 20)
         elif y == 350: 
@@ -265,3 +265,34 @@ class Board:
             if (self.playerList[i]["streak"] > 0):
                 self.screen.blit(self.scaled_streak, (rect_x + 400, rect_y+244+(80*i)))
                 self.drawText(str(self.playerList[i]["streak"]), self.curr_font, 35, BLACK, rect_x + 445, rect_y+250+(80*i))
+
+    def save_game(self, playerlist, id_override = None):
+        if id_override == None:
+            rect_x = (WIDTH - 880) // 2
+            rect_y = (HEIGHT - 600) // 2
+            pygame.draw.rect(self.screen, WHITE, (0, 0, 1280, 800))
+            pygame.draw.rect(self.screen, BLACK, (rect_x, rect_y, 880, 600))
+            pygame.draw.rect(self.screen, WHITE, (rect_x+BOARD_OUTLINE_OFFSET, rect_y+BOARD_OUTLINE_OFFSET, 880-(2*BOARD_OUTLINE_OFFSET), 600-(2*BOARD_OUTLINE_OFFSET)))
+            self.drawText("Choose save slot", self.curr_font, 50, BLACK, rect_x*2+200, rect_y+70)
+            self.draw_button("Save1", rect_x+440, rect_y + 200)
+            self.draw_button("Save2", rect_x+440, rect_y + 220)
+            self.draw_button("Save3", rect_x+440, rect_y + 240)
+        else:
+              players = []
+              for i in range(self.playerCount):
+                  players.append({
+                      "name":self.playerList[i]["name"],
+                      "password":self.playerList[i]["password"],
+                      "streak":self.playerList[i]["streak"],
+                      "duck_count":self.playerList[i]["duck_count"],
+                      "score":self.playerList[i]["score"]
+                  })
+              data = {
+                  "game_id":id_override,
+                  "level_number": self.levelNum,
+                  "player_index": self.playerIndex,
+                  "players":players
+              }
+              insert_game(data)
+              
+              
