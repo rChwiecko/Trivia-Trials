@@ -181,7 +181,6 @@ def draw_password_screen():
                     if event.key == pygame.K_RETURN:
                         if password == '1234':
                             draw_player_details()
-                            return password, username
                     elif event.key == pygame.K_BACKSPACE:
                         password = password[:-1]
                     else:
@@ -211,7 +210,6 @@ def draw_player_details():
     player_info = get_player_info()
     y_offset = 500
     if draw_back_button():
-        # main menu
         return 0
     for player, info in player_info.items():
         text_surface = font.render(f'{player}: {info}', True, 'white')
