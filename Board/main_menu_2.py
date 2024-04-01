@@ -236,9 +236,9 @@ def after_login_screen():
     # make 2 buttons, one for drawing the player details and one for generate game data
     draw_player_details_button = Button('Player Details', (100, 100), width=200, height=40)
     draw_player_details_button.draw()
-    generate_game_data_button = Button('Generate Game Data', (100, 150), width=200, height=40)
+    generate_game_data_button = Button('Generate Game Data', (100, 150), width=300, height=40)
     generate_game_data_button.draw()
-    draw_change_highscores_button = Button('Change Highscores', (100, 200), width=200, height=40)
+    draw_change_highscores_button = Button('Change Highscores', (100, 200), width=300, height=40)
     draw_change_highscores_button.draw()
     global state
     if draw_back_button():
