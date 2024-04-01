@@ -669,7 +669,7 @@ def drawText(text, fontname, fontsize, text_col, x, y):
     screen.blit(text_surface, ((x, y)))
 
 def draw_save_screen():
-    '''Generate save screen displaying save slots for 3 games.'''
+    '''Generate game save screen displaying save slots for 3 games.'''
 
     # screen dimensions and position
     save_menu_width = 300
@@ -700,6 +700,7 @@ def draw_save_screen():
                        width=button_width, height=button_height)
     save3_btn.draw()
 
+    # event handling for button clicks
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
