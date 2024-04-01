@@ -212,7 +212,8 @@ def draw_player_details():
     if draw_back_button():
         return 0
     for player, info in player_info.items():
-        text_surface = font.render(f'{player}: {info}', True, 'white')
+        info_str = ', '.join(f'{k}: {v}' for k, v in info.items())
+        text_surface = font.render(f'{player} has {info_str}', True, 'white')
         screen.blit(text_surface, (50, y_offset))
         y_offset += 40
 
