@@ -29,7 +29,7 @@ Follow the instructions for a complete setup type after installing the wizard. E
 IF MONGODB IS NOT INSTALLED, THE GAME WILL STILL FUNCTION BUT MANY FEATURES SUCH AS HIGH SCORES, DEV MODE, PLAYER INFORMATION AND SAVE FILES WILL NOT WORK.
 
 
-## Step by Step Guide for Making the Software 
+## Step by Step Guide for Building the Software 
 A detailed step by step guide for building your software (compiling it from source code). This should include details on how to obtain and install any third party libraries.
 
 Running the software will automatically compile all necessary files, see the instructions below for the command and instructions to do so.
@@ -67,4 +67,4 @@ In order to access Developer tools, you will need to input a 1234 in the passwor
 To start a game, you will need to give each player a name and a password. 
 
 ## How to Access Instructor Mode 
-Follow the same steps as accessing Developer tools
+Follow the same steps as accessing Developer tools.
