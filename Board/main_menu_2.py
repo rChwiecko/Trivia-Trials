@@ -107,8 +107,6 @@ def draw_menu() -> int:
     button3.draw()
     loginbutton = Button('Developer Login', (menu_x + 20, menu_y + 260))  # Adjusted position
     loginbutton.draw()
-    godmodebutton = Button('God Mode', (menu_x + 20, menu_y + 320))  # Adjusted position
-    godmodebutton.draw()
 
     exit_button = Button('Exit Game', (menu_x + 20, menu_y + 380))  # Adjusted position
     exit_button.draw()
@@ -125,8 +123,6 @@ def draw_menu() -> int:
         command = 3
     if loginbutton.check_clicked():
         draw_password_screen()
-    if godmodebutton.check_clicked():
-        draw_god_mode()
 
     return command
 
@@ -260,101 +256,6 @@ def draw_player_details():
         text_surface = font.render(f'{player} has {info_str}', True, 'white')
         screen.blit(text_surface, (50, y_offset))
         y_offset += 40
-
-def draw_god_mode():
-    '''Generate screen for developer/debug mode.'''
-    password = ''
-    password_rect = pygame.Rect(100, 100, 140, 32)
-    password_active = False
-    password_color = 'white'
-    password_font = pygame.font.Font(None, 32)
-    password_text = password_font.render(password, True, password_color)
-    password_text_rect = password_text.get_rect()
-    password_text_rect.center = password_rect.center
-    password_rect.w = max(200, password_text_rect.width + 10)
-    
-    username = ''
-    username_rect = pygame.Rect(100, 150, 140, 32)
-    username_active = False
-    username_color = 'white'
-    username_font = pygame.font.Font(None, 32)
-    username_text = username_font.render(username, True, username_color)
-    username_text_rect = username_text.get_rect()
-    username_text_rect.center = username_rect.center
-    username_rect.w = max(200, username_text_rect.width + 10)
-    
-    submit_button = Button('Submit', (100, 200), width=100, height=40)
-    
-    active = False
-    while True:
-        screen.fill('black')
-        screen.blit(password_text, password_text_rect)
-        pygame.draw.rect(screen, 'lightgrey' if password_active else 'white', password_rect, 2)  
-        screen.blit(username_text, username_text_rect)
-        pygame.draw.rect(screen, 'lightgrey' if username_active else 'white', username_rect, 2)  
-        submit_button.draw()
-        
-        password_label = font.render("Password:", True, 'white')
-        screen.blit(password_label, (password_rect.x + password_rect.width + 10, password_rect.y))
-        
-        username_label = font.render("Username:", True, 'white')
-        screen.blit(username_label, (username_rect.x + username_rect.width + 10, username_rect.y))
-
-        if draw_back_button():
-            return 0
-
-        pygame.display.flip()
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if password_rect.collidepoint(event.pos):
-                    password_active = not password_active
-                else:
-                    password_active = False
-                password_color = 'white' if password_active else 'black'
-                
-                if username_rect.collidepoint(event.pos):
-                    username_active = not username_active
-                else:
-                    username_active = False
-                username_color = 'white' if username_active else 'black'
-                
-                if submit_button.check_clicked():
-                    if password == '1234':
-                        generate_game_data()
-                        return password, username
-                    
-            if event.type == pygame.KEYDOWN:
-                if password_active:
-                    if event.key == pygame.K_RETURN:
-                        if password == '1234':
-                            generate_game_data()
-                            return password, username
-                    elif event.key == pygame.K_BACKSPACE:
-                        password = password[:-1]
-                    else:
-                        password += event.unicode
-                    password_text = password_font.render(password, True, password_color)
-                    password_text_rect = password_text.get_rect()
-                    password_text_rect.center = password_rect.center
-                    password_rect.w = max(200, password_text_rect.width + 10)
-                    
-                if username_active:
-                    if event.key == pygame.K_RETURN:
-                        if password == '1234':
-                            generate_game_data()
-                        return password, username
-                    elif event.key == pygame.K_BACKSPACE:
-                        username = username[:-1]
-                    else:
-                        username += event.unicode
-                    username_text = username_font.render(username, True, username_color)
-                    username_text_rect = username_text.get_rect()
-                    username_text_rect.center = username_rect.center
-                    username_rect.w = max(200, username_text_rect.width + 10)
-        pygame.display.flip()
 
 def generate_game_data():
     '''Generates data on a saved game.'''
