@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module main_menu_2</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title">main_menu_2</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:c%3A%5C1-school%5Cuni%5Cy4%5Ccs2212%5Ccode%5Cgroup69-2%5Cboard%5Cmain_menu_2.py">c:\1-school\uni\y4\cs2212\code\group69-2\board\main_menu_2.py</a></td></tr></table>
+    <p><span class="code">This&nbsp;module&nbsp;generates&nbsp;the&nbsp;main&nbsp;game.</span></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="endOfBoardException.html">endOfBoardException</a><br>
+<a href="json.html">json</a><br>
+</td><td class="multicolumn"><a href="math.html">math</a><br>
+<a href="pygame.html">pygame</a><br>
+</td><td class="multicolumn"><a href="pygame_gui.html">pygame_gui</a><br>
+<a href="random.html">random</a><br>
+</td><td class="multicolumn"><a href="sys.html">sys</a><br>
+</td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+    
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="builtins.html#object">builtins.object</a>
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="main_menu_2.html#Button">Button</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="Button">class <strong>Button</strong></a>(<a href="builtins.html#object">builtins.object</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#Button">Button</a>(txt,&nbsp;pos,&nbsp;width=260,&nbsp;height=40)<br>
+&nbsp;<br>
+A&nbsp;class&nbsp;to&nbsp;represent&nbsp;a&nbsp;button.<br>
+&nbsp;<br>
+Attributes:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;text&nbsp;(str):&nbsp;Text&nbsp;to&nbsp;be&nbsp;displayed&nbsp;in&nbsp;button.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pos&nbsp;(int):&nbsp;x,&nbsp;y-coordinate&nbsp;of&nbsp;the&nbsp;button&nbsp;on&nbsp;the&nbsp;screen.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;width&nbsp;(int):&nbsp;The&nbsp;width&nbsp;of&nbsp;the&nbsp;button<br>
+&nbsp;&nbsp;&nbsp;&nbsp;height&nbsp;(int):&nbsp;The&nbsp;height&nbsp;of&nbsp;the&nbsp;button.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;button&nbsp;(pygame.Rect):&nbsp;The&nbsp;rectangle&nbsp;representing&nbsp;the&nbsp;button.<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn">Methods defined here:<br>
+<dl><dt><a name="Button-__init__"><strong>__init__</strong></a>(self, txt, pos, width=260, height=40)</dt><dd><span class="code">Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</span></dd></dl>
+
+<dl><dt><a name="Button-check_clicked"><strong>check_clicked</strong></a>(self)</dt><dd><span class="code">Checks&nbsp;if&nbsp;a&nbsp;user's&nbsp;mouse&nbsp;input&nbsp;was&nbsp;made.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;boolean:&nbsp;Whether&nbsp;button&nbsp;is&nbsp;clicked&nbsp;(True)&nbsp;or&nbsp;not&nbsp;(False)</span></dd></dl>
+
+<dl><dt><a name="Button-draw"><strong>draw</strong></a>(self)</dt><dd><span class="code">Generate&nbsp;blank&nbsp;screen.</span></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-after_login_screen"><strong>after_login_screen</strong></a>()</dt><dd><span class="code">Generate&nbsp;screen&nbsp;displaying&nbsp;options&nbsp;for&nbsp;the&nbsp;user&nbsp;upon&nbsp;successful&nbsp;login.</span></dd></dl>
+ <dl><dt><a name="-change_highscores"><strong>change_highscores</strong></a>()</dt><dd><span class="code">Generates&nbsp;screen&nbsp;to&nbsp;change&nbsp;highscores.</span></dd></dl>
+ <dl><dt><a name="-drawText"><strong>drawText</strong></a>(text, fontname, fontsize, text_col, x, y)</dt><dd><span class="code">Generates&nbsp;text&nbsp;of&nbsp;a&nbsp;specific&nbsp;size&nbsp;and&nbsp;font&nbsp;at&nbsp;a&nbsp;specified&nbsp;position.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;text&nbsp;(str):&nbsp;Text&nbsp;content&nbsp;to&nbsp;be&nbsp;generated.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;fontname&nbsp;(str):&nbsp;Desired&nbsp;font&nbsp;for&nbsp;text.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;fontsize&nbsp;(int):&nbsp;Desired&nbsp;size&nbsp;of&nbsp;text.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;text_col&nbsp;(int):&nbsp;Colour&nbsp;of&nbsp;text.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;(int):&nbsp;x-coordinate&nbsp;position&nbsp;of&nbsp;text.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;(int):&nbsp;y-coordinate&nbsp;position&nbsp;of&nbsp;text.</span></dd></dl>
+ <dl><dt><a name="-draw_back_button"><strong>draw_back_button</strong></a>() -&gt; bool</dt><dd><span class="code">Generate&nbsp;button&nbsp;representing&nbsp;the&nbsp;"Back".<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;boolean:&nbsp;Whether&nbsp;button&nbsp;is&nbsp;drawn&nbsp;(True)&nbsp;or&nbsp;not&nbsp;(False).</span></dd></dl>
+ <dl><dt><a name="-draw_game"><strong>draw_game</strong></a>() -&gt; bool</dt><dd><span class="code">Generate&nbsp;game&nbsp;main&nbsp;menu&nbsp;screen.<br>
+&nbsp;<br>
+Returns:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;boolean:&nbsp;Whether&nbsp;the&nbsp;menu&nbsp;is&nbsp;drawn&nbsp;(True)&nbsp;or&nbsp;not&nbsp;(False).</span></dd></dl>
+ <dl><dt><a name="-draw_heading"><strong>draw_heading</strong></a>()</dt><dd><span class="code">Generate&nbsp;text&nbsp;for&nbsp;a&nbsp;screen&nbsp;header.</span></dd></dl>
+ <dl><dt><a name="-draw_highscore_screen"><strong>draw_highscore_screen</strong></a>()</dt><dd><span class="code">Generate&nbsp;highscore&nbsp;screen&nbsp;showing&nbsp;top&nbsp;players&nbsp;in&nbsp;the&nbsp;game.</span></dd></dl>
+ <dl><dt><a name="-draw_menu"><strong>draw_menu</strong></a>() -&gt; int</dt><dd><span class="code">Generates&nbsp;game&nbsp;initial&nbsp;main&nbsp;menu&nbsp;screen.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int:&nbsp;The&nbsp;command&nbsp;input&nbsp;representing&nbsp;a&nbsp;screen&nbsp;chosen&nbsp;through&nbsp;mouse&nbsp;click&nbsp;by&nbsp;user.</span></dd></dl>
+ <dl><dt><a name="-draw_password_screen"><strong>draw_password_screen</strong></a>()</dt><dd><span class="code">Generates&nbsp;screen&nbsp;prompting&nbsp;user&nbsp;to&nbsp;enter&nbsp;password.</span></dd></dl>
+ <dl><dt><a name="-draw_player_details"><strong>draw_player_details</strong></a>()</dt><dd><span class="code">Generates&nbsp;text&nbsp;to&nbsp;display&nbsp;player&nbsp;details.</span></dd></dl>
+ <dl><dt><a name="-draw_player_login"><strong>draw_player_login</strong></a>()</dt><dd><span class="code">Generate&nbsp;player&nbsp;login&nbsp;screen.</span></dd></dl>
+ <dl><dt><a name="-draw_save_screen"><strong>draw_save_screen</strong></a>()</dt><dd><span class="code">Generate&nbsp;game&nbsp;save&nbsp;screen&nbsp;displaying&nbsp;save&nbsp;slots&nbsp;for&nbsp;3&nbsp;games.</span></dd></dl>
+ <dl><dt><a name="-generate_game_data"><strong>generate_game_data</strong></a>()</dt><dd><span class="code">Generates&nbsp;data&nbsp;on&nbsp;a&nbsp;saved&nbsp;game&nbsp;and&nbsp;displays&nbsp;it&nbsp;for&nbsp;developer&nbsp;to&nbsp;manipulate.</span></dd></dl>
+ <dl><dt><a name="-show_tutorial"><strong>show_tutorial</strong></a>(tutorial_state)</dt></dl>
+</td></tr></table><p>
+<table class="section">
+<tr class="decor data-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Data</strong></td></tr>
+    
+<tr><td class="decor data-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><strong>BLACK</strong> = (0, 0, 0)<br>
+<strong>BLUESQUARE</strong> = (50, 100, 220)<br>
+<strong>BOARD_OUTLINE_OFFSET</strong> = 4<br>
+<strong>FIRSTSQUAREINDEX</strong> = []<br>
+<strong>FPS</strong> = 60<br>
+<strong>GREEN</strong> = (50, 205, 50)<br>
+<strong>HEIGHT</strong> = 800<br>
+<strong>INNER_BOARD_X_PADDING</strong> = 30<br>
+<strong>INNER_X_PADDING</strong> = 20<br>
+<strong>INNER_Y_PADDING</strong> = 41<br>
+<strong>NUMCOLS</strong> = 5<br>
+<strong>NUMROWS</strong> = 3<br>
+<strong>PLAYERDIST</strong> = 40<br>
+<strong>PURPLESQUARE</strong> = (150, 80, 200)<br>
+<strong>RED</strong> = (255, 0, 0)<br>
+<strong>REDSQUARE</strong> = (220, 50, 50)<br>
+<strong>USER_ENTER_OFFSET</strong> = 2<br>
+<strong>WHITE</strong> = (255, 255, 255)<br>
+<strong>WIDTH</strong> = 1280<br>
+<strong>ball</strong> = &lt;Surface(150x150x32, global_alpha=255)&gt;<br>
+<strong>bg</strong> = &lt;Surface(100x100x32, global_alpha=255)&gt;<br>
+<strong>client</strong> = MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=True)<br>
+<strong>db</strong> = Database(MongoClient(host=['localhost:27017'], d...ict, tz_aware=False, connect=True), 'mydatabase')<br>
+<strong>entering_user_data</strong> = False<br>
+<strong>event</strong> = &lt;Event(256-Quit {})&gt;<br>
+<strong>exit_menu</strong> = False<br>
+<strong>font</strong> = &lt;pygame.font.Font object&gt;<br>
+<strong>font_heading</strong> = &lt;pygame.font.Font object&gt;<br>
+<strong>game_data</strong> = None<br>
+<strong>games</strong> = Collection(Database(MongoClient(host=['localhost...are=False, connect=True), 'mydatabase'), 'games')<br>
+<strong>logo</strong> = &lt;Surface(100x100x32, global_alpha=255)&gt;<br>
+<strong>main_menu</strong> = False<br>
+<strong>menu_command</strong> = 0<br>
+<strong>new_game</strong> = None<br>
+<strong>other_font</strong> = 'freesansbold.ttf'<br>
+<strong>password_enter</strong> = ''<br>
+<strong>password_enter_active</strong> = False<br>
+<strong>player_list</strong> = []<br>
+<strong>run</strong> = False<br>
+<strong>screen</strong> = &lt;Surface(Dead Display)&gt;<br>
+<strong>show_empty_name</strong> = False<br>
+<strong>show_existing_user</strong> = False<br>
+<strong>show_no_user_error</strong> = False<br>
+<strong>show_too_many_user_error</strong> = False<br>
+<strong>state</strong> = ''<br>
+<strong>timer</strong> = &lt;Clock(fps=59.17)&gt;<br>
+<strong>tutorial1</strong> = &lt;Surface(600x400x32, global_alpha=255)&gt;<br>
+<strong>tutorial2</strong> = &lt;Surface(600x400x32, global_alpha=255)&gt;<br>
+<strong>tutorial3</strong> = &lt;Surface(600x400x32, global_alpha=255)&gt;<br>
+<strong>tutorial4</strong> = &lt;Surface(600x400x32, global_alpha=255)&gt;<br>
+<strong>tutorial_state</strong> = 0<br>
+<strong>username_enter</strong> = ''<br>
+<strong>username_enter_active</strong> = False</td></tr></table>
+</body></html>
