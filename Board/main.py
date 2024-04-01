@@ -1,13 +1,33 @@
+# import required module
 import pygame, pygame_gui
 from Board import * 
 import json
-from const import *
+from const import * 
+
+""" The file provides the main game functionality for the Trivia Trials game """
+
 #basic pygame properties
 def game(new_game, game_data = None, player_list = None):
-    pygame.init()
+    """
+    Run the main game loop.
+
+    Args:
+        new_game (bool): Indicates whether it's a new game or a saved game.
+        game_data (dict): Dictionary containing saved game data.
+        player_list (list): List of player data.
+
+    Returns:
+        None
+    """
+
+    pygame.init() # initialize Pygame
+
+    # set up the Pygame screen
     screen = pygame.display.set_mode((1280, 800))
     clock = pygame.time.Clock()
     pygame.display.set_caption("Trivia Trials")
+
+    # initialize game variables
     running = True
     player_answering = False
     player_answer = ''
@@ -17,15 +37,18 @@ def game(new_game, game_data = None, player_list = None):
     #preliminaries for main loop
     # players = ['player1','ryan','sonia']
     # boardInstance = Board(players, screen, "1", 0)
+
     if not new_game:
         game_data_dict = game_data
         players = game_data_dict["players"]
         level_num = game_data_dict["level_number"]
         player_index = game_data_dict["player_index"]
         boardInstance = Board(players, screen, str(level_num), player_index)
+    
     else:
         players = player_list
         boardInstance = Board(players, screen, '1', 0)
+
     gameState = "INITIAL"  # Corrected state name
     playersAsked = 0
     beginning = pygame.time.get_ticks()
@@ -34,11 +57,14 @@ def game(new_game, game_data = None, player_list = None):
     dataSaved = None
     pauseState = None
     question = ''
-    #main loop
+
+    # Main game loop
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+
+            # handle keyboard events
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     if gameState != "PAUSED":
@@ -60,6 +86,7 @@ def game(new_game, game_data = None, player_list = None):
                     else:
                         player_answer += event.unicode
 
+            # handle mouse events
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
                 if 1280/2-100 <= mouse_pos[0] <=1280/2+100 and 250 <= mouse_pos[1] <= 300 and gameState == "PAUSED":  # Check if mouse click is on "Resume" button
@@ -78,6 +105,8 @@ def game(new_game, game_data = None, player_list = None):
                         paused = True
                         rect_x = (WIDTH - 880) // 2
                         rect_y = (HEIGHT - 600) // 2
+
+                # handle mouse clicks for save choice
                 elif gameState == "AWAIT_SAVE_CHOICE" and (WIDTH - 880) // 2 + 340 <= mouse_pos[0] <= (WIDTH - 880) // 2 + 580 and (HEIGHT - 600) // 2 + 200 <= mouse_pos[1] <= (HEIGHT - 600) // 2 + 260:
                     save_choosen = True
                     game_save_choice = 1
@@ -87,12 +116,16 @@ def game(new_game, game_data = None, player_list = None):
                 elif gameState == "AWAIT_SAVE_CHOICE" and (WIDTH - 880) // 2 + 340 <= mouse_pos[0] <= (WIDTH - 880) // 2 + 580 and (HEIGHT - 600) // 2 + 400 <= mouse_pos[1] <= (HEIGHT - 600) // 2 + 460:
                     save_choosen = True
                     game_save_choice = 3
-                elif gameState == "ANSWER_AWAIT" and (WIDTH - 880) // 2 * 2 + 550 <= mouse_pos[0] <= (WIDTH - 880) // 2 * 2 + 650 and (HEIGHT - 600) // 2 + 30 <= mouse_pos[1] <= (HEIGHT - 600) // 2 + 130:
+                elif gameState == "ANSWER_AWAIT" and players[playersAsked]["duck_count"] > 0 and (WIDTH - 880) // 2 * 2 + 550 <= mouse_pos[0] <= (WIDTH - 880) // 2 * 2 + 650 and (HEIGHT - 600) // 2 + 30 <= mouse_pos[1] <= (HEIGHT - 600) // 2 + 130:
                         boardInstance.answer_check(player_answer, question, players[playersAsked], True)
                         player_answering = False
                         player_answer_recorded = player_answer
                         player_answer = ''
+
+        # render the game board                
         boardInstance.render()
+
+        # handle game state transitions and logic
         if gameState == "QUESTION_SHOW":
             if playersAsked < boardInstance.playerCount:
                 question = boardInstance.drawQuestion(players[playersAsked], 1, 2, 0, True, player_answer)
@@ -156,7 +189,7 @@ def game(new_game, game_data = None, player_list = None):
         elif gameState == "PAUSED":
             boardInstance.pause(paused, dataSaved)
 
-        #All delay states
+        # All delay states
         elif gameState == "SHOW_RESULTS_DELAY":
             current_time = pygame.time.get_ticks()
             if (current_time - delay_start) >= 3000:

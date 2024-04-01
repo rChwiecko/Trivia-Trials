@@ -20,11 +20,26 @@ class questionGeneration:
     '''
     def __init__(self, questionType, difficulty):
         #Initializes the questionGeneration class with the questionType and difficulty
+        '''
+        Initialize the questionGeneration class with the specified question type and difficulty level.
+
+        Parameters:
+            questionType (str): The type of math question to generate.
+            difficulty (str): The difficulty level of the question.
+        '''
+
         self.questionType = questionType
         self.difficulty = difficulty
 
     def generateQuestion(self):
         #Generates a math question based on the questionType and difficulty
+        '''
+        Generate a math question based on the question type and difficulty level.
+
+        Returns:
+            list: A list containing the question and its solution.
+        '''
+
         if self.questionType == "addition":
             return self.addition()
         elif self.questionType == "subtraction":
@@ -44,6 +59,13 @@ class questionGeneration:
 
     def addition(self):
         #Generates an addition question based on the difficulty
+        '''
+        Generate an addition question based on the difficulty level.
+
+        Returns:
+            list: A list containing the addition question and its solution.
+        '''
+
         if self.difficulty == "1":
             a = random.randint(0, 10)
             b = random.randint(0, 10)
@@ -59,6 +81,13 @@ class questionGeneration:
 
     def subtraction(self):
         #Generates a subtraction question based on the difficulty
+        '''
+        Generate a subtraction question based on the difficulty level.
+
+        Returns:
+            list: A list containing the subtraction question and its solution.
+        '''
+
         if self.difficulty == "1":
             a = random.randint(0, 10)
             b = random.randint(0, 10)
@@ -74,6 +103,13 @@ class questionGeneration:
 
     def multiplication(self):
         #Generates a multiplication question based on the difficulty
+        '''
+        Generate a multiplication question based on the difficulty level.
+
+        Returns:
+            list: A list containing the multiplication question and its solution.
+        '''
+        
         if self.difficulty == "1":
             a = random.randint(0, 10)
             b = random.randint(0,10)
@@ -89,6 +125,13 @@ class questionGeneration:
 
     def division(self):
         #Generates a division question based on the difficulty
+        '''
+        Generate a division question based on the difficulty level.
+
+        Returns:
+            list: A list containing the division question and its solution.
+        '''
+
         if self.difficulty == "1":
             a = random.randint(0, 10)
             b = random.randint(1,10)
@@ -104,6 +147,13 @@ class questionGeneration:
     
     def quadratic(self):
         #Generates a quadratic question based on the difficulty, done in this way to ensure that the roots are real numbers without use of an external library
+        '''
+        Generate a quadratic question based on the difficulty level.
+
+        Returns:
+            list: A list containing the quadratic question and its solution.
+        '''
+
         if self.difficulty == "1":
             a = random.randint(1, 10)
             b = random.randint(1, 10)
@@ -133,6 +183,13 @@ class questionGeneration:
     
     def linear(self):
         #Generates a linear question based on the difficulty
+        '''
+        Generate a linear question based on the difficulty level.
+
+        Returns:
+            list: A list containing the linear question and its solution.
+        '''
+
         if self.difficulty == "1":
             a = random.randint(1, 10)
             b = random.randint(1, 10)
@@ -157,6 +214,13 @@ class questionGeneration:
     
     def fluidDynamics(self):
         #Generates a fluid dynamics question based on the difficulty
+        '''
+        Generate a fluid dynamics question based on the difficulty level.
+
+        Returns:
+            list: A list containing the fluid dynamics question and its solution.
+        '''
+        
         if self.difficulty == "1":
             a = random.randint(1, 3)
             b = random.randint(1, 10)
