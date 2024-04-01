@@ -31,7 +31,12 @@ A detailed step by step guide for building your software (compiling it from sour
 
 
 ## Step by Step Guide for Running the Software 
-A detailed step by step guide on how to run your already built (compiled) 
+Navigate to the Board folder in terminal and run the following command
+To run the software, navigate to the Board folder in terminal and run the following command:
+
+```bash
+python main_menu_2.py
+```
 
 
 ## User Guide 
