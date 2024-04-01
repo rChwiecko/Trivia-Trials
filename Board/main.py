@@ -53,7 +53,7 @@ def game(new_game, game_data = None, player_list = None):
                     if event.key == pygame.K_BACKSPACE:
                         player_answer = player_answer[0:-1]
                     elif event.key == pygame.K_RETURN and player_answer != "":
-                        boardInstance.answer_check(player_answer, question, players[playersAsked])
+                        boardInstance.answer_check(player_answer, question, players[playersAsked], False)
                         player_answering = False
                         player_answer_recorded = player_answer
                         player_answer = ''
@@ -87,7 +87,11 @@ def game(new_game, game_data = None, player_list = None):
                 elif gameState == "AWAIT_SAVE_CHOICE" and (WIDTH - 880) // 2 + 340 <= mouse_pos[0] <= (WIDTH - 880) // 2 + 580 and (HEIGHT - 600) // 2 + 400 <= mouse_pos[1] <= (HEIGHT - 600) // 2 + 460:
                     save_choosen = True
                     game_save_choice = 3
-
+                elif gameState == "ANSWER_AWAIT" and (WIDTH - 880) // 2 * 2 + 550 <= mouse_pos[0] <= (WIDTH - 880) // 2 * 2 + 650 and (HEIGHT - 600) // 2 + 30 <= mouse_pos[1] <= (HEIGHT - 600) // 2 + 130:
+                        boardInstance.answer_check(player_answer, question, players[playersAsked], True)
+                        player_answering = False
+                        player_answer_recorded = player_answer
+                        player_answer = ''
         boardInstance.render()
         if gameState == "QUESTION_SHOW":
             if playersAsked < boardInstance.playerCount:
