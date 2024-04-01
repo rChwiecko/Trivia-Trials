@@ -849,34 +849,7 @@ while run:
                     pygame.quit()
                     sys.exit()
         elif menu_command == 1:     # Start button pressed
-            screen.fill('black')
-
-            # Display role selection options
-            dev_button = Button('Developer', (WIDTH // 2 - 100, HEIGHT // 2 - 50), width=200)
-            dev_button.draw()
-            instructor_button = Button('Instructor', (WIDTH // 2 - 100, HEIGHT // 2 + 20), width=200)
-            instructor_button.draw()
-            player_button = Button('Player', (WIDTH // 2 - 100, HEIGHT // 2 + 90), width=200)
-            player_button.draw()
-
-            menu_btn = Button('Main Menu', ((WIDTH - 200) // 2, HEIGHT - 150))
-            menu_btn.draw()
-
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    sys.exit()
-                elif event.type == pygame.MOUSEBUTTONDOWN:
-                    if dev_button.check_clicked():
-                        # Perform actions for developer
-                        pass
-                    elif instructor_button.check_clicked():
-                        # Perform actions for instructor
-                        pass
-                    elif player_button.check_clicked():
-                        menu_command = 4
-                    elif menu_btn.check_clicked():
-                        main_menu = True
+            menu_command = 4
 
         elif menu_command == 4:
             draw_player_login()
