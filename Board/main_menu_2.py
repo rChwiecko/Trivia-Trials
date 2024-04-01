@@ -162,7 +162,6 @@ def draw_password_screen():
                 else:
                     username_active = False
                 username_color = 'white' if username_active else 'black'
-                
                 if submit_button.check_clicked():
                     if password == '1234':
                         running = True
@@ -172,6 +171,9 @@ def draw_password_screen():
                                     running = False
                                     pygame.quit()
                                     sys.exit()
+                                elif event.type == pygame.MOUSEBUTTONDOWN:
+                                    if draw_back_button():
+                                        return 0
                             draw_player_details()
                             pygame.display.flip()
                         return password, username
@@ -455,7 +457,6 @@ def generate_game_data():
                             }
                         ]
                     }
-
                     game(new_game=False, game_data=game_data)
                     menu_command = 0
                 
