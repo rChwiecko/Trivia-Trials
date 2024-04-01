@@ -6,6 +6,7 @@ from queryManager import *
 from main import *
 from const import *
 
+# constants
 WIDTH = 1280
 HEIGHT = 800
 FPS = 60
@@ -40,6 +41,16 @@ logo = pygame.transform.scale(logo, (100, 100))  # Scale the logo to an appropri
 
 
 class Button:
+    '''A class to represent a button.
+    
+    Attributes:
+        text (str): Text to be displayed in button.
+        pos (int): x, y-coordinate of the button on the screen.
+        width (int): The width of the button
+        height (int): The height of the button.
+        button (pygame.Rect): The rectangle representing the button.
+    '''
+
     def __init__(self, txt, pos, width=260, height=40):
         self.text = txt
         self.pos = pos
@@ -48,6 +59,7 @@ class Button:
         self.button = pygame.Rect(self.pos, (self.width, self.height))
 
     def draw(self):
+        '''Generate blank screen.'''
         pygame.draw.rect(screen, 'light gray', self.button, 0, 5)
         pygame.draw.rect(screen, 'dark gray', self.button, 5, 5)
         text2 = font.render(self.text, True, 'black')
@@ -55,7 +67,11 @@ class Button:
         screen.blit(text2, text_rect.topleft)
 
     def check_clicked(self):
-        ''''''
+        '''Checks if a user's mouse input was made.
+        
+        Returns:
+            
+        '''
         return self.button.collidepoint(pygame.mouse.get_pos()) and pygame.mouse.get_pressed()[0]
 
 
@@ -67,8 +83,12 @@ def draw_heading():
     screen.blit(logo, ((WIDTH - logo.get_width()) // 2, 100))  # Adjust position as needed
 
 
-def draw_menu():
-    '''Generates initial menu screen.'''
+def draw_menu() -> int:
+    '''Generates game initial main menu screen.
+    
+    Returns:
+        int: The command input representing a screen chosen through mouse click by user.
+    '''
     command = -1
     menu_width = 300
     menu_height = 400
@@ -215,6 +235,7 @@ def draw_password_screen():
         pygame.display.flip()
 
 def draw_player_details():
+    '''Generates text to display player details.'''
     # use get_player_info() to get the player info, then display it on the screen
     player_info = get_player_info()
     y_offset = 500
@@ -322,7 +343,7 @@ def draw_god_mode():
         pygame.display.flip()
 
 def generate_game_data():
-    '''Generates '''
+    '''Generates data on a saved game.'''
     level = ''
     level_rect = pygame.Rect(100, 100, 140, 32)
     level_active = False
@@ -540,8 +561,12 @@ def generate_game_data():
                     score_rect.w = max(200, score_text_rect.width + 10)
         pygame.display.flip()
 
-def draw_game():
-    '''Generate game main menu screen.'''
+def draw_game() -> bool:
+    '''Generate game main menu screen.
+    
+    Returns: 
+        boolean: Whether the menu is drawn (True) or not (False).
+    '''
     menu_btn = Button('Main Menu', ((WIDTH - 200) // 2, HEIGHT - 150))
     menu_btn.draw()
     menu = menu_btn.check_clicked()
@@ -637,8 +662,12 @@ def draw_highscore_screen():
         y_offset += 40
 
 
-def draw_back_button():
-    '''Generate button representing the "Back".'''
+def draw_back_button() -> bool:
+    '''Generate button representing the "Back".
+    
+    Returns:
+        boolean: Whether button is drawn (True) or not (False).
+    '''
     back_button = Button('Back', (20, 20), width=100, height=40)
     back_button.draw()
     if back_button.check_clicked():
