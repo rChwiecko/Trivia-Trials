@@ -202,6 +202,7 @@ def draw_password_screen():
                 if submit_button.check_clicked():       # check if submit button is clicked
                     if password == '1234':
                         running = True
+                        global state
                         while running:
                             for event in pygame.event.get():
                                 if event.type == pygame.QUIT:
@@ -210,8 +211,9 @@ def draw_password_screen():
                                     sys.exit()
                                 elif event.type == pygame.MOUSEBUTTONDOWN:
                                     if draw_back_button():
+                                        state = ''
                                         return 0
-                            after_login_screen()
+                                after_login_screen()
                             pygame.display.flip()
                         return password, username
                     
