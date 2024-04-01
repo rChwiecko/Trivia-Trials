@@ -1,4 +1,4 @@
-# import required modules
+# import required module
 import pygame, pygame_gui
 from Board import * 
 import json
