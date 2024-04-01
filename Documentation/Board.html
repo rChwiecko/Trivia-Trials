@@ -1,31 +1,245 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title>Python: package Board</title>
-</head><body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module Board</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
 
-<table class="heading">
-<tr class="heading-text decor">
-<td class="title">&nbsp;<br><strong class="title">Board</strong></td>
-<td class="extra"><a href=".">index</a><br>(built-in)</td></tr></table>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>Board</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Carjun%5Cprogramming%5Crepos%5C2212%5Cgroup69%5Cboard%5Cboard.py">c:\users\arjun\programming\repos\2212\group69\board\board.py</a></font></td></tr></table>
     <p></p>
 <p>
-<table class="section">
-<tr class="decor pkg-content-decor heading-text">
-<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Package Contents</strong></td></tr>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
     
-<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
-<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="Board.Board.html">Board</a><br>
-<a href="Board.const.html">const</a><br>
-<a href="Board.endOfBoardException.html">endOfBoardException</a><br>
-</td><td class="multicolumn"><a href="Board.insert.html">insert</a><br>
-<a href="Board.main.html">main</a><br>
-<a href="Board.main_menu_2.html">main_menu_2</a><br>
-</td><td class="multicolumn"><a href="Board.queryManager.html">queryManager</a><br>
-<a href="Board.queryManagerUnitTesting.html">queryManagerUnitTesting</a><br>
-<a href="Board.questionGeneration.html">questionGeneration</a><br>
-</td><td class="multicolumn"><a href="Board.testboard.html">testboard</a><br>
-<a href="Board.testquestionGeneration.html">testquestionGeneration</a><br>
-</td></tr></table></td></tr></table>
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="endOfBoardException.html">endOfBoardException</a><br>
+</td><td width="25%" valign=top><a href="math.html">math</a><br>
+</td><td width="25%" valign=top><a href="pygame.html">pygame</a><br>
+</td><td width="25%" valign=top><a href="random.html">random</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="Board.html#Board">Board</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Board">class <strong>Board</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Board">Board</a>(playerList,&nbsp;screen,&nbsp;level,&nbsp;playerIndex)&nbsp;-&amp;gt;&nbsp;None<br>
+&nbsp;<br>
+Represents&nbsp;the&nbsp;game&nbsp;board&nbsp;and&nbsp;handles&nbsp;rendering&nbsp;and&nbsp;game&nbsp;logic.<br>
+&nbsp;<br>
+Attributes:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;font&nbsp;(pygame.font.Font):&nbsp;Font&nbsp;for&nbsp;text&nbsp;rendering.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;playerCount&nbsp;(int):&nbsp;Number&nbsp;of&nbsp;players&nbsp;in&nbsp;the&nbsp;game.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;playerIndex&nbsp;(int):&nbsp;Index&nbsp;of&nbsp;the&nbsp;current&nbsp;player.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;playerList&nbsp;(list):&nbsp;List&nbsp;of&nbsp;player&nbsp;information.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;screen:&nbsp;Pygame&nbsp;window.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;curr_font&nbsp;(str):&nbsp;Current&nbsp;font&nbsp;used.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;levelNum&nbsp;(str):&nbsp;Current&nbsp;level&nbsp;number.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;curr_question&nbsp;(str):&nbsp;Current&nbsp;question&nbsp;being&nbsp;displayed.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;answer_correct&nbsp;(bool):&nbsp;Flag&nbsp;indicating&nbsp;if&nbsp;the&nbsp;answer&nbsp;is&nbsp;correct.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;duck_used&nbsp;(bool):&nbsp;Flag&nbsp;indicating&nbsp;if&nbsp;the&nbsp;duck&nbsp;item&nbsp;is&nbsp;used.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Board-__init__"><strong>__init__</strong></a>(self, playerList, screen, level, playerIndex) -&gt; None</dt><dd><tt>Initialize&nbsp;the&nbsp;<a href="#Board">Board</a>&nbsp;<a href="builtins.html#object">object</a>.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;playerList&nbsp;(list):&nbsp;List&nbsp;of&nbsp;player&nbsp;information.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;screen:&nbsp;Pygame&nbsp;window.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;level&nbsp;(str):&nbsp;Current&nbsp;level&nbsp;number.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;playerIndex&nbsp;(int):&nbsp;Index&nbsp;of&nbsp;the&nbsp;current&nbsp;player.</tt></dd></dl>
+
+<dl><dt><a name="Board-answer_check"><strong>answer_check</strong></a>(self, answer, question, player, duck_used)</dt><dd><tt>Check&nbsp;the&nbsp;player's&nbsp;answer.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;answer:&nbsp;Player's&nbsp;answer.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;question:&nbsp;Question&nbsp;asked.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;player:&nbsp;Player&nbsp;information.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;duck_used&nbsp;(bool):&nbsp;Flag&nbsp;indicating&nbsp;whether&nbsp;the&nbsp;duck&nbsp;item&nbsp;is&nbsp;used.</tt></dd></dl>
+
+<dl><dt><a name="Board-drawBoard"><strong>drawBoard</strong></a>(self, win)</dt><dd><tt>Draw&nbsp;the&nbsp;game&nbsp;board.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;win:&nbsp;Pygame&nbsp;window.</tt></dd></dl>
+
+<dl><dt><a name="Board-drawQuestion"><strong>drawQuestion</strong></a>(self, playersQuestion, level, square_col, time_elapsed, gen_new_question, player_answer)</dt><dd><tt>Draw&nbsp;the&nbsp;question&nbsp;screen.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;playersQuestion&nbsp;(dict):&nbsp;Dictionary&nbsp;containing&nbsp;player&nbsp;information.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;level&nbsp;(str):&nbsp;Current&nbsp;level&nbsp;number.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;square_col:&nbsp;Square&nbsp;color.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;time_elapsed:&nbsp;Time&nbsp;elapsed.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;gen_new_question&nbsp;(bool):&nbsp;Flag&nbsp;indicating&nbsp;whether&nbsp;to&nbsp;generate&nbsp;a&nbsp;new&nbsp;question.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;player_answer:&nbsp;Player's&nbsp;answer.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;Current&nbsp;question&nbsp;being&nbsp;displayed.</tt></dd></dl>
+
+<dl><dt><a name="Board-drawText"><strong>drawText</strong></a>(self, text, fontname, fontsize, text_col, x, y)</dt><dd><tt>Draw&nbsp;text&nbsp;on&nbsp;the&nbsp;screen.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;text&nbsp;(str):&nbsp;Text&nbsp;to&nbsp;be&nbsp;drawn.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;fontname:&nbsp;Font&nbsp;name.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;fontsize&nbsp;(int):&nbsp;Font&nbsp;size.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;text_col:&nbsp;Text&nbsp;color.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;(int):&nbsp;X-coordinate&nbsp;of&nbsp;the&nbsp;text.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;(int):&nbsp;Y-coordinate&nbsp;of&nbsp;the&nbsp;text.</tt></dd></dl>
+
+<dl><dt><a name="Board-draw_button"><strong>draw_button</strong></a>(self, text, x, y)</dt><dd><tt>Draw&nbsp;a&nbsp;button&nbsp;on&nbsp;the&nbsp;screen.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;text&nbsp;(str):&nbsp;Text&nbsp;to&nbsp;be&nbsp;displayed&nbsp;on&nbsp;the&nbsp;button.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;(int):&nbsp;X-coordinate&nbsp;of&nbsp;the&nbsp;button.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;(int):&nbsp;Y-coordinate&nbsp;of&nbsp;the&nbsp;button.</tt></dd></dl>
+
+<dl><dt><a name="Board-draw_button_new"><strong>draw_button_new</strong></a>(self, text, pos, width=240, height=60)</dt><dd><tt>Draw&nbsp;a&nbsp;new&nbsp;style&nbsp;button&nbsp;on&nbsp;the&nbsp;screen.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;text&nbsp;(str):&nbsp;Text&nbsp;to&nbsp;be&nbsp;displayed&nbsp;on&nbsp;the&nbsp;button.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pos&nbsp;(tuple):&nbsp;Position&nbsp;(x,&nbsp;y)&nbsp;of&nbsp;the&nbsp;button.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;width&nbsp;(int):&nbsp;Width&nbsp;of&nbsp;the&nbsp;button.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;height&nbsp;(int):&nbsp;Height&nbsp;of&nbsp;the&nbsp;button.</tt></dd></dl>
+
+<dl><dt><a name="Board-movePlayers"><strong>movePlayers</strong></a>(self)</dt><dd><tt>Move&nbsp;players&nbsp;on&nbsp;the&nbsp;board.</tt></dd></dl>
+
+<dl><dt><a name="Board-pause"><strong>pause</strong></a>(self, paused, dataSaved)</dt><dd><tt>Render&nbsp;the&nbsp;pause&nbsp;menu.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;paused&nbsp;(bool):&nbsp;Flag&nbsp;indicating&nbsp;if&nbsp;the&nbsp;game&nbsp;is&nbsp;paused.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dataSaved&nbsp;(bool):&nbsp;Flag&nbsp;indicating&nbsp;if&nbsp;the&nbsp;game&nbsp;data&nbsp;is&nbsp;saved.</tt></dd></dl>
+
+<dl><dt><a name="Board-render"><strong>render</strong></a>(self)</dt><dd><tt>Render&nbsp;the&nbsp;game&nbsp;board.</tt></dd></dl>
+
+<dl><dt><a name="Board-renderPlayers"><strong>renderPlayers</strong></a>(self, firstSquareX, firstSquareY)</dt><dd><tt>Render&nbsp;players&nbsp;on&nbsp;the&nbsp;screen.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;firstSquareX&nbsp;(int):&nbsp;X-coordinate&nbsp;of&nbsp;the&nbsp;first&nbsp;square.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;firstSquareY&nbsp;(int):&nbsp;Y-coordinate&nbsp;of&nbsp;the&nbsp;first&nbsp;square.</tt></dd></dl>
+
+<dl><dt><a name="Board-save_game"><strong>save_game</strong></a>(self, playerlist, id_override=None)</dt><dd><tt>Save&nbsp;the&nbsp;game.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;playerlist:&nbsp;List&nbsp;of&nbsp;players.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;id_override:&nbsp;ID&nbsp;for&nbsp;overriding&nbsp;the&nbsp;default&nbsp;save&nbsp;slot.</tt></dd></dl>
+
+<dl><dt><a name="Board-showPlayersTurn"><strong>showPlayersTurn</strong></a>(self, name, time)</dt><dd><tt>Display&nbsp;the&nbsp;current&nbsp;player's&nbsp;turn.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;(str):&nbsp;Player's&nbsp;name.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;time:&nbsp;Time&nbsp;remaining&nbsp;for&nbsp;the&nbsp;turn.</tt></dd></dl>
+
+<dl><dt><a name="Board-show_answer_feedback"><strong>show_answer_feedback</strong></a>(self, answer_recieved, question)</dt><dd><tt>Display&nbsp;feedback&nbsp;on&nbsp;the&nbsp;answer.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;answer_recieved:&nbsp;Answer&nbsp;received&nbsp;from&nbsp;the&nbsp;player.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;question:&nbsp;Question&nbsp;asked.</tt></dd></dl>
+
+<dl><dt><a name="Board-show_player_scores"><strong>show_player_scores</strong></a>(self)</dt><dd><tt>Display&nbsp;player&nbsp;scores.</tt></dd></dl>
+
+<dl><dt><a name="Board-update_points"><strong>update_points</strong></a>(self, player)</dt><dd><tt>Update&nbsp;player's&nbsp;points.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;player:&nbsp;Player&nbsp;information.<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;float:&nbsp;Updated&nbsp;score.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>RedX</strong> = &lt;Surface(600x596x32, global_alpha=255)&gt;</dl>
+
+<dl><dt><strong>answer_correct</strong> = False</dl>
+
+<dl><dt><strong>checkMark</strong> = &lt;Surface(400x380x32, global_alpha=255)&gt;</dl>
+
+<dl><dt><strong>curr_font</strong> = 'freesansbold.ttf'</dl>
+
+<dl><dt><strong>curr_question</strong> = None</dl>
+
+<dl><dt><strong>duck</strong> = &lt;Surface(1500x1500x32, global_alpha=255)&gt;</dl>
+
+<dl><dt><strong>duck_used</strong> = False</dl>
+
+<dl><dt><strong>font</strong> = &lt;pygame.font.Font object&gt;</dl>
+
+<dl><dt><strong>levelNum</strong> = None</dl>
+
+<dl><dt><strong>playerCount</strong> = None</dl>
+
+<dl><dt><strong>playerIndex</strong> = None</dl>
+
+<dl><dt><strong>playerList</strong> = None</dl>
+
+<dl><dt><strong>scaled_RedX</strong> = &lt;Surface(150x150x32, global_alpha=255)&gt;</dl>
+
+<dl><dt><strong>scaled_checkMark</strong> = &lt;Surface(150x150x32, global_alpha=255)&gt;</dl>
+
+<dl><dt><strong>scaled_duck_end</strong> = &lt;Surface(100x100x32, global_alpha=255)&gt;</dl>
+
+<dl><dt><strong>scaled_duck_player</strong> = &lt;Surface(50x50x32, global_alpha=255)&gt;</dl>
+
+<dl><dt><strong>scaled_pause</strong> = &lt;Surface(40x40x32, global_alpha=255)&gt;</dl>
+
+<dl><dt><strong>scaled_streak</strong> = &lt;Surface(50x50x32, global_alpha=255)&gt;</dl>
+
+<dl><dt><strong>screen</strong> = None</dl>
+
+<dl><dt><strong>streak</strong> = &lt;Surface(1564x1846x32, global_alpha=255)&gt;</dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>BLACK</strong> = (0, 0, 0)<br>
+<strong>BLUESQUARE</strong> = (50, 100, 220)<br>
+<strong>BOARD_OUTLINE_OFFSET</strong> = 4<br>
+<strong>FIRSTSQUAREINDEX</strong> = []<br>
+<strong>FPS</strong> = 60<br>
+<strong>GREEN</strong> = (50, 205, 50)<br>
+<strong>HEIGHT</strong> = 800<br>
+<strong>INNER_BOARD_X_PADDING</strong> = 30<br>
+<strong>INNER_X_PADDING</strong> = 20<br>
+<strong>INNER_Y_PADDING</strong> = 41<br>
+<strong>NUMCOLS</strong> = 5<br>
+<strong>NUMROWS</strong> = 3<br>
+<strong>PLAYERDIST</strong> = 40<br>
+<strong>PURPLESQUARE</strong> = (150, 80, 200)<br>
+<strong>RED</strong> = (255, 0, 0)<br>
+<strong>REDSQUARE</strong> = (220, 50, 50)<br>
+<strong>USER_ENTER_OFFSET</strong> = 2<br>
+<strong>WHITE</strong> = (255, 255, 255)<br>
+<strong>WIDTH</strong> = 1280<br>
+<strong>client</strong> = MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=True)<br>
+<strong>db</strong> = Database(MongoClient(host=['localhost:27017'], d...ict, tz_aware=False, connect=True), 'mydatabase')<br>
+<strong>game</strong> = {'game_id': 2, 'level_number': 3, 'player_index': 5, 'players': [{'duck_count': 0, 'name': 'Player4', 'password': 'password123', 'score': 250, 'streak': 2}]}<br>
+<strong>games</strong> = Collection(Database(MongoClient(host=['localhost...are=False, connect=True), 'mydatabase'), 'games')</td></tr></table>
 </body></html>
