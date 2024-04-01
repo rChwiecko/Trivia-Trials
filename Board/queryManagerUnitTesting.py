@@ -26,9 +26,22 @@ class TestQueryManager(unittest.TestCase):
         self.assertEqual(type(get_player_scores()), dict)
         self.assertEqual(type(get_player_info()), dict)
 
+        print ("All data types are correct")
+
     def test_find_game_by_id(self):
         # Test that the correct game is returned
-        self.assertEqual(find_game_by_id(2), game)   
+        game_from_db = find_game_by_id(2)
+        # Remove the '_id' key from the dictionary before comparing
+        if '_id' in game_from_db:
+            del game_from_db['_id']
+        self.assertEqual(game_from_db, game)
+
+        print ("Find_game_by_id is correct") 
+
+# run the tests
+if __name__ == '__main__':
+    unittest.main()
+    print ("All tests passed!")  
 
 
 '''
