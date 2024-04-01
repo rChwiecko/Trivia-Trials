@@ -31,7 +31,6 @@ A detailed step by step guide for building your software (compiling it from sour
 
 
 ## Step by Step Guide for Running the Software 
-Navigate to the Board folder in terminal and run the following command
 To run the software, navigate to the Board folder in terminal and run the following command:
 
 ```bash
