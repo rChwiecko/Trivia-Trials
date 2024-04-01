@@ -18,6 +18,7 @@ class Board:
     levelNum = None
     curr_question = None 
     answer_correct = False
+    duck_used = False
     duck = pygame.image.load("./assets/transparentduck.png")
     scaled_duck_end = pygame.transform.scale(duck, (100, 100))
     scaled_duck_player = pygame.transform.scale(duck, (50, 50))
@@ -132,6 +133,7 @@ class Board:
         innerBoardStartY = rect_y+BOARD_OUTLINE_OFFSET
         pygame.draw.rect(self.screen, WHITE, (innerBoardStartX, innerBoardStartY, innerBoardWidth, innerBoardHeight))
         self.drawText(str(playersQuestion["name"]+"'s Question"), self.curr_font, 50, BLACK, rect_x*2, rect_y+40)
+        self.screen.blit(self.scaled_duck_end, (rect_x*2+550, rect_y+30))
         pygame.draw.rect(self.screen, BLACK, (rect_x+200, rect_y+400, 480, 90))
         pygame.draw.rect(self.screen, WHITE, (rect_x+200+BOARD_OUTLINE_OFFSET, rect_y+400+BOARD_OUTLINE_OFFSET, 480-(BOARD_OUTLINE_OFFSET*2), 90-(BOARD_OUTLINE_OFFSET*2)))
         pygame.draw.rect(self.screen, GREEN, (rect_x+200+BOARD_OUTLINE_OFFSET, rect_y+400+BOARD_OUTLINE_OFFSET, 16*time_elapsed, 90-(BOARD_OUTLINE_OFFSET*2)))
@@ -179,61 +181,72 @@ class Board:
         else: 
             self.drawText(text, self.curr_font, 25, WHITE, x + 5, y + 22)
 
-    def answer_check(self, answer, question, player):
-        if isinstance(question[-1], int):
-            try:
-                answer = int(answer)
-                if (answer == question[-1]):
+    def answer_check(self, answer, question, player, duck_used):
+        if duck_used:
                     player["score"] += self.update_points(player)
                     player["streak"] += 1
-                    self.answer_correct = True
-                else:
-                    player["streak"] = 0
-                    self.answer_correct = False
-            except:
-                player["streak"] = 0 
-                self.answer_correct = False
-
-        elif isinstance(question[-1], list):
-            try:
-                answer = answer.split(',')
-                answer = answer.replace(' ', ' ')
-                if (answer[0] in question[-1] and answer[1] in question[-1]):
-                    player["score"] += self.update_points(player)
-                    player["streak"] += 1
-                    self.answer_correct = True
-                else:
-                    player["streak"] = 0
-                    self.answer_correct = False
-            except:
-                player["streak"] = 0
-                self.answer_correct = False
+                    self.duck_used = True
+                    player['duck_count'] -= 1
         else:
-            try:
-                answer = answer.replace(' ','')
-                question_real = question[-1].replace(' ','')
-                if (answer == question_real):
-                    player["score"] += self.update_points(player)
-                    player["streak"] += 1
-                    self.answer_correct = True  
-                else:
-                    player['streak'] = 0
+            self.duck_used = False
+            if isinstance(question[-1], int):
+                try:
+                    answer = int(answer)
+                    if (answer == question[-1]):
+                        player["score"] += self.update_points(player)
+                        player["streak"] += 1
+                        self.answer_correct = True
+                    else:
+                        player["streak"] = 0
+                        self.answer_correct = False
+                except:
+                    player["streak"] = 0 
                     self.answer_correct = False
-            except:
-                player['streak'] = 0 
-                self.answer_correct = False
+
+            elif isinstance(question[-1], list):
+                try:
+                    answer = answer.split(',')
+                    answer = answer.replace(' ', ' ')
+                    if (answer[0] in question[-1] and answer[1] in question[-1]):
+                        player["score"] += self.update_points(player)
+                        player["streak"] += 1
+                        self.answer_correct = True
+                    else:
+                        player["streak"] = 0
+                        self.answer_correct = False
+                except:
+                    player["streak"] = 0
+                    self.answer_correct = False
+            else:
+                try:
+                    answer = answer.replace(' ','')
+                    question_real = question[-1].replace(' ','')
+                    if (answer == question_real):
+                        player["score"] += self.update_points(player)
+                        player["streak"] += 1
+                        self.answer_correct = True  
+                    else:
+                        player['streak'] = 0
+                        self.answer_correct = False
+                except:
+                    player['streak'] = 0 
+                    self.answer_correct = False
 
     def show_answer_feedback(self, answer_recieved, question):
         rect_x = (WIDTH - 880) // 2
         rect_y = (HEIGHT - 600) // 2
         pygame.draw.rect(self.screen, WHITE, (0, 0, 1280, 800))
-        self.drawText("Feedback On Answer", self.curr_font, 50, BLACK, rect_x*2, rect_y+70)
-        self.drawText("Your Answer:    "+str(answer_recieved), self.curr_font, 40, BLACK, rect_x+100, rect_y+250)
-        self.drawText("Correct Answer:    "+str(self.curr_question[-1]), self.curr_font, 40, BLACK, rect_x+100, rect_y+290)
-        if self.answer_correct:
-            self.screen.blit(self.scaled_checkMark, (rect_x+410, rect_y + 380))
+        if not self.duck_used:
+            self.drawText("Feedback On Answer", self.curr_font, 50, BLACK, rect_x*2, rect_y+70)
+            self.drawText("Your Answer:    "+str(answer_recieved), self.curr_font, 40, BLACK, rect_x+100, rect_y+250)
+            self.drawText("Correct Answer:    "+str(self.curr_question[-1]), self.curr_font, 40, BLACK, rect_x+100, rect_y+290)
+            if self.answer_correct:
+                self.screen.blit(self.scaled_checkMark, (rect_x+410, rect_y + 380))
+            else:
+                self.screen.blit(self.scaled_RedX, (rect_x+310, rect_y + 420))
         else:
-            self.screen.blit(self.scaled_RedX, (rect_x+310, rect_y + 420))
+            self.drawText("Duck Used!", self.curr_font, 50, BLACK, rect_x*2, rect_y+150)
+            self.screen.blit(self.scaled_checkMark, (rect_x*2+300, rect_y+150))
 
     def update_points(self, player):
         multiplier = 1.1

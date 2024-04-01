@@ -766,6 +766,7 @@ while run:
                     elif (WIDTH - 880) // 2 + 450 <= mouse_pos[0] <= (WIDTH - 880) // 2 + 710 and (HEIGHT - 600) // 2 + 500 <= mouse_pos[1] <= (HEIGHT - 600) // 2 + 540:
                         if len(player_list) > 0:
                             game(True, player_list=player_list)
+                            player_list = []
                             menu_command = 0
                             username_enter = ''
                             password_enter = ''
