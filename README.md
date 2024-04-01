@@ -18,6 +18,7 @@ Navigate to the directory holding requirements.txt, then run pip install -r requ
 
 If this results in an error, you can manually install the modules inside requirements.txt by running pip install [module]
 
+
 Installing MongoDB on Windows
 https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-windows/
 Follow the instructions for a complete setup type after installing the wizard. Ensure that it is also installing MongoDB Compass.
