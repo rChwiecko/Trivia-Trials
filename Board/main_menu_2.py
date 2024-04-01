@@ -240,6 +240,7 @@ def after_login_screen():
     generate_game_data_button.draw()
     draw_change_highscores_button = Button('Change Highscores', (100, 200), width=200, height=40)
     draw_change_highscores_button.draw()
+    global state
     if draw_back_button():
         state = ''
         return 0
