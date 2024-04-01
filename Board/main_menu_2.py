@@ -249,6 +249,8 @@ def draw_player_details():
 
 def draw_god_mode():
     '''Generate screen for developer/debug mode.'''
+
+    # variables representing a user input field for password
     password = ''
     password_rect = pygame.Rect(100, 100, 140, 32)
     password_active = False
@@ -259,6 +261,7 @@ def draw_god_mode():
     password_text_rect.center = password_rect.center
     password_rect.w = max(200, password_text_rect.width + 10)
     
+    # variables representing a user input field for username
     username = ''
     username_rect = pygame.Rect(100, 150, 140, 32)
     username_active = False
@@ -269,6 +272,7 @@ def draw_god_mode():
     username_text_rect.center = username_rect.center
     username_rect.w = max(200, username_text_rect.width + 10)
     
+    # "Submit" button
     submit_button = Button('Submit', (100, 200), width=100, height=40)
     
     active = False
@@ -286,9 +290,10 @@ def draw_god_mode():
         username_label = font.render("Username:", True, 'white')
         screen.blit(username_label, (username_rect.x + username_rect.width + 10, username_rect.y))
 
-        if draw_back_button():
+        if draw_back_button():  # do nothing if user clicks the back button
             return 0
 
+        # handle events
         pygame.display.flip()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
