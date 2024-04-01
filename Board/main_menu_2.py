@@ -247,6 +247,8 @@ def after_login_screen():
     if draw_player_details_button.check_clicked():
         draw_player_details()
         state = "draw_details"
+    if state == "draw_details":
+        draw_player_details()
     if generate_game_data_button.check_clicked():
         state = ''
         generate_game_data()
