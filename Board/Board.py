@@ -6,9 +6,6 @@ import endOfBoardException
 from queryManager import *
 pygame.init()
 class Board:
-    gameStatus = False
-    time = None
-    questionStatus = False
     font = pygame.font.Font(None, 36)
     playerCount = None
     playerIndex = None
@@ -32,12 +29,10 @@ class Board:
     scaled_streak = pygame.transform.scale(streak, (50, 50))
 
     #constructor
-    def __init__(self, playerList, screen, level, playerIndex, newGame = False) -> None:
+    def __init__(self, playerList, screen, level, playerIndex) -> None:
         self.playerCount = len(playerList)
-        self.newGame = newGame
         self.playerIndex = playerIndex
         self.playerList = playerList
-        self.gameStatus = True
         self.screen = screen
         self.levelNum = level
 
@@ -186,7 +181,7 @@ class Board:
                     player["score"] += self.update_points(player)
                     player["streak"] += 1
                     self.duck_used = True
-                    player['duck_count'] -= 1
+                    player['duck_count'] = player['duck_count'] - 1
         else:
             self.duck_used = False
             if isinstance(question[-1], int):
