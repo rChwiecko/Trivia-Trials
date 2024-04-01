@@ -108,3 +108,29 @@ def update_player_score(player_name, score):
   result = games.update_many({"players.name": player_name}, {"$set": {"players.$.score": score}})
   return result
 
+def player_info_by_saved_game(game_id):
+  # Retrieve detailed information about each player in a saved game
+  """Retrieves detailed information about each player in a saved game.
+
+        Args:
+            game_id (int): The game_id of the saved game.
+
+        Returns:
+            dict: A dictionary containing player names as keys and dictionaries of their information as values.
+  """
+  player_info = {}
+
+  # Find the game with the specified game_id
+  game = games.find_one({"game_id": game_id})
+
+  # for each game_id, print the player names and scores
+  for player in game["players"]:
+    # Store the player names and scores in the dictionary
+    player_info[player["name"]] = {
+      player["password"],
+    }
+  return player_info
+
+
+
+
