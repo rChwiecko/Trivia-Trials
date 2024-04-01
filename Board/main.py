@@ -1,7 +1,8 @@
+# import required modules
 import pygame, pygame_gui
 from Board import * 
 import json
-from const import *
+from const import * 
 
 """ The file provides the main game functionality for the Trivia Trials game """
 
