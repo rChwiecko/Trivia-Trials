@@ -34,6 +34,10 @@ new_game = None
 # Load image
 bg = pygame.transform.scale(pygame.image.load('assets/transparentduck.png'), (100, 100))
 ball = pygame.transform.scale(pygame.image.load('assets/transparentduck.png'), (150, 150))
+tutorial1 = pygame.transform.scale(pygame.image.load('./tutorialScreens/tutorial1.png'), (600, 400))
+tutorial2 = pygame.transform.scale(pygame.image.load('./tutorialScreens/tutorial2.png'), (600, 400))
+tutorial3 = pygame.transform.scale(pygame.image.load('./tutorialScreens/tutorial3.png'), (600, 400))
+tutorial4 = pygame.transform.scale(pygame.image.load('./tutorialScreens/tutorial4.png'), (600, 400))
 menu_command = 0
 
 # Load logo image
@@ -113,7 +117,7 @@ def draw_menu() -> int:
     exit_button.draw()
 
     if tutorials_button.check_clicked():
-        command = 4
+        command = 6
     if exit_button.check_clicked():
         command = 5
     if button1.check_clicked():
@@ -256,6 +260,15 @@ def after_login_screen():
         state = ''
         change_highscores()
 
+def show_tutorial(tutorial_state):
+    if tutorial_state == 0:
+        screen.blit(tutorial1, (340, 100))
+    elif tutorial_state == 1:
+        screen.blit(tutorial2, (340, 100))
+    elif tutorial_state == 2:
+        screen.blit(tutorial3, (340, 100))
+    elif tutorial_state == 3:
+        screen.blit(tutorial4, (340, 100))
 def change_highscores():
     '''Generates screen to change highscores.'''
     running = True
@@ -760,7 +773,7 @@ def draw_player_login():
         drawText("You Must Fill In Username and Password Field", other_font, 30, RED, (WIDTH - 880) // 2+ 130, (HEIGHT - 600) // 2+ 400)
     elif show_existing_user:
         drawText("Name Taken", other_font, 30, RED, (WIDTH - 880) // 2+ 325, (HEIGHT - 600) // 2+ 400)
-
+tutorial_state = 0
 run = True
 while run:
     screen.fill('black')
@@ -888,7 +901,27 @@ while run:
                         username_enter_active = False
                         password_enter_active = False
 
-
+        elif menu_command == 6:
+            pygame.draw.rect(screen, BLACK, (0,0, 1280, 800))
+            show_tutorial(tutorial_state)
+            draw_next_button = Button('Next', (700, 700), width=200, height=40)
+            draw_next_button.draw()
+            draw_prev_button = Button('Previous', (400, 700), width=200, height=40)
+            draw_prev_button.draw()
+            draw_back_button()
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                elif event.type == pygame.MOUSEBUTTONDOWN:
+                    if draw_next_button.check_clicked():
+                        if tutorial_state < 3:
+                            tutorial_state += 1
+                    elif draw_prev_button.check_clicked():
+                        if tutorial_state > 0:
+                            tutorial_state -= 1
+                    elif draw_back_button():
+                        menu_command = 0
+        
         else:
             main_menu = draw_game()
             if menu_command > 0:
