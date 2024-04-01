@@ -10,6 +10,7 @@ from const import *
 WIDTH = 1280
 HEIGHT = 800
 FPS = 60
+state = ''
 timer = pygame.time.Clock()
 screen = pygame.display.set_mode([WIDTH, HEIGHT])
 pygame.display.set_caption('Trivia Trials')
@@ -237,12 +238,18 @@ def after_login_screen():
     draw_player_details_button.draw()
     generate_game_data_button = Button('Generate Game Data', (100, 150), width=200, height=40)
     generate_game_data_button.draw()
+    global state
     if draw_back_button():
+        state = ''
         return 0
     if draw_player_details_button.check_clicked():
         draw_player_details()
+        state = "draw_details"
     if generate_game_data_button.check_clicked():
+        state = ''
         generate_game_data()
+    if state == "draw_details":
+        draw_player_details()
 
 def draw_player_details():
     '''Generates text to display player details.'''
@@ -640,7 +647,6 @@ while run:
             if draw_back_button():
                 main_menu = True
             if save_command != 0:
-                print(f'{save_command}')
                 main_menu = True
         elif menu_command == 3:  # Highscore button pressed
             draw_highscore_screen()
