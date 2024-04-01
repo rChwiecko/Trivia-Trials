@@ -12,6 +12,12 @@ This game application seeks to encourage individuals to effectively apply previo
 ## Required Libraries and Third Party Tools 
 A list of the required libraries and third party tools required to run or build your software (include version numbers).
 
+Ensure there is a working version of Python installed, with the earliest supported version for this game being Python 3.9
+
+Navigate to the directory holding requirements.txt, then run pip install -r requirements.txt
+
+If this results in an error, you can manually install the modules inside requirements.txt by running pip install [module]
+
 
 ## Step by Step Guide for Making the Software 
 A detailed step by step guide for building your software (compiling it from source code). This should include details on how to obtain and install any third party libraries.
