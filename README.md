@@ -59,7 +59,6 @@ python main_menu_2.py
 
 To access Developer tools, from the main menu click on Developer Login. Input a password and if it is correct, users will be able to view player details, manipulate game elements as they would like, and change player attributes like scoring
 
-NEEDS TO BE COMPLETE
 
 
 ## Account details 
