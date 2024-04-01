@@ -1,8 +1,11 @@
+'''This module generates the main game'''
+
 import pygame
 import sys
 from queryManager import *
 from main import *
 from const import *
+
 WIDTH = 1280
 HEIGHT = 800
 FPS = 60
@@ -616,6 +619,7 @@ def draw_highscore_screen():
 
 
 def draw_back_button():
+    '''Generate button representing'''
     back_button = Button('Back', (20, 20), width=100, height=40)
     back_button.draw()
     if back_button.check_clicked():
@@ -623,6 +627,7 @@ def draw_back_button():
     return False
 
 def draw_player_login():
+    '''Generate player login screen.'''
     entering_user_data = True
     rect_x = (WIDTH - 880) // 2
     rect_y = (HEIGHT - 600) // 2
@@ -651,6 +656,7 @@ def draw_player_login():
         drawText("You Must Fill In Username and Password Field", other_font, 30, RED, (WIDTH - 880) // 2+ 130, (HEIGHT - 600) // 2+ 400)
     elif show_existing_user:
         drawText("Name Taken", other_font, 30, RED, (WIDTH - 880) // 2+ 325, (HEIGHT - 600) // 2+ 400)
+
 run = True
 while run:
     screen.fill('black')
