@@ -747,7 +747,7 @@ while run:
                         password_enter_active = True
                     elif (WIDTH - 880) // 2 + 160 <= mouse_pos[0] <= (WIDTH - 880) // 2 + 420 and (HEIGHT - 600) // 2 + 500 <= mouse_pos[1] <= (HEIGHT - 600) // 2 + 540:
                         if len(player_list) < 3 and username_enter != '' and password_enter != '' and username_enter not in player_list:
-                            player_list.append({"name":username_enter,"password":password_enter,"streak":0,"duck_count":1,"score":0})
+                            player_list.append({"name":username_enter,"password":password_enter,"streak":0,"duck_count":0,"score":0})
                             username_enter = ''
                             password_enter = ''
                             show_no_user_error = False

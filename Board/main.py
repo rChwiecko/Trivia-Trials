@@ -50,7 +50,9 @@ def game(new_game, game_data = None, player_list = None):
     
     else:
         players = player_list
-        boardInstance = Board(players, screen, '1', 0)
+        level_num = '1'
+        player_index = 0
+        boardInstance = Board(players, screen, level_num, player_index)
 
     gameState = "INITIAL"  # Corrected state name
     playersAsked = 0
