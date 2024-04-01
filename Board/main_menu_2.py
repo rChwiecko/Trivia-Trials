@@ -105,8 +105,8 @@ def draw_menu() -> int:
     button2.draw()
     button3 = Button('Highscore', (menu_x + 20, menu_y + 200))  # Adjusted position
     button3.draw()
-    playerdetailsbutton = Button('Player Details', (menu_x + 20, menu_y + 260))  # Adjusted position
-    playerdetailsbutton.draw()
+    loginbutton = Button('Developer Login', (menu_x + 20, menu_y + 260))  # Adjusted position
+    loginbutton.draw()
     godmodebutton = Button('God Mode', (menu_x + 20, menu_y + 320))  # Adjusted position
     godmodebutton.draw()
 
@@ -123,7 +123,7 @@ def draw_menu() -> int:
         command = 2
     if button3.check_clicked():
         command = 3
-    if playerdetailsbutton.check_clicked():
+    if loginbutton.check_clicked():
         draw_password_screen()
     if godmodebutton.check_clicked():
         draw_god_mode()
@@ -201,7 +201,7 @@ def draw_password_screen():
                                 elif event.type == pygame.MOUSEBUTTONDOWN:
                                     if draw_back_button():
                                         return 0
-                            draw_player_details()
+                            after_login_screen()
                             pygame.display.flip()
                         return password, username
                     
@@ -209,7 +209,7 @@ def draw_password_screen():
                 if password_active:
                     if event.key == pygame.K_RETURN:
                         if password == '1234':
-                            draw_player_details()
+                            after_login_screen()
                     elif event.key == pygame.K_BACKSPACE:
                         password = password[:-1]
                     else:
@@ -222,7 +222,7 @@ def draw_password_screen():
                 if username_active:
                     if event.key == pygame.K_RETURN:
                         if password == '1234':
-                            draw_player_details()
+                            after_login_screen()
                         return password, username
                     elif event.key == pygame.K_BACKSPACE:
                         username = username[:-1]
@@ -233,6 +233,20 @@ def draw_password_screen():
                     username_text_rect.center = username_rect.center
                     username_rect.w = max(200, username_text_rect.width + 10)
         pygame.display.flip()
+
+def after_login_screen():
+    screen.fill('black')
+    # make 2 buttons, one for drawing the player details and one for generate game data
+    draw_player_details_button = Button('Player Details', (100, 100), width=200, height=40)
+    draw_player_details_button.draw()
+    generate_game_data_button = Button('Generate Game Data', (100, 150), width=200, height=40)
+    generate_game_data_button.draw()
+    if draw_back_button():
+        return 0
+    if draw_player_details_button.check_clicked():
+        draw_player_details()
+    if generate_game_data_button.check_clicked():
+        generate_game_data()
 
 def draw_player_details():
     '''Generates text to display player details.'''
