@@ -921,6 +921,7 @@ while run:
                         if tutorial_state > 0:
                             tutorial_state -= 1
                     elif draw_back_button():
+                        tutorial_state = 0
                         menu_command = 0
         
         else:
