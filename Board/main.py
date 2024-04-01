@@ -62,13 +62,13 @@ def game(new_game, game_data = None, player_list = None):
 
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
-                if 1280/2-100 <= mouse_pos[0] <=1280/2+100 and 250 <= mouse_pos[1] <= 300:  # Check if mouse click is on "Resume" button
+                if 1280/2-100 <= mouse_pos[0] <=1280/2+100 and 250 <= mouse_pos[1] <= 300 and gameState == "PAUSED":  # Check if mouse click is on "Resume" button
                     gameState = pauseState
                     paused = False
-                elif 350 <= mouse_pos[1] <= 400:  # Check if mouse click is on "Save and Quit" button
+                elif 350 <= mouse_pos[1] <= 400 and gameState == "PAUSED":  # Check if mouse click is on "Save and Quit" button
                     dataSaved = True
                     gameState = "CHOOSE_SAVE"
-                elif 450 <= mouse_pos[1] <= 500:  # Check if mouse click is on "Don't Save and Quit" button
+                elif 450 <= mouse_pos[1] <= 500 and gameState == "PAUSED":  # Check if mouse click is on "Don't Save and Quit" button
                     dataSaved = False
                     running = False
                 elif 10 <= mouse_pos[0] <= 50 and 10 <= mouse_pos[1] <= 50:
