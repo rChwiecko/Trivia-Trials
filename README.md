@@ -18,6 +18,12 @@ Navigate to the directory holding requirements.txt, then run pip install -r requ
 
 If this results in an error, you can manually install the modules inside requirements.txt by running pip install [module]
 
+Installing MongoDB on Windows
+https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-windows/
+Follow the instructions for a complete setup type after installing the wizard. Ensure that it is also installing MongoDB Compass.
+
+IF MONGODB IS NOT INSTALLED, THE GAME WILL STILL FUNCTION BUT MANY FEATURES SUCH AS HIGH SCORES, DEV MODE, PLAYER INFORMATION AND SAVE FILES WILL NOT WORK.
+
 
 ## Step by Step Guide for Making the Software 
 A detailed step by step guide for building your software (compiling it from source code). This should include details on how to obtain and install any third party libraries.
