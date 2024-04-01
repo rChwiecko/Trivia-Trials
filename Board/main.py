@@ -234,5 +234,3 @@ def game(new_game, game_data = None, player_list = None):
 
         pygame.display.flip()
         clock.tick(60)  # Limits FPS to 60
-
-
