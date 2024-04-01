@@ -128,34 +128,110 @@ def game(new_game, game_data = None, player_list = None):
         # Render the game board
         boardInstance.render()
 
-        # Handle game state transitions and logic
+         # handle game state transitions and logic
         if gameState == "QUESTION_SHOW":
-            # If it's time to show a question
             if playersAsked < boardInstance.playerCount:
-                # If there are more players to ask
-                question = boardInstance.drawQuestion(players[playersAsked], 1, 2, 0, True, player_answer)  # Draw the question
-                lastAction = pygame.time.get_ticks()  # Record the time when the question was shown
-                player_answering = True  # Set the player_answering flag to True
-                gameState = "ANSWER_AWAIT"  # Transition to answer await state
+                question = boardInstance.drawQuestion(players[playersAsked], 1, 2, 0, True, player_answer)
+                lastAction = pygame.time.get_ticks()
+                player_answering = True
+                gameState = "ANSWER_AWAIT"
             else:
-                # If all players have been asked
-                print("here")  # Print a message (should be replaced with appropriate action)
-                gameState = "SHOW_RESULTS"  # Transition to show results state
+                print("here")
+                gameState = "SHOW_RESULTS"
         elif gameState == "INITIAL":
-            # If it's the initial state
-            boardInstance.render()  # Render the game board
+            boardInstance.render()
             if beginning > 4000:
-                # If more than 4 seconds have passed since the beginning
-                gameState = "SHOW_PLAYER_TURN"  # Transition to show player turn state
+                gameState = "SHOW_PLAYER_TURN"
             else:
-                beginning = pygame.time.get_ticks()  # Record the time when the game started
+                beginning = pygame.time.get_ticks()
         elif gameState == "SHOW_RESULTS":
-            # If it's time to show results
-            boardInstance.show_player_scores()  # Show player scores
-            delay_start = pygame.time.get_ticks()  # Record the time when showing results started
-            gameState = "SHOW_RESULTS_DELAY"  # Transition to show results delay state
+            boardInstance.show_player_scores()
+            delay_start = pygame.time.get_ticks()
+            gameState = "SHOW_RESULTS_DELAY"
 
-        # Other game state transitions and logic are handled similarly...
 
-        pygame.display.flip()  # Update the display
-        clock.tick(60)         # Limit the frame rate to 60 FPS
+        elif gameState == "SHOW_ANSWER_FEEDBACK":
+            boardInstance.show_answer_feedback(player_answer_recorded, question[-1])
+            gameState = "3_SECOND_DELAY_FEEDBACK"
+
+        elif gameState == "ANSWER_AWAIT":
+            time_taken = (pygame.time.get_ticks() - lastAction)  # Corrected time difference calculation
+            if time_taken <= 30000 and player_answering:
+                boardInstance.drawQuestion(players[playersAsked], 1, 2, time_taken / 1000, False, player_answer)
+                player_answering = True
+            else:
+                playersAsked += 1  # Move to the next player
+                if (player_answering):
+                    player_answer_recorded, player_answer = '', ''
+                    player_answering = False
+                start_delay = pygame.time.get_ticks()
+                gameState = "SHOW_ANSWER_FEEDBACK"  # Reset to show the next question
+        elif gameState == "CHOOSE_SAVE":
+            boardInstance.save_game(players)
+            save_choosen = False
+            gameState = "AWAIT_SAVE_CHOICE"
+
+        elif gameState == "MOVE_PLAYERS":
+            try:
+                boardInstance.movePlayers()
+            except:
+                boardInstance = Board(players, screen, str(int(level_num)+1), 0)
+            boardInstance.render()
+            playersAsked = 0  # Resetting the playersAsked counter if needed
+            delay_start_time = pygame.time.get_ticks()
+            gameState = "SHOW_QUESTION_DELAY"
+
+        elif gameState == "SHOW_PLAYER_TURN":
+            if playersAsked < boardInstance.playerCount:
+                boardInstance.showPlayersTurn(players[playersAsked], 0)
+                lastAction = pygame.time.get_ticks()
+                gameState = "3_SECOND_COUNTDOWN"
+            else: 
+                delay_start_time = pygame.time.get_ticks()
+                gameState = "SHOW_RESULTS"
+        elif gameState == "PAUSED":
+            boardInstance.pause(paused, dataSaved)
+
+        # All delay states
+        elif gameState == "SHOW_RESULTS_DELAY":
+            current_time = pygame.time.get_ticks()
+            if (current_time - delay_start) >= 3000:
+                gameState = "MOVE_PLAYER_DELAY"
+            else:
+                boardInstance.show_player_scores()
+
+        elif gameState == "3_SECOND_DELAY_FEEDBACK":
+            current_time = pygame.time.get_ticks()
+            if (current_time - start_delay) >= 2000:
+                gameState = "SHOW_PLAYER_TURN"
+            else:
+                boardInstance.show_answer_feedback(player_answer_recorded, question[-1])
+        elif gameState == "MOVE_PLAYER_DELAY":
+            boardInstance.render()
+            current_time = pygame.time.get_ticks()
+            if (current_time - delay_start_time) >= 3000:
+                # Delay period is over, switch to the next desired state
+                gameState = "MOVE_PLAYERS"
+        elif gameState == "SHOW_QUESTION_DELAY":
+            current_time = pygame.time.get_ticks()
+            if (current_time - delay_start_time) >= 2000:
+                # Delay period is over, switch to the next desired state
+                gameState = "SHOW_PLAYER_TURN"
+
+        elif gameState == "3_SECOND_COUNTDOWN":
+            current_time = pygame.time.get_ticks()
+            if (current_time - lastAction) < 3000:
+                boardInstance.showPlayersTurn(players[playersAsked], 3 - (current_time - lastAction)//1000)
+
+            else:
+                gameState = "QUESTION_SHOW"
+        elif gameState == "AWAIT_SAVE_CHOICE":
+            if not save_choosen:
+                boardInstance.save_game(players)
+            else:
+                boardInstance.save_game(players, game_save_choice)
+                save_choosen = False
+                running = False
+
+        pygame.display.flip()
+        clock.tick(60)  # Limits FPS to 60
