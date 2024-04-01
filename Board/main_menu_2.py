@@ -38,6 +38,8 @@ tutorial1 = pygame.transform.scale(pygame.image.load('./tutorialScreens/tutorial
 tutorial2 = pygame.transform.scale(pygame.image.load('./tutorialScreens/tutorial2.png'), (600, 400))
 tutorial3 = pygame.transform.scale(pygame.image.load('./tutorialScreens/tutorial3.png'), (600, 400))
 tutorial4 = pygame.transform.scale(pygame.image.load('./tutorialScreens/tutorial4.png'), (600, 400))
+tutorial5 = pygame.transform.scale(pygame.image.load('./tutorialScreens/tutorial5.png'), (600, 400))
+tutorial_duck = pygame.transform.scale(pygame.image.load('assets/transparentduck.png'), (400, 400))
 menu_command = 0
 
 # Load logo image
@@ -264,12 +266,33 @@ def after_login_screen():
 def show_tutorial(tutorial_state):
     if tutorial_state == 0:
         screen.blit(tutorial1, (340, 100))
+        drawText("When you begin the game and select to start a new game, you will be directed to a screen that will allow you to", other_font, 20, WHITE, 100, 510)
+        drawText("enter user information, when you are done entering your information, select 'Add Players' to add another player,", other_font, 20, WHITE, 100, 530)
+        drawText("or 'Start Game' to start the game.", other_font, 20, WHITE, 100, 550)
     elif tutorial_state == 1:
         screen.blit(tutorial2, (340, 100))
+        drawText("When you begin the game, you will be shown a countdown that states whos turn it is. Whoevers name that is shown,", other_font, 20, WHITE, 100, 510)
+        drawText("it is now their turn to answer the question that will be displayed when the countdown is over.", other_font, 20, WHITE, 100, 530)
     elif tutorial_state == 2:
         screen.blit(tutorial3, (340, 100))
+        drawText("When the question is displayed, the current player can type their answer into the question box and press the return", other_font, 20, WHITE, 100, 510)
+        drawText("key on the keyboard to submit the answer before the progress bar runs out. Or the player can use a duck by clicking", other_font, 20, WHITE, 100, 530)
+        drawText("on the duck in the top right to skip the question. Details on how that mechanic works is in the next slide.", other_font, 20, WHITE, 100, 550)
     elif tutorial_state == 3:
+        screen.blit(tutorial_duck, (440, 100))
+        drawText("When you go through the board, whichever has the most points out of all the players present in the game, is rewarded", other_font, 20, WHITE, 100, 510)
+        drawText("with a duck. What this does is grant the user the opportunity to skip a question of their choice, while being", other_font, 20, WHITE, 100, 530)
+        drawText("given full points for the question despite them not having to answer it, this adds on to streaks aswell.", other_font, 20, WHITE, 100, 550)        
+    elif tutorial_state == 4:
         screen.blit(tutorial4, (340, 100))
+        drawText("When you answer a question and submit the answer, you are shown feedback on your answer. Including your answer", other_font, 20, WHITE, 100, 510)
+        drawText("and the actual answer to the question", other_font, 20, WHITE, 100, 530)
+    elif tutorial_state == 5:
+        screen.blit(tutorial5, (340, 100))
+        drawText("When all players are given a chance to answer, a screen displaying all the users scores after question is shown", other_font, 20, WHITE, 100, 510)
+        drawText("and diplays the streaks that the users are on to the right of the flame icon. It also shows which player is ", other_font, 20, WHITE, 100, 530)
+        drawText("going to be rewarded with a duck at the end of every level", other_font, 20, WHITE, 100, 550)     
+
 def change_highscores():
     '''Generates screen to change highscores.'''
     running = True
@@ -928,7 +951,7 @@ while run:
                     pygame.quit()
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     if draw_next_button.check_clicked():    # allows user to scroll through various tutorial screens
-                        if tutorial_state < 3:
+                        if tutorial_state < 5:
                             tutorial_state += 1
                     elif draw_prev_button.check_clicked():
                         if tutorial_state > 0:
