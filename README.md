@@ -48,7 +48,7 @@ python main_menu_2.py
 ## User Guide 
 1. The first screen displayed is the "Main Menu" Screen where user has a variety of options to navigate to; start game, quit game, go to a  tutorial session, display high scores, resume a session
 2. If user chooses "Tutorial", they will be navigated to a screen explaining the steps on how to play the game 
-3. If user chooses "Resume", they will be able to play a previous most recently saved session 
+3. If user chooses "Load Save", they will be able to play a previous most recently saved session 
 4. If user chooses " High Scores", the screen will display the high scores table 
 5. If the user chooses "Quit", the application will simply terminate 
 6. If the user chooses "Start", the user will be put into a new game 
