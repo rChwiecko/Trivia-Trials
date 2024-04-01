@@ -14,3 +14,5 @@ game = {
   ]
 }
 insert_game(game)
+game = find_game_by_id(1)
+print(game['players'][0])

@@ -15,7 +15,7 @@ example_player_list = [{
         "score": 0
         }
     ]
-
+#the expected output when data is pulled from database
 expected_output = {
   "game_id": 2,
   "level_number": 1,
@@ -30,16 +30,27 @@ expected_output = {
     }
   ]
 }
-
-instance = Board(player_list, screen, level, index)
+#creating board instance
+instance = Board(example_player_list, screen, level, index)
 class TestBoard(unittest.TestCase):
+
     def test_save_game(self):
-        instance.save_game(player_list, id_override)
+        instance.save_game(example_player_list, id_override)
         game_pulled = find_game_by_id(id_override)
-        self.assertIsInstance(find_game_by_id(id_override), dict)
-        self.assertEqual(expected_output["game_id"], game_pulled["game_id"]) #pull the game out of the database and see if the same as the expected output
+        print(game_pulled)
+        player_pulled = game_pulled["players"][0]
+        self.assertIsInstance(find_game_by_id(id_override), dict) #testing if game pulled is of correct type
+        #testing all attributes of game pulled
+        self.assertEqual(expected_output["game_id"], game_pulled["game_id"]) 
         self.assertEqual(expected_output["level_number"], game_pulled["level_number"])
         self.assertEqual(expected_output["player_index"], game_pulled["player_index"])
+        self.assertEqual(player_pulled["name"], example_player_list[0]["name"])
+        self.assertEqual(player_pulled["password"], example_player_list[0]["password"])
+        self.assertEqual(player_pulled["streak"], example_player_list[0]["streak"])
+        self.assertEqual(player_pulled["duck_count"], example_player_list[0]["duck_count"])
+        self.assertEqual(player_pulled["score"], example_player_list[0]["score"])
+
+        
 if __name__ == "__main__":
     unittest.main()                                                               
          
