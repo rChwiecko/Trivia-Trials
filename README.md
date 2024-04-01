@@ -2,7 +2,7 @@
 ### Group: 69
 ### Group Members: Ryan Chwiecko, Arjun Singh Atwal, Jin Zhao, Sonia Sharma, Sahej Chawla 
 ### Course: CS 2212
-### Assignment Type: Implementation and Delivery 
+### Assignment Type: Implementation and Delivery Documentation
 
 
 ## Description of Software 
