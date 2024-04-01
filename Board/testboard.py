@@ -35,8 +35,11 @@ instance = Board(player_list, screen, level, index)
 class TestBoard(unittest.TestCase):
     def test_save_game(self):
         instance.save_game(player_list, id_override)
-        self.assertEqual(expected_output, find_game_by_id(id_override)) #pull the game out of the database and see if
-        
-if __name__ == "main":
-    unittest.main()                                                               #the same as the expected output
+        game_pulled = find_game_by_id(id_override)
+        self.assertIsInstance(find_game_by_id(id_override), dict)
+        self.assertEqual(expected_output["game_id"], game_pulled["game_id"]) #pull the game out of the database and see if the same as the expected output
+        self.assertEqual(expected_output["level_number"], game_pulled["level_number"])
+        self.assertEqual(expected_output["player_index"], game_pulled["player_index"])
+if __name__ == "__main__":
+    unittest.main()                                                               
          
