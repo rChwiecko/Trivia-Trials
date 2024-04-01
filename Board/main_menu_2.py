@@ -268,6 +268,11 @@ def after_login_screen():
         change_highscores()
 
 def show_tutorial(tutorial_state):
+    '''Generates screens for the game tutorial.
+    
+    Args:
+        tutorial_state (int): Tutorial state representing each tutorial screen, indicated by an integer 0, 1, 2, 3, 4, 5.
+    '''
     if tutorial_state == 0:
         screen.blit(tutorial1, (340, 100))
         drawText("When you begin the game and select to start a new game, you will be directed to a screen that will allow you to", other_font, 20, WHITE, 100, 510)
