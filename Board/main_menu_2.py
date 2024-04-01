@@ -238,7 +238,8 @@ def after_login_screen():
     draw_player_details_button.draw()
     generate_game_data_button = Button('Generate Game Data', (100, 150), width=200, height=40)
     generate_game_data_button.draw()
-    global state
+    draw_change_highscores_button = Button('Change Highscores', (100, 200), width=200, height=40)
+    draw_change_highscores_button.draw()
     if draw_back_button():
         state = ''
         return 0
@@ -349,7 +350,6 @@ def generate_game_data():
         screen.blit(score_label, (score_rect.x + score_rect.width + 10, score_rect.y))
 
         if draw_back_button():
-            # main menu
             return 0
         pygame.display.flip()
         for event in pygame.event.get():
