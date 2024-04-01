@@ -55,10 +55,12 @@ class Button:
         screen.blit(text2, text_rect.topleft)
 
     def check_clicked(self):
+        ''''''
         return self.button.collidepoint(pygame.mouse.get_pos()) and pygame.mouse.get_pressed()[0]
 
 
 def draw_heading():
+    '''Generate text for a screen header.'''
     heading_text = font_heading.render("Trivia Trials", True, 'white')
     screen.blit(heading_text, ((WIDTH - heading_text.get_width()) // 2, 50))
     # Blit logo onto the screen above all buttons
@@ -66,6 +68,7 @@ def draw_heading():
 
 
 def draw_menu():
+    '''Generates initial menu screen.'''
     command = -1
     menu_width = 300
     menu_height = 400
@@ -108,6 +111,7 @@ def draw_menu():
     return command
 
 def draw_password_screen():
+    '''Generates screen prompting user to enter password.'''
     password = ''
     password_rect = pygame.Rect(100, 100, 140, 32)
     password_active = False
@@ -223,6 +227,7 @@ def draw_player_details():
         y_offset += 40
 
 def draw_god_mode():
+    '''Generate screen for developer/debug mode.'''
     password = ''
     password_rect = pygame.Rect(100, 100, 140, 32)
     password_active = False
@@ -317,6 +322,7 @@ def draw_god_mode():
         pygame.display.flip()
 
 def generate_game_data():
+    '''Generates '''
     level = ''
     level_rect = pygame.Rect(100, 100, 140, 32)
     level_active = False
@@ -535,6 +541,7 @@ def generate_game_data():
         pygame.display.flip()
 
 def draw_game():
+    '''Generate game main menu screen.'''
     menu_btn = Button('Main Menu', ((WIDTH - 200) // 2, HEIGHT - 150))
     menu_btn.draw()
     menu = menu_btn.check_clicked()
@@ -544,11 +551,22 @@ def draw_game():
     return menu
 
 def drawText(text, fontname, fontsize, text_col, x, y):
+    '''Generates text of a specific size and font at a specified position.
+    
+    Args:
+        text (str): Text content to be generated.
+        fontname (str): Desired font for text.
+        fontsize (int): Desired size of text.
+        text_col (int): Colour of text.
+        x (int): x-coordinate position of text.
+        y (int): y-coordinate position of text.
+    '''
     font = pygame.font.Font(fontname, fontsize)
     text_surface = font.render(text, True, text_col)
     screen.blit(text_surface, ((x, y)))
 
 def draw_save_screen():
+    '''Generate save screen displaying save slots for 3 games.'''
     save_menu_width = 300
     save_menu_height = 400
     save_menu_x = (WIDTH - save_menu_width) // 2
@@ -600,6 +618,7 @@ def draw_save_screen():
 
 
 def draw_highscore_screen():
+    '''Generate highscore screen.'''
     highscore_menu_width = 400
     highscore_menu_height = 400
     highscore_menu_x = (WIDTH - highscore_menu_width) // 2
@@ -619,7 +638,7 @@ def draw_highscore_screen():
 
 
 def draw_back_button():
-    '''Generate button representing'''
+    '''Generate button representing the "Back".'''
     back_button = Button('Back', (20, 20), width=100, height=40)
     back_button.draw()
     if back_button.check_clicked():
