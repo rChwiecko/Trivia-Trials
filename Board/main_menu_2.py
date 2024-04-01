@@ -374,8 +374,6 @@ def change_highscores():
                             score_text_rect = score_text.get_rect()
                             score_text_rect.center = score_rect.center
                             score_rect.w = max(200, score_text_rect.width + 10)
-                            
-
         pygame.display.flip()
 
 def draw_player_details():
