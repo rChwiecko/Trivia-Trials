@@ -84,6 +84,10 @@ class Button:
 
 def draw_heading():
     '''Generate text for a screen header.'''
+    drawText("Ryan Chwiecko, Jin Zhao, Arjun Atwal, Sonia Sharma, Sahej Chawla", other_font, 15, WHITE, 10, 10)
+    drawText("Team number 69", other_font, 15, WHITE, 10, 25)
+    drawText("Term: Winter 2024", other_font, 15, WHITE, 10, 40)
+    drawText("This was created as a project under The University of Western Ontario", other_font, 15, WHITE, 10, 55)
     heading_text = font_heading.render("Trivia Trials", True, 'white')
     screen.blit(heading_text, ((WIDTH - heading_text.get_width()) // 2, 50))
     # Blit logo onto the screen above all buttons
