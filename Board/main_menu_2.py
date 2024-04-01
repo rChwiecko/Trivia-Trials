@@ -75,7 +75,7 @@ class Button:
         '''Checks if a user's mouse input was made.
         
         Returns:
-            
+            boolean: Whether button is clicked (True) or not (False)
         '''
         return self.button.collidepoint(pygame.mouse.get_pos()) and pygame.mouse.get_pressed()[0]
 
@@ -175,10 +175,10 @@ def draw_password_screen():
         
         pygame.display.flip()
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+            if event.type == pygame.QUIT:   # if window closed, quit game
                 pygame.quit()
                 sys.exit()
-            if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.type == pygame.MOUSEBUTTONDOWN:    # check if mouse button is clicked
                 if password_rect.collidepoint(event.pos):
                     password_active = not password_active
                 else:
@@ -190,7 +190,7 @@ def draw_password_screen():
                 else:
                     username_active = False
                 username_color = 'white' if username_active else 'black'
-                if submit_button.check_clicked():
+                if submit_button.check_clicked():       # check if submit button is clicked
                     if password == '1234':
                         running = True
                         while running:
@@ -236,6 +236,7 @@ def draw_password_screen():
         pygame.display.flip()
 
 def after_login_screen():
+    '''Generate screen displaying options for the user upon successful login.'''
     screen.fill('black')
     # make 2 buttons, one for drawing the player details and one for generate game data
     draw_player_details_button = Button('Player Details', (100, 100), width=200, height=40)
@@ -256,7 +257,7 @@ def after_login_screen():
     if generate_game_data_button.check_clicked():
         state = ''
         generate_game_data()
-    if draw_change_highscores_button.check_clicked():
+    if draw_change_highscores_button.check_clicked():   # check if developer user wants to change highscores
         state = ''
         change_highscores()
 
@@ -282,6 +283,7 @@ def change_highscores():
                 if draw_back_button():
                     return 0
 
+        # highscore menu dimensions and position
         highscore_menu_width = 400
         highscore_menu_height = 400
         highscore_menu_x = (WIDTH - highscore_menu_width) // 2
@@ -413,7 +415,9 @@ def draw_player_details():
         y_offset += 40
 
 def generate_game_data():
-    '''Generates data on a saved game.'''
+    '''Generates data on a saved game and displays it for developer to manipulate.'''
+
+    # variables to visualize each player's level
     level = ''
     level_rect = pygame.Rect(100, 100, 140, 32)
     level_active = False
@@ -424,6 +428,7 @@ def generate_game_data():
     level_text_rect.center = level_rect.center
     level_rect.w = max(200, level_text_rect.width + 10)
     
+    # visualizing player's position on the board
     index = ''
     index_rect = pygame.Rect(100, 150, 140, 32)
     index_active = False
@@ -434,6 +439,7 @@ def generate_game_data():
     index_text_rect.center = index_rect.center
     index_rect.w = max(200, index_text_rect.width + 10)
 
+    # visualizing player's current correct answer streak
     streak = ''
     streak_rect = pygame.Rect(100, 200, 140, 32)
     streak_active = False
@@ -444,6 +450,7 @@ def generate_game_data():
     streak_text_rect.center = streak_rect.center
     streak_rect.w = max(200, streak_text_rect.width + 10)
 
+    # visualizing number of ducks in player's posession
     duck_count = ''
     duck_count_rect = pygame.Rect(100, 250, 140, 32)
     duck_count_active = False
@@ -454,6 +461,7 @@ def generate_game_data():
     duck_count_text_rect.center = duck_count_rect.center
     duck_count_rect.w = max(200, duck_count_text_rect.width + 10)
     
+    # visualizing player's score
     score = ''
     score_rect = pygame.Rect(100, 300, 140, 32)
     score_active = False
@@ -464,6 +472,7 @@ def generate_game_data():
     score_text_rect.center = score_rect.center
     score_rect.w = max(200, score_text_rect.width + 10)
 
+    # button to confirm changes
     submit_button = Button('Submit', (100, 350), width=100, height=40)
 
     active = False
@@ -661,6 +670,8 @@ def drawText(text, fontname, fontsize, text_col, x, y):
 
 def draw_save_screen():
     '''Generate save screen displaying save slots for 3 games.'''
+
+    # screen dimensions and position
     save_menu_width = 300
     save_menu_height = 400
     save_menu_x = (WIDTH - save_menu_width) // 2
@@ -668,11 +679,13 @@ def draw_save_screen():
     pygame.draw.rect(screen, 'black', [save_menu_x, save_menu_y, save_menu_width, save_menu_height])
     pygame.draw.rect(screen, 'green', [save_menu_x, save_menu_y, save_menu_width, save_menu_height], 5)
 
+    # button dimensions and position
     button_width = 260
     button_height = 40
     button_margin = 20
     button_start_y = save_menu_y + 50
 
+    # buttons representing game save slots
     save1_btn = Button('Save 1', (save_menu_x + (save_menu_width - button_width) // 2, button_start_y),
                        width=button_width, height=button_height)
     save1_btn.draw()
@@ -904,7 +917,7 @@ while run:
 
         elif menu_command == 6:
             pygame.draw.rect(screen, BLACK, (0,0, 1280, 800))
-            show_tutorial(tutorial_state)
+            show_tutorial(tutorial_state)   # display tutorial screens
             draw_next_button = Button('Next', (700, 700), width=200, height=40)
             draw_next_button.draw()
             draw_prev_button = Button('Previous', (400, 700), width=200, height=40)
@@ -914,7 +927,7 @@ while run:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                 elif event.type == pygame.MOUSEBUTTONDOWN:
-                    if draw_next_button.check_clicked():
+                    if draw_next_button.check_clicked():    # allows user to scroll through various tutorial screens
                         if tutorial_state < 3:
                             tutorial_state += 1
                     elif draw_prev_button.check_clicked():
