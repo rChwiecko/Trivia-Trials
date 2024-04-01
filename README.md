@@ -14,7 +14,7 @@ A list of the required libraries and third party tools required to run or build 
 
 Ensure there is a working version of Python installed, with the earliest supported version for this game being Python 3.9
 
-Navigate to the directory holding requirements.txt, then run pip install -r requirements.txt
+Navigate to the GROUP69 directory holding requirements.txt, then run pip install -r requirements.txt
 
 If this results in an error, you can manually install the modules inside requirements.txt by running pip install [module]
 
