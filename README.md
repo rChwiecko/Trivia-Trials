@@ -18,6 +18,9 @@ Navigate to the GROUP69 directory holding requirements.txt, then run pip install
 
 If this results in an error, you can manually install the modules inside requirements.txt by running pip install [module]
 
+If an error about unittesting pops up, please see this link. In almost all cases, it is included with an installation of Python 3.9 or higher
+https://stackoverflow.com/questions/46133254/unittest-installation-error-could-not-find-a-version-that-satisfies-the-requirem
+
 
 Installing MongoDB on Windows
 https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-windows/
