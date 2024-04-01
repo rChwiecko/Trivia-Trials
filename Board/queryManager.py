@@ -1,5 +1,5 @@
 from pymongo import MongoClient
-# hello
+"""A class to manage game-related database operations """
 
 # Create a client
 client = MongoClient('mongodb://localhost:27017/')
@@ -27,7 +27,14 @@ game = {
 }
 
 def insert_game(game):
-  # Insert the game into the 'games' collection
+  """Inserts a game document into the collection.
+
+        Args:
+            game (dict): A dictionary representing the game document to be inserted.
+
+        Returns:
+            pymongo.results.UpdateResult: The result of the update operation.
+  """
   result = games.update_one({"game_id": game["game_id"]}, {"$set": game}, upsert=True)
   return result
 
@@ -36,11 +43,24 @@ def insert_game(game):
 
 def find_game_by_id(game_id):
   # Find the game with the specified game_id
+  """Finds a game document by its game_id.
+
+        Args:
+            game_id (int): The game_id to search for.
+
+        Returns:
+            dict: The game document found, or None if not found.
+  """
   game = games.find_one({"game_id": game_id})
   return game
 
 def get_player_scores():
   # Initialize the player_scores dictionary
+  """Retrieves player scores from all game documents.
+
+        Returns:
+            dict: A dictionary containing player names as keys and their scores as values.
+  """
   player_scores = {}
 
   # for each game_id, print the player names and scores
@@ -54,6 +74,11 @@ def get_player_scores():
 
 def get_player_info():
   # Initialize the player_info dictionary
+  """Retrieves detailed information about each player.
+
+        Returns:
+            dict: A dictionary containing player names as keys and dictionaries of their information as values.
+  """
   player_info = {}
 
   # for each game_id, print the player names and scores
