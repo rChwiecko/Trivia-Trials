@@ -1,4 +1,4 @@
-'''This module generates the main game'''
+'''This module generates the main game.'''
 
 import pygame
 import sys
@@ -240,9 +240,9 @@ def after_login_screen():
     # make 2 buttons, one for drawing the player details and one for generate game data
     draw_player_details_button = Button('Player Details', (100, 100), width=200, height=40)
     draw_player_details_button.draw()
-    generate_game_data_button = Button('Generate Game Data', (100, 150), width=200, height=40)
+    generate_game_data_button = Button('Generate Game Data', (100, 150), width=300, height=40)
     generate_game_data_button.draw()
-    draw_change_highscores_button = Button('Change Highscores', (100, 200), width=200, height=40)
+    draw_change_highscores_button = Button('Change Highscores', (100, 200), width=300, height=40)
     draw_change_highscores_button.draw()
     global state
     if draw_back_button():
@@ -712,7 +712,7 @@ def draw_save_screen():
 
 
 def draw_highscore_screen():
-    '''Generate highscore screen.'''
+    '''Generate highscore screen showing top players in the game.'''
     highscore_menu_width = 400
     highscore_menu_height = 400
     highscore_menu_x = (WIDTH - highscore_menu_width) // 2
@@ -782,20 +782,20 @@ while run:
     draw_heading()
 
     if main_menu:
-        menu_command = draw_menu()
+        menu_command = draw_menu()  # number representing user mouse input
         if menu_command != -1:
             main_menu = False
-            if menu_command == 5:  # Exit Menu button pressed
+            if menu_command == 5:   # Exit Menu button pressed
                 pygame.quit()
                 sys.exit()
     else:
-        if menu_command == 2:
+        if menu_command == 2:       # if user clicks on save
             save_command = draw_save_screen()
             if draw_back_button():
                 main_menu = True
             if save_command != 0:
                 main_menu = True
-        elif menu_command == 3:  # Highscore button pressed
+        elif menu_command == 3:     # Highscore button pressed
             draw_highscore_screen()
             if draw_back_button():
                 main_menu = True
@@ -803,9 +803,10 @@ while run:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
-        elif menu_command == 1:  # Start button pressed
+        elif menu_command == 1:     # Start button pressed
             screen.fill('black')
-            # Display role selection screen
+
+            # Display role selection options
             dev_button = Button('Developer', (WIDTH // 2 - 100, HEIGHT // 2 - 50), width=200)
             dev_button.draw()
             instructor_button = Button('Instructor', (WIDTH // 2 - 100, HEIGHT // 2 + 20), width=200)
@@ -933,9 +934,9 @@ while run:
             run = False
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
-                if main_menu:  # Only show exit menu in the main menu screen
+                if main_menu:       # Only show exit menu in the main menu screen
                     pygame.quit()
                     sys.exit()
     pygame.display.flip()
 
-pygame.quit()
+pygame.quit()   # completely quits game
