@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module Player</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title">Player</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:c%3A%5C1-school%5Cuni%5Cy4%5Ccs2212%5Ccode%5Cgroup69-2%5Cplayer%5Cplayer.py">c:\1-school\uni\y4\cs2212\code\group69-2\player\player.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="random.html">random</a><br>
+</td><td class="multicolumn"></td><td class="multicolumn"></td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+    
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="builtins.html#object">builtins.object</a>
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="Player.html#Player">Player</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="Player">class <strong>Player</strong></a>(<a href="builtins.html#object">builtins.object</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code">A&nbsp;class&nbsp;to&nbsp;represent&nbsp;a&nbsp;player.<br>
+&nbsp;<br>
+Attributes:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;permissionValue&nbsp;(int):&nbsp;Permission&nbsp;value&nbsp;to&nbsp;indicate&nbsp;<a href="#Player">Player</a>&nbsp;(0),&nbsp;Instructor&nbsp;(1),&nbsp;or&nbsp;Developer&nbsp;(2)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;playerID&nbsp;(int):&nbsp;<a href="#Player">Player</a>&nbsp;ID,&nbsp;automatically&nbsp;and&nbsp;randomly&nbsp;generated.&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;playerName&nbsp;(str):&nbsp;<a href="#Player">Player</a>&nbsp;name,&nbsp;input&nbsp;by&nbsp;user.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;score&nbsp;(int):&nbsp;Current&nbsp;game&nbsp;score&nbsp;of&nbsp;player.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;duckCount&nbsp;(int):&nbsp;Number&nbsp;of&nbsp;score&nbsp;boosters&nbsp;(ducks)&nbsp;a&nbsp;player&nbsp;has.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;streakCount&nbsp;(int):&nbsp;Number&nbsp;of&nbsp;consecutively&nbsp;correct&nbsp;answers&nbsp;a&nbsp;player&nbsp;has.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;correctCount&nbsp;(int):&nbsp;Total&nbsp;number&nbsp;of&nbsp;questions&nbsp;correctly&nbsp;answered&nbsp;by&nbsp;player.<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn">Methods defined here:<br>
+<dl><dt><a name="Player-__init__"><strong>__init__</strong></a>(self)</dt><dd><span class="code">Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</span></dd></dl>
+
+<dl><dt><a name="Player-getCorrectCount"><strong>getCorrectCount</strong></a>(self) -&gt; int</dt><dd><span class="code">Gets&nbsp;the&nbsp;total&nbsp;number&nbsp;of&nbsp;correct&nbsp;answers&nbsp;for&nbsp;instructor&nbsp;to&nbsp;see&nbsp;player&nbsp;metrics.<br>
+&nbsp;<br>
+Return:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int:&nbsp;The&nbsp;number&nbsp;of&nbsp;correct&nbsp;answers&nbsp;input&nbsp;by&nbsp;player.</span></dd></dl>
+
+<dl><dt><a name="Player-getDuckCount"><strong>getDuckCount</strong></a>(self) -&gt; int</dt><dd><span class="code">Gets&nbsp;the&nbsp;number&nbsp;of&nbsp;duck&nbsp;boosters&nbsp;in&nbsp;possession&nbsp;of&nbsp;player.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int:&nbsp;The&nbsp;number&nbsp;of&nbsp;ducks&nbsp;a&nbsp;player&nbsp;has.</span></dd></dl>
+
+<dl><dt><a name="Player-getID"><strong>getID</strong></a>(self) -&gt; int</dt><dd><span class="code">Gets&nbsp;the&nbsp;player&nbsp;ID&nbsp;of&nbsp;a&nbsp;<a href="#Player">Player</a>&nbsp;<a href="builtins.html#object">object</a>.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int:&nbsp;The&nbsp;randomly&nbsp;generated&nbsp;player&nbsp;ID.</span></dd></dl>
+
+<dl><dt><a name="Player-getName"><strong>getName</strong></a>(self) -&gt; str</dt><dd><span class="code">Gets&nbsp;the&nbsp;player&nbsp;name.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;The&nbsp;name&nbsp;entered&nbsp;by&nbsp;player&nbsp;upon&nbsp;login.</span></dd></dl>
+
+<dl><dt><a name="Player-getPermission"><strong>getPermission</strong></a>(self) -&gt; int</dt><dd><span class="code">Gets&nbsp;the&nbsp;permission&nbsp;level&nbsp;of&nbsp;this&nbsp;<a href="builtins.html#object">object</a>,&nbsp;should&nbsp;be&nbsp;0.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int:&nbsp;The&nbsp;permission&nbsp;level&nbsp;of&nbsp;this&nbsp;user.</span></dd></dl>
+
+<dl><dt><a name="Player-getScore"><strong>getScore</strong></a>(self) -&gt; float</dt><dd><span class="code">Gets&nbsp;the&nbsp;current&nbsp;score&nbsp;of&nbsp;the&nbsp;player.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;float:&nbsp;The&nbsp;score&nbsp;of&nbsp;player&nbsp;in&nbsp;the&nbsp;current&nbsp;game.</span></dd></dl>
+
+<dl><dt><a name="Player-getStreakCount"><strong>getStreakCount</strong></a>(self) -&gt; int</dt><dd><span class="code">Gets&nbsp;the&nbsp;number&nbsp;of&nbsp;consecutively&nbsp;correct&nbsp;answers.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int:&nbsp;The&nbsp;number&nbsp;of&nbsp;consecutively&nbsp;correct&nbsp;answers&nbsp;input&nbsp;by&nbsp;player.</span></dd></dl>
+
+<dl><dt><a name="Player-setID"><strong>setID</strong></a>(self) -&gt; None</dt><dd><span class="code">Generate&nbsp;ID&nbsp;for&nbsp;this&nbsp;player.</span></dd></dl>
+
+<dl><dt><a name="Player-setName"><strong>setName</strong></a>(self, name: str) -&gt; None</dt><dd><span class="code">Set&nbsp;name&nbsp;of&nbsp;player.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;(str):&nbsp;Input&nbsp;from&nbsp;user,&nbsp;user's&nbsp;name.</span></dd></dl>
+
+<dl><dt><a name="Player-setPermission"><strong>setPermission</strong></a>(self, pinInput: int) -&gt; None</dt><dd><span class="code">Set&nbsp;permission&nbsp;level&nbsp;of&nbsp;this&nbsp;player.<br>
+&nbsp;<br>
+Args:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;permission&nbsp;(int):&nbsp;Indicates&nbsp;permission&nbsp;level&nbsp;of&nbsp;player,&nbsp;only&nbsp;allowed&nbsp;1&nbsp;and&nbsp;2&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;with&nbsp;correct&nbsp;pin&nbsp;input.</span></dd></dl>
+
+<dl><dt><a name="Player-updateCorrectCount"><strong>updateCorrectCount</strong></a>(self) -&gt; None</dt><dd><span class="code">Increments&nbsp;by&nbsp;1&nbsp;for&nbsp;each&nbsp;correct&nbsp;answer.</span></dd></dl>
+
+<dl><dt><a name="Player-updateDuckCount"><strong>updateDuckCount</strong></a>(self, count: int) -&gt; None</dt><dd><span class="code">Increments&nbsp;number&nbsp;of&nbsp;ducks&nbsp;in&nbsp;player's&nbsp;posession.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;count&nbsp;(int):&nbsp;Amount&nbsp;of&nbsp;ducks&nbsp;earned&nbsp;for&nbsp;completing&nbsp;a&nbsp;level.</span></dd></dl>
+
+<dl><dt><a name="Player-updateScore"><strong>updateScore</strong></a>(self, score: float) -&gt; None</dt><dd><span class="code">Increments&nbsp;player&nbsp;score.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;score&nbsp;(int):&nbsp;Amount&nbsp;of&nbsp;points&nbsp;earned&nbsp;for&nbsp;answering&nbsp;a&nbsp;question&nbsp;correctly.</span></dd></dl>
+
+<dl><dt><a name="Player-updateStreakCount"><strong>updateStreakCount</strong></a>(self) -&gt; None</dt><dd><span class="code">Increments&nbsp;by&nbsp;1&nbsp;for&nbsp;each&nbsp;consecutively&nbsp;correct&nbsp;answer.</span></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>
