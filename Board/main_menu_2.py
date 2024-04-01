@@ -543,8 +543,7 @@ def generate_game_data():
                     score_active = False
                 score_color = 'white' if score_active else 'black'
                 
-                if submit_button.check_clicked():
-                    # turn it into a game data object
+                if submit_button.check_clicked():   # if saving game, change turn it into a game data object and save in database
                     sending_level = int(level)
                     sending_index = int(index)
                     sending_streak = int(streak)
