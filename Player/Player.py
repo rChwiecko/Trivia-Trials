@@ -37,7 +37,6 @@ class Player:
         Args:
             name (str): Input from user, user's name.
         '''
-
         self.__playerName = name    # get from user input, query would take from this method
 
     def setID(self) -> None:     # randomized
