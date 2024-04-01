@@ -46,16 +46,18 @@ python main_menu_2.py
 
 
 ## User Guide 
-1. The first screen displayed is the "Main Menu" Screen where user has a variety of options to navigate to; start game, quit game, go to a  tutorial session, display high scores, resume a session
+1. The first screen displayed is the "Main Menu" Screen where user has a variety of options to navigate to; start game, quit game, go to a tutorial session, display high scores, resume a session
 2. If user chooses "Tutorial", they will be navigated to a screen explaining the steps on how to play the game 
 3. If user chooses "Load Save", they will be able to play a previous most recently saved session 
 4. If user chooses " High Scores", the screen will display the high scores table 
 5. If the user chooses "Quit", the application will simply terminate 
 6. If the user chooses "Start", the user will be put into a new game 
 7. The user will be asked questions and they have to answer it under a certain time limit 
-8. there are 3 rows in each level; first row is basic math (addition and subtraction), second row is secondary math (multiplication and division), and third is intermediate math (integrals and quadratics)
-9. the questions will be math based and the complexity of the questions increase by level 
-10. once all players are done answering the question/ the timer has run out, the software will provide a feedback screend isplaying who got it correct 
+8. There are 3 rows in each level; first row is basic math (addition and subtraction), second row is secondary math (multiplication and division), and third is intermediate math (integrals and quadratics)
+9. The questions will be math based and the complexity of the questions increase by level 
+10. Once all players are done answering the question/ the timer has run out, the software will provide a feedback screend displaying who got it correct 
+
+To access Developer tools, from the main menu click on Developer Login. Input a password and if it is correct, users will be able to view player details, manipulate game elements as they would like, and change player attributes like scoring
 
 NEEDS TO BE COMPLETE
 
