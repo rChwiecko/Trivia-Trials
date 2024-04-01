@@ -68,4 +68,4 @@ In order to access Developer tools, you will need to input a 1234 in the passwor
 To start a game, you will need to give each player a name and a password. 
 
 ## How to Access Instructor Mode 
-You must also include details on how to access your teacher mode and steps to build/install it if it is a separate program.
+Follow the same steps as accessing Developer tools
