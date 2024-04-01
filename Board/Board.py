@@ -306,6 +306,19 @@ class Board:
                 except:  # If answer cannot be converted to integer
                     player["streak"] = 0  # Reset player's streak
                     self.answer_correct = False  # Set answer_correct flag to False
+            elif isinstance(question[-1], float):
+                    try:
+                        answer = float(answer)  # Convert answer to integer
+                        if (answer == question[-1]):  # Check if the answer is correct
+                            player["score"] += self.update_points(player)  # Increase player's score
+                            player["streak"] += 1  # Increase player's streak
+                            self.answer_correct = True  # Set answer_correct flag to True
+                        else:  # If the answer is incorrect
+                            player["streak"] = 0  # Reset player's streak
+                            self.answer_correct = False  # Set answer_correct flag to False
+                    except:  # If answer cannot be converted to integer
+                        player["streak"] = 0  # Reset player's streak
+                        self.answer_correct = False  # Set answer_correct flag to False
             elif isinstance(question[-1], list):  # Check if the answer is a list
                 try:
                     answer = answer.split(',')  # Split the answer by comma
