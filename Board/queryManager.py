@@ -1,5 +1,8 @@
 from pymongo import MongoClient
-"""A class to manage game-related database operations """
+"""A class to manage game-related database operations.
+
+Authors: Arjun Atwal
+ """
 
 # Create a client
 client = MongoClient('mongodb://localhost:27017/')

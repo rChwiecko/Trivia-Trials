@@ -1,4 +1,7 @@
-'''This module generates the main game.'''
+'''This module generates the main game.
+
+Author: Arjun Atwal, Ryan Chwiecko, Jin Zhao, Sahej Chawla
+'''
 
 import pygame
 import sys
