@@ -1,4 +1,6 @@
 # import required module
+
+# Author : Ryan and Sonia; Sonia contributed on the pause screen UI and button reactions 
 import pygame, pygame_gui
 from Board import * 
 import json
