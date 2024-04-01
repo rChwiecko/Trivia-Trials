@@ -28,6 +28,9 @@ IF MONGODB IS NOT INSTALLED, THE GAME WILL STILL FUNCTION BUT MANY FEATURES SUCH
 
 ## Step by Step Guide for Making the Software 
 A detailed step by step guide for building your software (compiling it from source code). This should include details on how to obtain and install any third party libraries.
+Running the software will automatically compile all necessary files, see the instructions below for the command and instructions to do so
+
+See above section for all specifications for the required libraries and third party tools
 
 
 ## Step by Step Guide for Running the Software 
