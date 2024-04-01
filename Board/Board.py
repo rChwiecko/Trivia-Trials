@@ -1,4 +1,4 @@
-import pygame # Import pygame module
+import pygame # Import pygame modules
 from questionGeneration import * # import question generation functions
 import random
 from const import * # Import constant values
