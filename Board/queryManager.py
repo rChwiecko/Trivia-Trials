@@ -94,3 +94,17 @@ def get_player_info():
     # print(player_info)
   return player_info
 
+def update_player_score(player_name, score):
+  # Update the score of the specified player
+  """Updates the score of a player in all game documents.
+
+        Args:
+            player_name (str): The name of the player whose score is to be updated.
+            score (int): The new score of the player.
+
+        Returns:
+            pymongo.results.UpdateResult: The result of the update operation.
+  """
+  result = games.update_many({"players.name": player_name}, {"$set": {"players.$.score": score}})
+  return result
+

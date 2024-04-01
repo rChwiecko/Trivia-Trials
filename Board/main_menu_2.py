@@ -237,12 +237,146 @@ def after_login_screen():
     draw_player_details_button.draw()
     generate_game_data_button = Button('Generate Game Data', (100, 150), width=200, height=40)
     generate_game_data_button.draw()
+    draw_change_highscores_button = Button('Change Highscores', (100, 200), width=200, height=40)
+    draw_change_highscores_button.draw()
     if draw_back_button():
         return 0
     if draw_player_details_button.check_clicked():
         draw_player_details()
     if generate_game_data_button.check_clicked():
         generate_game_data()
+    if draw_change_highscores_button.check_clicked():
+        change_highscores()
+
+def change_highscores():
+    '''Generates screen to change highscores.'''
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if draw_back_button():
+                    return 0
+
+        highscore_menu_width = 400
+        highscore_menu_height = 400
+        highscore_menu_x = (WIDTH - highscore_menu_width) // 2
+        highscore_menu_y = (HEIGHT - highscore_menu_height) // 2
+        pygame.draw.rect(screen, 'black', [highscore_menu_x, highscore_menu_y, highscore_menu_width, highscore_menu_height])
+        pygame.draw.rect(screen, 'green', [highscore_menu_x, highscore_menu_y, highscore_menu_width, highscore_menu_height], 5)
+
+        # Display high scores
+        high_scores = get_player_scores() # Get high scores from the database
+        
+        y_offset = highscore_menu_y + 50
+        for player, score in high_scores.items():
+            text_surface = font.render(f'{player}: {score}', True, 'white')
+            screen.blit(text_surface, (highscore_menu_x + 50, y_offset))
+            y_offset += 40
+        
+        # Add buttons to change high scores
+        change_highscore_button = Button('Change Highscores', (highscore_menu_x + 50, highscore_menu_y + 300))
+        change_highscore_button.draw()
+
+        if change_highscore_button.check_clicked():
+            # change the high scores
+            # make 2 text boxes to the right of the high scores, one for player and one for score
+            player = ''
+            player_rect = pygame.Rect(100, 100, 140, 32)
+            player_active = False
+            player_color = 'white'
+            player_font = pygame.font.Font(None, 32)
+            player_text = player_font.render(player, True, player_color)
+            player_text_rect = player_text.get_rect()
+            player_text_rect.center = player_rect.center
+            player_rect.w = max(200, player_text_rect.width + 10)
+
+            score = ''
+            score_rect = pygame.Rect(100, 150, 140, 32)
+            score_active = False
+            score_color = 'white'
+            score_font = pygame.font.Font(None, 32)
+            score_text = score_font.render(score, True, score_color)
+            score_text_rect = score_text.get_rect()
+            score_text_rect.center = score_rect.center
+            score_rect.w = max(200, score_text_rect.width + 10)
+
+            submit_button = Button('Submit', (100, 200), width=100, height=40)
+
+            active = False
+            while True:
+                screen.fill('black')
+                screen.blit(player_text, player_text_rect)
+                pygame.draw.rect(screen, 'lightgrey' if player_active else 'white', player_rect, 2)  
+                screen.blit(score_text, score_text_rect)
+                pygame.draw.rect(screen, 'lightgrey' if score_active else 'white', score_rect, 2)  
+                submit_button.draw()
+
+                player_label = font.render("Player:", True, 'white')
+                screen.blit(player_label, (player_rect.x + player_rect.width + 10, player_rect.y))
+                
+                score_label = font.render("Score:", True, 'white')
+                screen.blit(score_label, (score_rect.x + score_rect.width + 10, score_rect.y))
+
+                if draw_back_button():
+                    return 0
+                
+                pygame.display.flip()
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        pygame.quit()
+                        sys.exit()
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        if player_rect.collidepoint(event.pos):
+                            player_active = not player_active
+                        else:
+                            player_active = False
+                        player_color = 'white' if player_active else 'black'
+                        
+                        if score_rect.collidepoint(event.pos):
+                            score_active = not score_active
+                        else:
+                            score_active = False
+                        score_color = 'white' if score_active else 'black'
+                        if submit_button.check_clicked():
+                            # change the high score
+                            update_player_score(player, score)
+                            running = False
+                            return 0
+                    if event.type == pygame.KEYDOWN:
+                        if player_active:
+                            if event.key == pygame.K_RETURN:
+                                update_player_score(player, score)
+                                running = False
+                                return 0
+                            elif event.key == pygame.K_BACKSPACE:
+                                player = player[:-1]
+                            else:
+                                player += event.unicode
+                            player_text = player_font.render(player, True, player_color)
+                            player_text_rect = player_text.get_rect()
+                            player_text_rect.center = player_rect.center
+                            player_rect.w = max(200, player_text_rect.width + 10)
+                            
+                        if score_active:
+                            if event.key == pygame.K_RETURN:
+                                update_player_score(player, score)
+                                running = False
+                                return 0
+                            elif event.key == pygame.K_BACKSPACE:
+                                score = score[:-1]
+                            else:
+                                score += event.unicode
+                            score_text = score_font.render(score, True, score_color)
+                            score_text_rect = score_text.get_rect()
+                            score_text_rect.center = score_rect.center
+                            score_rect.w = max(200, score_text_rect.width + 10)
+                            
+
+        pygame.display.flip()
 
 def draw_player_details():
     '''Generates text to display player details.'''
@@ -342,7 +476,6 @@ def generate_game_data():
         screen.blit(score_label, (score_rect.x + score_rect.width + 10, score_rect.y))
 
         if draw_back_button():
-            # main menu
             return 0
         pygame.display.flip()
         for event in pygame.event.get():
