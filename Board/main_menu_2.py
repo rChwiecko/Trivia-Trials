@@ -10,6 +10,7 @@ from const import *
 WIDTH = 1280
 HEIGHT = 800
 FPS = 60
+state = ''
 timer = pygame.time.Clock()
 screen = pygame.display.set_mode([WIDTH, HEIGHT])
 pygame.display.set_caption('Trivia Trials')
@@ -239,11 +240,15 @@ def after_login_screen():
     generate_game_data_button.draw()
     draw_change_highscores_button = Button('Change Highscores', (100, 200), width=200, height=40)
     draw_change_highscores_button.draw()
+    global state
     if draw_back_button():
+        state = ''
         return 0
     if draw_player_details_button.check_clicked():
         draw_player_details()
+        state = "draw_details"
     if generate_game_data_button.check_clicked():
+        state = ''
         generate_game_data()
     if draw_change_highscores_button.check_clicked():
         change_highscores()
@@ -374,6 +379,8 @@ def change_highscores():
                             score_text_rect = score_text.get_rect()
                             score_text_rect.center = score_rect.center
                             score_rect.w = max(200, score_text_rect.width + 10)
+                            
+
         pygame.display.flip()
 
 def draw_player_details():
@@ -771,7 +778,6 @@ while run:
             if draw_back_button():
                 main_menu = True
             if save_command != 0:
-                print(f'{save_command}')
                 main_menu = True
         elif menu_command == 3:  # Highscore button pressed
             draw_highscore_screen()
