@@ -253,6 +253,7 @@ def after_login_screen():
         state = ''
         generate_game_data()
     if draw_change_highscores_button.check_clicked():
+        state = ''
         change_highscores()
 
 def change_highscores():
