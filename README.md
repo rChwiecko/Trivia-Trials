@@ -45,6 +45,8 @@ To run the software, navigate to the Board folder in terminal and run the follow
 python main_menu_2.py
 ```
 
+Or from the Board folder in terminal, run the main_menu_2.exe
+
 
 ## User Guide 
 1. The first screen displayed is the "Main Menu" Screen where user has a variety of options to navigate to; start game, quit game, go to a tutorial session, display high scores, resume a session
