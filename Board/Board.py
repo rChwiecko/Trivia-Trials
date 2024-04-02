@@ -133,12 +133,6 @@ class Board:
         self.draw_button("Resume", 1280/2-100, 250)  # Draw the "Resume" button
         self.draw_button("Save and Quit", 1280/2-100, 350)  # Draw the "Save and Quit" button
         self.draw_button("          Quit", 1280/2-100, 450)  # Draw the "Don't Save and Quit" button
-        if paused: 
-            self.drawText("Resume Session", self.curr_font, 40, BLACK,  WIDTH // 4, HEIGHT // 4)  # Draw "Resume Session" text if paused
-        else:
-            if dataSaved:
-                self.drawText("Data Saved", self.curr_font, 40, BLACK, WIDTH // 4, HEIGHT // 4)  # Draw "Data Saved" text if data saved   
-
     
     def drawText(self, text, fontname, fontsize, text_col, x, y):
         """
