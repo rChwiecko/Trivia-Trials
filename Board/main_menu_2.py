@@ -86,7 +86,10 @@ class Button:
 
 
 def draw_heading():
-    '''Generate text for a screen header.'''
+    '''Generate personal info as text for a screen header.
+    
+    Returns:
+        none'''
     drawText("Ryan Chwiecko, Jin Zhao, Arjun Atwal, Sonia Sharma, Sahej Chawla", other_font, 15, WHITE, 10, 10)
     drawText("Team number 69", other_font, 15, WHITE, 10, 25)
     drawText("Term: Winter 2024", other_font, 15, WHITE, 10, 40)
@@ -141,7 +144,14 @@ def draw_menu() -> int:
     return command
 
 def draw_password_screen():
-    '''Generates screen prompting user to enter password.'''
+    '''Generates screen prompting user to enter password.
+
+    args:
+        None
+    
+    Returns:
+        int: The command input representing a screen chosen through mouse click by user.
+    '''
     password = ''
     password_rect = pygame.Rect(100, 100, 140, 32)
     password_active = False
@@ -245,7 +255,10 @@ def draw_password_screen():
         pygame.display.flip()
 
 def after_login_screen():
-    '''Generate screen displaying options for the user upon successful login.'''
+    '''Generate screen displaying options for the user upon successful login.
+    
+    Returns:
+        int: The command input representing a screen chosen through mouse click by user.'''
     screen.fill('black')
     # make 2 buttons, one for drawing the player details and one for generate game data
     draw_player_details_button = Button('Player Details', (100, 100), width=200, height=40)
@@ -306,7 +319,15 @@ def show_tutorial(tutorial_state):
         drawText("going to be rewarded with a duck at the end of every level", other_font, 20, WHITE, 100, 550)     
 
 def change_highscores():
-    '''Generates screen to change highscores.'''
+    '''Generates screen to change highscores.
+
+    args:
+        None
+    
+    Returns:
+        int: The command input representing a screen chosen through mouse click by user.
+    '''
+
     running = True
     while running:
         for event in pygame.event.get():
@@ -437,7 +458,10 @@ def change_highscores():
         pygame.display.flip()
 
 def draw_player_details():
-    '''Generates text to display player details.'''
+    '''Generates text to display player details.
+    
+    Returns:
+        int: The command input representing a screen chosen through mouse click by user.'''
     # use get_player_info() to get the player info, then display it on the screen
     player_info = get_player_info()
     y_offset = 500
@@ -450,7 +474,10 @@ def draw_player_details():
         y_offset += 40
 
 def generate_game_data():
-    '''Generates data on a saved game and displays it for developer to manipulate.'''
+    '''Generates data on a saved game and displays it for developer to manipulate.
+    
+    Returns:
+        int: The command input representing a screen chosen through mouse click by user.'''
 
     # variables to visualize each player's level
     level = ''
@@ -703,7 +730,12 @@ def drawText(text, fontname, fontsize, text_col, x, y):
     screen.blit(text_surface, ((x, y)))
 
 def draw_save_screen():
-    '''Generate game save screen displaying save slots for 3 games.'''
+    '''Generate game save screen displaying save slots for 3 games. Requires player login to access save files.
+    
+    Returns:
+        int: The command input representing a screen chosen through mouse click by user.
+        
+    '''
 
     # screen dimensions and position
     save_menu_width = 300
@@ -1448,8 +1480,7 @@ def draw_highscore_screen():
     highscore_menu_x = (WIDTH - highscore_menu_width) // 2
     highscore_menu_y = (HEIGHT - highscore_menu_height) // 2
     pygame.draw.rect(screen, 'black', [highscore_menu_x, highscore_menu_y, highscore_menu_width, highscore_menu_height])
-    pygame.draw.rect(screen, 'green', [highscore_menu_x, highscore_menu_y, highscore_menu_width, highscore_menu_height],
-                     5)
+    pygame.draw.rect(screen, 'green', [highscore_menu_x, highscore_menu_y, highscore_menu_width, highscore_menu_height],5)
 
     # Display high scores
     high_scores = get_player_scores() # Get high scores from the database
@@ -1474,7 +1505,10 @@ def draw_back_button() -> bool:
     return False
 
 def draw_player_login():
-    '''Generate player login screen.'''
+    '''Generate player login screen.
+    
+    Returns:
+        int: Number representing the user mouse input.'''
     entering_user_data = True
     rect_x = (WIDTH - 880) // 2
     rect_y = (HEIGHT - 600) // 2
