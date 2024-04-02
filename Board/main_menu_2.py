@@ -202,7 +202,6 @@ def draw_password_screen():
                 if submit_button.check_clicked():       # check if submit button is clicked
                     if password == '1234':
                         running = True
-                        global state
                         while running:
                             for event in pygame.event.get():
                                 if event.type == pygame.QUIT:
@@ -211,9 +210,8 @@ def draw_password_screen():
                                     sys.exit()
                                 elif event.type == pygame.MOUSEBUTTONDOWN:
                                     if draw_back_button():
-                                        state = ''
                                         return 0
-                                after_login_screen()
+                            after_login_screen()
                             pygame.display.flip()
                         return password, username
                     
@@ -749,42 +747,104 @@ def draw_save_screen():
                 print(player_info)
                 
                 
-                password = ''
-                password_rect = pygame.Rect(100, 100, 140, 32)
-                password_active = False
-                password_color = 'white'
-                password_font = pygame.font.Font(None, 32)
-                password_text = password_font.render(password, True, password_color)
-                password_text_rect = password_text.get_rect()
-                password_text_rect.center = password_rect.center
-                password_rect.w = max(200, password_text_rect.width + 10)
+                password1 = ''
+                password1_rect = pygame.Rect(100, 100, 140, 32)
+                password1_active = False
+                password1_color = 'white'
+                password1_font = pygame.font.Font(None, 32)
+                password1_text = password1_font.render(password1, True, password1_color)
+                password1_text_rect = password1_text.get_rect()
+                password1_text_rect.center = password1_rect.center
+                password1_rect.w = max(200, password1_text_rect.width + 10)
                 
-                username = ''
-                username_rect = pygame.Rect(100, 150, 140, 32)
-                username_active = False
-                username_color = 'white'
-                username_font = pygame.font.Font(None, 32)
-                username_text = username_font.render(username, True, username_color)
-                username_text_rect = username_text.get_rect()
-                username_text_rect.center = username_rect.center
-                username_rect.w = max(200, username_text_rect.width + 10)
+                username1 = ''
+                username1_rect = pygame.Rect(100, 150, 140, 32)
+                username1_active = False
+                username1_color = 'white'
+                username1_font = pygame.font.Font(None, 32)
+                username1_text = username1_font.render(username1, True, username1_color)
+                username1_text_rect = username1_text.get_rect()
+                username1_text_rect.center = username1_rect.center
+                username1_rect.w = max(200, username1_text_rect.width + 10)
+
+                password2 = ''
+                password2_rect = pygame.Rect(100, 200, 140, 32)
+                password2_active = False
+                password2_color = 'white'
+                password2_font = pygame.font.Font(None, 32)
+                password2_text = password2_font.render(password2, True, password2_color)
+                password2_text_rect = password2_text.get_rect()
+                password2_text_rect.center = password2_rect.center
+                password2_rect.w = max(200, password2_text_rect.width + 10)
                 
-                submit_button = Button('Submit', (100, 200), width=100, height=40)
+                username2 = ''
+                username2_rect = pygame.Rect(100, 250, 140, 32)
+                username2_active = False
+                username2_color = 'white'
+                username2_font = pygame.font.Font(None, 32)
+                username2_text = username2_font.render(username2, True, username2_color)
+                username2_text_rect = username2_text.get_rect()
+                username2_text_rect.center = username2_rect.center
+                username2_rect.w = max(200, username2_text_rect.width + 10)
+
+                password3 = ''
+                password3_rect = pygame.Rect(100, 300, 140, 32)
+                password3_active = False
+                password3_color = 'white'
+                password3_font = pygame.font.Font(None, 32)
+                password3_text = password3_font.render(password3, True, password3_color)
+                password3_text_rect = password3_text.get_rect()
+                password3_text_rect.center = password3_rect.center
+                password3_rect.w = max(200, password3_text_rect.width + 10)
+                
+                username3 = ''
+                username3_rect = pygame.Rect(100, 350, 140, 32)
+                username3_active = False
+                username3_color = 'white'
+                username3_font = pygame.font.Font(None, 32)
+                username3_text = username3_font.render(username3, True, username3_color)
+                username3_text_rect = username3_text.get_rect()
+                username3_text_rect.center = username3_rect.center
+                username3_rect.w = max(200, username3_text_rect.width + 10)
+
+                
+                submit_button = Button('Submit', (100, 400), width=100, height=40)
 
                 active = False
                 while True:
                     screen.fill('black')
-                    screen.blit(password_text, password_text_rect)
-                    pygame.draw.rect(screen, 'lightgrey' if password_active else 'white', password_rect, 2)  
-                    screen.blit(username_text, username_text_rect)
-                    pygame.draw.rect(screen, 'lightgrey' if username_active else 'white', username_rect, 2)  
+                    screen.blit(password1_text, password1_text_rect)
+                    pygame.draw.rect(screen, 'lightgrey' if password1_active else 'white', password1_rect, 2)  
+                    screen.blit(username1_text, username1_text_rect)
+                    pygame.draw.rect(screen, 'lightgrey' if username1_active else 'white', username1_rect, 2) 
+                    screen.blit(password2_text, password2_text_rect)
+                    pygame.draw.rect(screen, 'lightgrey' if password2_active else 'white', password2_rect, 2)
+                    screen.blit(username2_text, username2_text_rect)
+                    pygame.draw.rect(screen, 'lightgrey' if username2_active else 'white', username2_rect, 2)
+                    screen.blit(password3_text, password3_text_rect)
+                    pygame.draw.rect(screen, 'lightgrey' if password3_active else 'white', password3_rect, 2)
+                    screen.blit(username3_text, username3_text_rect)
+                    pygame.draw.rect(screen, 'lightgrey' if username3_active else 'white', username3_rect, 2)
+
                     submit_button.draw()
 
-                    password_label = font.render("Password:", True, 'white')
-                    screen.blit(password_label, (password_rect.x + password_rect.width + 10, password_rect.y))
+                    password1_label = font.render("Password1:", True, 'white')
+                    screen.blit(password1_label, (password1_rect.x + password1_rect.width + 10, password1_rect.y))
                     
-                    username_label = font.render("Username:", True, 'white')
-                    screen.blit(username_label, (username_rect.x + username_rect.width + 10, username_rect.y))
+                    username1_label = font.render("Username1:", True, 'white')
+                    screen.blit(username1_label, (username1_rect.x + username1_rect.width + 10, username1_rect.y))
+
+                    password2_label = font.render("Password2:", True, 'white')
+                    screen.blit(password2_label, (password2_rect.x + password2_rect.width + 10, password2_rect.y))
+
+                    username2_label = font.render("Username2:", True, 'white')
+                    screen.blit(username2_label, (username2_rect.x + username2_rect.width + 10, username2_rect.y))
+
+                    password3_label = font.render("Password3:", True, 'white')
+                    screen.blit(password3_label, (password3_rect.x + password3_rect.width + 10, password3_rect.y))
+                                
+                    username3_label = font.render("Username3:", True, 'white')
+                    screen.blit(username3_label, (username3_rect.x + username3_rect.width + 10, username3_rect.y))
 
                     if draw_back_button():
                         return 0
@@ -794,59 +854,113 @@ def draw_save_screen():
                             pygame.quit()
                             sys.exit()
                         if event.type == pygame.MOUSEBUTTONDOWN:
-                            if password_rect.collidepoint(event.pos):
-                                password_active = not password_active
+                            if password1_rect.collidepoint(event.pos):
+                                password1_active = not password1_active
                             else:
-                                password_active = False
-                            password_color = 'white' if password_active else 'black'
+                                password1_active = False
+                            password1_color = 'white' if password1_active else 'black'
                             
-                            if username_rect.collidepoint(event.pos):
-                                username_active = not username_active
+                            if username1_rect.collidepoint(event.pos):
+                                username1_active = not username1_active
                             else:
-                                username_active = False
-                            username_color = 'white' if username_active else 'black'
+                                username1_active = False
+                            username1_color = 'white' if username1_active else 'black'
+
+                            if password2_rect.collidepoint(event.pos):
+                                password2_active = not password2_active
+                            else:
+                                password2_active = False
+                            password2_color = 'white' if password2_active else 'black'
+
+                            if username2_rect.collidepoint(event.pos):
+                                username2_active = not username2_active
+                            else:
+                                username2_active = False
+                            username2_color = 'white' if username2_active else 'black'
+
+                            if password3_rect.collidepoint(event.pos):
+                                password3_active = not password3_active
+                            else:
+                                password3_active = False
+                            password3_color = 'white' if password3_active else 'black'
+
+                            if username3_rect.collidepoint(event.pos):
+                                username3_active = not username3_active
+                            else:
+                                username3_active = False
+                            username3_color = 'white' if username3_active else 'black'
+
+
                             if submit_button.check_clicked():
-                                if username in player_info and password in player_info[username]:
+                                if username1 in player_info and password1 in player_info[username1] and username2 in player_info and password2 in player_info[username2] and username3 in player_info and password3 in player_info[username3]:
                                     new_game = False
                                     game(new_game=new_game, game_data=game_data)
                                 else:
                                     print("Incorrect username or password. Returning to main menu.")
                                     return 0
                         if event.type == pygame.KEYDOWN:
-                            if password_active:
-                                if event.key == pygame.K_RETURN:
-                                    if username in player_info and password == player_info[username]:
-                                        new_game = False
-                                        game(new_game=new_game, game_data=game_data)
-                                    else:
-                                        print("Incorrect username or password. Returning to main menu.")
-                                        return 0
-                                elif event.key == pygame.K_BACKSPACE:
-                                    password = password[:-1]
+                            if password1_active:
+                                
+                                if event.key == pygame.K_BACKSPACE:
+                                    password1 = password1[:-1]
                                 else:
-                                    password += event.unicode
-                                password_text = password_font.render(password, True, password_color)
-                                password_text_rect = password_text.get_rect()
-                                password_text_rect.center = password_rect.center
-                                password_rect.w = max(200, password_text_rect.width + 10)
+                                    password1 += event.unicode
+                                password1_text = password1_font.render(password1, True, password1_color)
+                                password1_text_rect = password1_text.get_rect()
+                                password1_text_rect.center = password1_rect.center
+                                password1_rect.w = max(200, password1_text_rect.width + 10)
 
-                            if username_active:
-                                if event.key == pygame.K_RETURN:
-                                    if username in player_info and password == player_info[username]:
-                                        new_game = False
-                                        game(new_game=new_game, game_data=game_data)
-                                    else:
-                                        print("Incorrect username or password. Returning to main menu.")
-                                        return 0
-                                elif event.key == pygame.K_BACKSPACE:
-                                    username = username[:-1]
+                            if username1_active:
+                                if event.key == pygame.K_BACKSPACE:
+                                    username1 = username1[:-1]
                                 else:
-                                    username += event.unicode
-                                username_text = username_font.render(username, True, username_color)
-                                username_text_rect = username_text.get_rect()
-                                username_text_rect.center = username_rect.center
-                                username_rect.w = max(200, username_text_rect.width + 10) 
-                                               
+                                    username1 += event.unicode
+                                username1_text = username1_font.render(username1, True, username1_color)
+                                username1_text_rect = username1_text.get_rect()
+                                username1_text_rect.center = username1_rect.center
+                                username1_rect.w = max(200, username1_text_rect.width + 10) 
+
+                            if password2_active:
+                                    
+                                    if event.key == pygame.K_BACKSPACE:
+                                        password2 = password2[:-1]
+                                    else:
+                                        password2 += event.unicode
+                                    password2_text = password2_font.render(password2, True, password2_color)
+                                    password2_text_rect = password2_text.get_rect()
+                                    password2_text_rect.center = password2_rect.center
+                                    password2_rect.w = max(200, password2_text_rect.width + 10)
+
+                            if username2_active:
+                                if event.key == pygame.K_BACKSPACE:
+                                    username2 = username2[:-1]
+                                else:
+                                    username2 += event.unicode
+                                username2_text = username2_font.render(username2, True, username2_color)
+                                username2_text_rect = username2_text.get_rect()
+                                username2_text_rect.center = username2_rect.center
+                                username2_rect.w = max(200, username2_text_rect.width + 10)
+
+                            if password3_active:
+                                        
+                                if event.key == pygame.K_BACKSPACE:
+                                    password3 = password3[:-1]
+                                else:
+                                    password3 += event.unicode
+                                password3_text = password3_font.render(password3, True, password3_color)
+                                password3_text_rect = password3_text.get_rect()
+                                password3_text_rect.center = password3_rect.center
+                                password3_rect.w = max(200, password3_text_rect.width + 10)
+
+                            if username3_active:
+                                if event.key == pygame.K_BACKSPACE:
+                                    username3 = username3[:-1]
+                                else:
+                                    username3 += event.unicode
+                                username3_text = username3_font.render(username3, True, username3_color)
+                                username3_text_rect = username3_text.get_rect()
+                                username3_text_rect.center = username3_rect.center
+                                username3_rect.w = max(200, username3_text_rect.width + 10)                
                 
             elif save2_btn.check_clicked():
                 game_data = find_game_by_id(2)
@@ -855,42 +969,104 @@ def draw_save_screen():
                 print(player_info)
                 
                 
-                password = ''
-                password_rect = pygame.Rect(100, 100, 140, 32)
-                password_active = False
-                password_color = 'white'
-                password_font = pygame.font.Font(None, 32)
-                password_text = password_font.render(password, True, password_color)
-                password_text_rect = password_text.get_rect()
-                password_text_rect.center = password_rect.center
-                password_rect.w = max(200, password_text_rect.width + 10)
+                password1 = ''
+                password1_rect = pygame.Rect(100, 100, 140, 32)
+                password1_active = False
+                password1_color = 'white'
+                password1_font = pygame.font.Font(None, 32)
+                password1_text = password1_font.render(password1, True, password1_color)
+                password1_text_rect = password1_text.get_rect()
+                password1_text_rect.center = password1_rect.center
+                password1_rect.w = max(200, password1_text_rect.width + 10)
                 
-                username = ''
-                username_rect = pygame.Rect(100, 150, 140, 32)
-                username_active = False
-                username_color = 'white'
-                username_font = pygame.font.Font(None, 32)
-                username_text = username_font.render(username, True, username_color)
-                username_text_rect = username_text.get_rect()
-                username_text_rect.center = username_rect.center
-                username_rect.w = max(200, username_text_rect.width + 10)
+                username1 = ''
+                username1_rect = pygame.Rect(100, 150, 140, 32)
+                username1_active = False
+                username1_color = 'white'
+                username1_font = pygame.font.Font(None, 32)
+                username1_text = username1_font.render(username1, True, username1_color)
+                username1_text_rect = username1_text.get_rect()
+                username1_text_rect.center = username1_rect.center
+                username1_rect.w = max(200, username1_text_rect.width + 10)
+
+                password2 = ''
+                password2_rect = pygame.Rect(100, 200, 140, 32)
+                password2_active = False
+                password2_color = 'white'
+                password2_font = pygame.font.Font(None, 32)
+                password2_text = password2_font.render(password2, True, password2_color)
+                password2_text_rect = password2_text.get_rect()
+                password2_text_rect.center = password2_rect.center
+                password2_rect.w = max(200, password2_text_rect.width + 10)
                 
-                submit_button = Button('Submit', (100, 200), width=100, height=40)
+                username2 = ''
+                username2_rect = pygame.Rect(100, 250, 140, 32)
+                username2_active = False
+                username2_color = 'white'
+                username2_font = pygame.font.Font(None, 32)
+                username2_text = username2_font.render(username2, True, username2_color)
+                username2_text_rect = username2_text.get_rect()
+                username2_text_rect.center = username2_rect.center
+                username2_rect.w = max(200, username2_text_rect.width + 10)
+
+                password3 = ''
+                password3_rect = pygame.Rect(100, 300, 140, 32)
+                password3_active = False
+                password3_color = 'white'
+                password3_font = pygame.font.Font(None, 32)
+                password3_text = password3_font.render(password3, True, password3_color)
+                password3_text_rect = password3_text.get_rect()
+                password3_text_rect.center = password3_rect.center
+                password3_rect.w = max(200, password3_text_rect.width + 10)
+                
+                username3 = ''
+                username3_rect = pygame.Rect(100, 350, 140, 32)
+                username3_active = False
+                username3_color = 'white'
+                username3_font = pygame.font.Font(None, 32)
+                username3_text = username3_font.render(username3, True, username3_color)
+                username3_text_rect = username3_text.get_rect()
+                username3_text_rect.center = username3_rect.center
+                username3_rect.w = max(200, username3_text_rect.width + 10)
+
+                
+                submit_button = Button('Submit', (100, 400), width=100, height=40)
 
                 active = False
                 while True:
                     screen.fill('black')
-                    screen.blit(password_text, password_text_rect)
-                    pygame.draw.rect(screen, 'lightgrey' if password_active else 'white', password_rect, 2)  
-                    screen.blit(username_text, username_text_rect)
-                    pygame.draw.rect(screen, 'lightgrey' if username_active else 'white', username_rect, 2)  
+                    screen.blit(password1_text, password1_text_rect)
+                    pygame.draw.rect(screen, 'lightgrey' if password1_active else 'white', password1_rect, 2)  
+                    screen.blit(username1_text, username1_text_rect)
+                    pygame.draw.rect(screen, 'lightgrey' if username1_active else 'white', username1_rect, 2) 
+                    screen.blit(password2_text, password2_text_rect)
+                    pygame.draw.rect(screen, 'lightgrey' if password2_active else 'white', password2_rect, 2)
+                    screen.blit(username2_text, username2_text_rect)
+                    pygame.draw.rect(screen, 'lightgrey' if username2_active else 'white', username2_rect, 2)
+                    screen.blit(password3_text, password3_text_rect)
+                    pygame.draw.rect(screen, 'lightgrey' if password3_active else 'white', password3_rect, 2)
+                    screen.blit(username3_text, username3_text_rect)
+                    pygame.draw.rect(screen, 'lightgrey' if username3_active else 'white', username3_rect, 2)
+
                     submit_button.draw()
 
-                    password_label = font.render("Password:", True, 'white')
-                    screen.blit(password_label, (password_rect.x + password_rect.width + 10, password_rect.y))
+                    password1_label = font.render("Password1:", True, 'white')
+                    screen.blit(password1_label, (password1_rect.x + password1_rect.width + 10, password1_rect.y))
                     
-                    username_label = font.render("Username:", True, 'white')
-                    screen.blit(username_label, (username_rect.x + username_rect.width + 10, username_rect.y))
+                    username1_label = font.render("Username1:", True, 'white')
+                    screen.blit(username1_label, (username1_rect.x + username1_rect.width + 10, username1_rect.y))
+
+                    password2_label = font.render("Password2:", True, 'white')
+                    screen.blit(password2_label, (password2_rect.x + password2_rect.width + 10, password2_rect.y))
+
+                    username2_label = font.render("Username2:", True, 'white')
+                    screen.blit(username2_label, (username2_rect.x + username2_rect.width + 10, username2_rect.y))
+
+                    password3_label = font.render("Password3:", True, 'white')
+                    screen.blit(password3_label, (password3_rect.x + password3_rect.width + 10, password3_rect.y))
+                                
+                    username3_label = font.render("Username3:", True, 'white')
+                    screen.blit(username3_label, (username3_rect.x + username3_rect.width + 10, username3_rect.y))
 
                     if draw_back_button():
                         return 0
@@ -900,58 +1076,113 @@ def draw_save_screen():
                             pygame.quit()
                             sys.exit()
                         if event.type == pygame.MOUSEBUTTONDOWN:
-                            if password_rect.collidepoint(event.pos):
-                                password_active = not password_active
+                            if password1_rect.collidepoint(event.pos):
+                                password1_active = not password1_active
                             else:
-                                password_active = False
-                            password_color = 'white' if password_active else 'black'
+                                password1_active = False
+                            password1_color = 'white' if password1_active else 'black'
                             
-                            if username_rect.collidepoint(event.pos):
-                                username_active = not username_active
+                            if username1_rect.collidepoint(event.pos):
+                                username1_active = not username1_active
                             else:
-                                username_active = False
-                            username_color = 'white' if username_active else 'black'
+                                username1_active = False
+                            username1_color = 'white' if username1_active else 'black'
+
+                            if password2_rect.collidepoint(event.pos):
+                                password2_active = not password2_active
+                            else:
+                                password2_active = False
+                            password2_color = 'white' if password2_active else 'black'
+
+                            if username2_rect.collidepoint(event.pos):
+                                username2_active = not username2_active
+                            else:
+                                username2_active = False
+                            username2_color = 'white' if username2_active else 'black'
+
+                            if password3_rect.collidepoint(event.pos):
+                                password3_active = not password3_active
+                            else:
+                                password3_active = False
+                            password3_color = 'white' if password3_active else 'black'
+
+                            if username3_rect.collidepoint(event.pos):
+                                username3_active = not username3_active
+                            else:
+                                username3_active = False
+                            username3_color = 'white' if username3_active else 'black'
+
+
                             if submit_button.check_clicked():
-                                if username in player_info and password in player_info[username]:
+                                if username1 in player_info and password1 in player_info[username1] and username2 in player_info and password2 in player_info[username2] and username3 in player_info and password3 in player_info[username3]:
                                     new_game = False
                                     game(new_game=new_game, game_data=game_data)
                                 else:
                                     print("Incorrect username or password. Returning to main menu.")
                                     return 0
                         if event.type == pygame.KEYDOWN:
-                            if password_active:
-                                if event.key == pygame.K_RETURN:
-                                    if username in player_info and password == player_info[username]:
-                                        new_game = False
-                                        game(new_game=new_game, game_data=game_data)
-                                    else:
-                                        print("Incorrect username or password. Returning to main menu.")
-                                        return 0
-                                elif event.key == pygame.K_BACKSPACE:
-                                    password = password[:-1]
+                            if password1_active:
+                                
+                                if event.key == pygame.K_BACKSPACE:
+                                    password1 = password1[:-1]
                                 else:
-                                    password += event.unicode
-                                password_text = password_font.render(password, True, password_color)
-                                password_text_rect = password_text.get_rect()
-                                password_text_rect.center = password_rect.center
-                                password_rect.w = max(200, password_text_rect.width + 10)
+                                    password1 += event.unicode
+                                password1_text = password1_font.render(password1, True, password1_color)
+                                password1_text_rect = password1_text.get_rect()
+                                password1_text_rect.center = password1_rect.center
+                                password1_rect.w = max(200, password1_text_rect.width + 10)
 
-                            if username_active:
-                                if event.key == pygame.K_RETURN:
-                                    if username in player_info and password == player_info[username]:
-                                        new_game = False
-                                        game(new_game=new_game, game_data=game_data)
-                                    else:
-                                        print("Incorrect username or password. Returning to main menu.")
-                                        return 0
-                                elif event.key == pygame.K_BACKSPACE:
-                                    username = username[:-1]
+                            if username1_active:
+                                if event.key == pygame.K_BACKSPACE:
+                                    username1 = username1[:-1]
                                 else:
-                                    username += event.unicode
-                                username_text = username_font.render(username, True, username_color)
-                                username_text_rect = username_text.get_rect()
-                                username_text_rect.center = username_rect.center
-                                username_rect.w = max(200, username_text_rect.width + 10) 
+                                    username1 += event.unicode
+                                username1_text = username1_font.render(username1, True, username1_color)
+                                username1_text_rect = username1_text.get_rect()
+                                username1_text_rect.center = username1_rect.center
+                                username1_rect.w = max(200, username1_text_rect.width + 10) 
+
+                            if password2_active:
+                                    
+                                    if event.key == pygame.K_BACKSPACE:
+                                        password2 = password2[:-1]
+                                    else:
+                                        password2 += event.unicode
+                                    password2_text = password2_font.render(password2, True, password2_color)
+                                    password2_text_rect = password2_text.get_rect()
+                                    password2_text_rect.center = password2_rect.center
+                                    password2_rect.w = max(200, password2_text_rect.width + 10)
+
+                            if username2_active:
+                                if event.key == pygame.K_BACKSPACE:
+                                    username2 = username2[:-1]
+                                else:
+                                    username2 += event.unicode
+                                username2_text = username2_font.render(username2, True, username2_color)
+                                username2_text_rect = username2_text.get_rect()
+                                username2_text_rect.center = username2_rect.center
+                                username2_rect.w = max(200, username2_text_rect.width + 10)
+
+                            if password3_active:
+                                        
+                                if event.key == pygame.K_BACKSPACE:
+                                    password3 = password3[:-1]
+                                else:
+                                    password3 += event.unicode
+                                password3_text = password3_font.render(password3, True, password3_color)
+                                password3_text_rect = password3_text.get_rect()
+                                password3_text_rect.center = password3_rect.center
+                                password3_rect.w = max(200, password3_text_rect.width + 10)
+
+                            if username3_active:
+                                if event.key == pygame.K_BACKSPACE:
+                                    username3 = username3[:-1]
+                                else:
+                                    username3 += event.unicode
+                                username3_text = username3_font.render(username3, True, username3_color)
+                                username3_text_rect = username3_text.get_rect()
+                                username3_text_rect.center = username3_rect.center
+                                username3_rect.w = max(200, username3_text_rect.width + 10)
 
 
 
@@ -962,42 +1193,104 @@ def draw_save_screen():
                 print(player_info)
                 
                 
-                password = ''
-                password_rect = pygame.Rect(100, 100, 140, 32)
-                password_active = False
-                password_color = 'white'
-                password_font = pygame.font.Font(None, 32)
-                password_text = password_font.render(password, True, password_color)
-                password_text_rect = password_text.get_rect()
-                password_text_rect.center = password_rect.center
-                password_rect.w = max(200, password_text_rect.width + 10)
+                password1 = ''
+                password1_rect = pygame.Rect(100, 100, 140, 32)
+                password1_active = False
+                password1_color = 'white'
+                password1_font = pygame.font.Font(None, 32)
+                password1_text = password1_font.render(password1, True, password1_color)
+                password1_text_rect = password1_text.get_rect()
+                password1_text_rect.center = password1_rect.center
+                password1_rect.w = max(200, password1_text_rect.width + 10)
                 
-                username = ''
-                username_rect = pygame.Rect(100, 150, 140, 32)
-                username_active = False
-                username_color = 'white'
-                username_font = pygame.font.Font(None, 32)
-                username_text = username_font.render(username, True, username_color)
-                username_text_rect = username_text.get_rect()
-                username_text_rect.center = username_rect.center
-                username_rect.w = max(200, username_text_rect.width + 10)
+                username1 = ''
+                username1_rect = pygame.Rect(100, 150, 140, 32)
+                username1_active = False
+                username1_color = 'white'
+                username1_font = pygame.font.Font(None, 32)
+                username1_text = username1_font.render(username1, True, username1_color)
+                username1_text_rect = username1_text.get_rect()
+                username1_text_rect.center = username1_rect.center
+                username1_rect.w = max(200, username1_text_rect.width + 10)
+
+                password2 = ''
+                password2_rect = pygame.Rect(100, 200, 140, 32)
+                password2_active = False
+                password2_color = 'white'
+                password2_font = pygame.font.Font(None, 32)
+                password2_text = password2_font.render(password2, True, password2_color)
+                password2_text_rect = password2_text.get_rect()
+                password2_text_rect.center = password2_rect.center
+                password2_rect.w = max(200, password2_text_rect.width + 10)
                 
-                submit_button = Button('Submit', (100, 200), width=100, height=40)
+                username2 = ''
+                username2_rect = pygame.Rect(100, 250, 140, 32)
+                username2_active = False
+                username2_color = 'white'
+                username2_font = pygame.font.Font(None, 32)
+                username2_text = username2_font.render(username2, True, username2_color)
+                username2_text_rect = username2_text.get_rect()
+                username2_text_rect.center = username2_rect.center
+                username2_rect.w = max(200, username2_text_rect.width + 10)
+
+                password3 = ''
+                password3_rect = pygame.Rect(100, 300, 140, 32)
+                password3_active = False
+                password3_color = 'white'
+                password3_font = pygame.font.Font(None, 32)
+                password3_text = password3_font.render(password3, True, password3_color)
+                password3_text_rect = password3_text.get_rect()
+                password3_text_rect.center = password3_rect.center
+                password3_rect.w = max(200, password3_text_rect.width + 10)
+                
+                username3 = ''
+                username3_rect = pygame.Rect(100, 350, 140, 32)
+                username3_active = False
+                username3_color = 'white'
+                username3_font = pygame.font.Font(None, 32)
+                username3_text = username3_font.render(username3, True, username3_color)
+                username3_text_rect = username3_text.get_rect()
+                username3_text_rect.center = username3_rect.center
+                username3_rect.w = max(200, username3_text_rect.width + 10)
+
+                
+                submit_button = Button('Submit', (100, 400), width=100, height=40)
 
                 active = False
                 while True:
                     screen.fill('black')
-                    screen.blit(password_text, password_text_rect)
-                    pygame.draw.rect(screen, 'lightgrey' if password_active else 'white', password_rect, 2)  
-                    screen.blit(username_text, username_text_rect)
-                    pygame.draw.rect(screen, 'lightgrey' if username_active else 'white', username_rect, 2)  
+                    screen.blit(password1_text, password1_text_rect)
+                    pygame.draw.rect(screen, 'lightgrey' if password1_active else 'white', password1_rect, 2)  
+                    screen.blit(username1_text, username1_text_rect)
+                    pygame.draw.rect(screen, 'lightgrey' if username1_active else 'white', username1_rect, 2) 
+                    screen.blit(password2_text, password2_text_rect)
+                    pygame.draw.rect(screen, 'lightgrey' if password2_active else 'white', password2_rect, 2)
+                    screen.blit(username2_text, username2_text_rect)
+                    pygame.draw.rect(screen, 'lightgrey' if username2_active else 'white', username2_rect, 2)
+                    screen.blit(password3_text, password3_text_rect)
+                    pygame.draw.rect(screen, 'lightgrey' if password3_active else 'white', password3_rect, 2)
+                    screen.blit(username3_text, username3_text_rect)
+                    pygame.draw.rect(screen, 'lightgrey' if username3_active else 'white', username3_rect, 2)
+
                     submit_button.draw()
 
-                    password_label = font.render("Password:", True, 'white')
-                    screen.blit(password_label, (password_rect.x + password_rect.width + 10, password_rect.y))
+                    password1_label = font.render("Password1:", True, 'white')
+                    screen.blit(password1_label, (password1_rect.x + password1_rect.width + 10, password1_rect.y))
                     
-                    username_label = font.render("Username:", True, 'white')
-                    screen.blit(username_label, (username_rect.x + username_rect.width + 10, username_rect.y))
+                    username1_label = font.render("Username1:", True, 'white')
+                    screen.blit(username1_label, (username1_rect.x + username1_rect.width + 10, username1_rect.y))
+
+                    password2_label = font.render("Password2:", True, 'white')
+                    screen.blit(password2_label, (password2_rect.x + password2_rect.width + 10, password2_rect.y))
+
+                    username2_label = font.render("Username2:", True, 'white')
+                    screen.blit(username2_label, (username2_rect.x + username2_rect.width + 10, username2_rect.y))
+
+                    password3_label = font.render("Password3:", True, 'white')
+                    screen.blit(password3_label, (password3_rect.x + password3_rect.width + 10, password3_rect.y))
+                                
+                    username3_label = font.render("Username3:", True, 'white')
+                    screen.blit(username3_label, (username3_rect.x + username3_rect.width + 10, username3_rect.y))
 
                     if draw_back_button():
                         return 0
@@ -1007,58 +1300,113 @@ def draw_save_screen():
                             pygame.quit()
                             sys.exit()
                         if event.type == pygame.MOUSEBUTTONDOWN:
-                            if password_rect.collidepoint(event.pos):
-                                password_active = not password_active
+                            if password1_rect.collidepoint(event.pos):
+                                password1_active = not password1_active
                             else:
-                                password_active = False
-                            password_color = 'white' if password_active else 'black'
+                                password1_active = False
+                            password1_color = 'white' if password1_active else 'black'
                             
-                            if username_rect.collidepoint(event.pos):
-                                username_active = not username_active
+                            if username1_rect.collidepoint(event.pos):
+                                username1_active = not username1_active
                             else:
-                                username_active = False
-                            username_color = 'white' if username_active else 'black'
+                                username1_active = False
+                            username1_color = 'white' if username1_active else 'black'
+
+                            if password2_rect.collidepoint(event.pos):
+                                password2_active = not password2_active
+                            else:
+                                password2_active = False
+                            password2_color = 'white' if password2_active else 'black'
+
+                            if username2_rect.collidepoint(event.pos):
+                                username2_active = not username2_active
+                            else:
+                                username2_active = False
+                            username2_color = 'white' if username2_active else 'black'
+
+                            if password3_rect.collidepoint(event.pos):
+                                password3_active = not password3_active
+                            else:
+                                password3_active = False
+                            password3_color = 'white' if password3_active else 'black'
+
+                            if username3_rect.collidepoint(event.pos):
+                                username3_active = not username3_active
+                            else:
+                                username3_active = False
+                            username3_color = 'white' if username3_active else 'black'
+
+
                             if submit_button.check_clicked():
-                                if username in player_info and password in player_info[username]:
+                                if username1 in player_info and password1 in player_info[username1] and username2 in player_info and password2 in player_info[username2] and username3 in player_info and password3 in player_info[username3]:
                                     new_game = False
                                     game(new_game=new_game, game_data=game_data)
                                 else:
                                     print("Incorrect username or password. Returning to main menu.")
                                     return 0
                         if event.type == pygame.KEYDOWN:
-                            if password_active:
-                                if event.key == pygame.K_RETURN:
-                                    if username in player_info and password == player_info[username]:
-                                        new_game = False
-                                        game(new_game=new_game, game_data=game_data)
-                                    else:
-                                        print("Incorrect username or password. Returning to main menu.")
-                                        return 0
-                                elif event.key == pygame.K_BACKSPACE:
-                                    password = password[:-1]
+                            if password1_active:
+                                
+                                if event.key == pygame.K_BACKSPACE:
+                                    password1 = password1[:-1]
                                 else:
-                                    password += event.unicode
-                                password_text = password_font.render(password, True, password_color)
-                                password_text_rect = password_text.get_rect()
-                                password_text_rect.center = password_rect.center
-                                password_rect.w = max(200, password_text_rect.width + 10)
+                                    password1 += event.unicode
+                                password1_text = password1_font.render(password1, True, password1_color)
+                                password1_text_rect = password1_text.get_rect()
+                                password1_text_rect.center = password1_rect.center
+                                password1_rect.w = max(200, password1_text_rect.width + 10)
 
-                            if username_active:
-                                if event.key == pygame.K_RETURN:
-                                    if username in player_info and password == player_info[username]:
-                                        new_game = False
-                                        game(new_game=new_game, game_data=game_data)
-                                    else:
-                                        print("Incorrect username or password. Returning to main menu.")
-                                        return 0
-                                elif event.key == pygame.K_BACKSPACE:
-                                    username = username[:-1]
+                            if username1_active:
+                                if event.key == pygame.K_BACKSPACE:
+                                    username1 = username1[:-1]
                                 else:
-                                    username += event.unicode
-                                username_text = username_font.render(username, True, username_color)
-                                username_text_rect = username_text.get_rect()
-                                username_text_rect.center = username_rect.center
-                                username_rect.w = max(200, username_text_rect.width + 10) 
+                                    username1 += event.unicode
+                                username1_text = username1_font.render(username1, True, username1_color)
+                                username1_text_rect = username1_text.get_rect()
+                                username1_text_rect.center = username1_rect.center
+                                username1_rect.w = max(200, username1_text_rect.width + 10) 
+
+                            if password2_active:
+                                    
+                                    if event.key == pygame.K_BACKSPACE:
+                                        password2 = password2[:-1]
+                                    else:
+                                        password2 += event.unicode
+                                    password2_text = password2_font.render(password2, True, password2_color)
+                                    password2_text_rect = password2_text.get_rect()
+                                    password2_text_rect.center = password2_rect.center
+                                    password2_rect.w = max(200, password2_text_rect.width + 10)
+
+                            if username2_active:
+                                if event.key == pygame.K_BACKSPACE:
+                                    username2 = username2[:-1]
+                                else:
+                                    username2 += event.unicode
+                                username2_text = username2_font.render(username2, True, username2_color)
+                                username2_text_rect = username2_text.get_rect()
+                                username2_text_rect.center = username2_rect.center
+                                username2_rect.w = max(200, username2_text_rect.width + 10)
+
+                            if password3_active:
+                                        
+                                if event.key == pygame.K_BACKSPACE:
+                                    password3 = password3[:-1]
+                                else:
+                                    password3 += event.unicode
+                                password3_text = password3_font.render(password3, True, password3_color)
+                                password3_text_rect = password3_text.get_rect()
+                                password3_text_rect.center = password3_rect.center
+                                password3_rect.w = max(200, password3_text_rect.width + 10)
+
+                            if username3_active:
+                                if event.key == pygame.K_BACKSPACE:
+                                    username3 = username3[:-1]
+                                else:
+                                    username3 += event.unicode
+                                username3_text = username3_font.render(username3, True, username3_color)
+                                username3_text_rect = username3_text.get_rect()
+                                username3_text_rect.center = username3_rect.center
+                                username3_rect.w = max(200, username3_text_rect.width + 10)
 
 
 
