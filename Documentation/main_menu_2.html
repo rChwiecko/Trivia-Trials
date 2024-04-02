@@ -9,7 +9,9 @@
 <font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>main_menu_2</strong></big></big></font></td
 ><td align=right valign=bottom
 ><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Carjun%5Cprogramming%5Crepos%5C2212%5Cgroup69%5Cboard%5Cmain_menu_2.py">c:\users\arjun\programming\repos\2212\group69\board\main_menu_2.py</a></font></td></tr></table>
-    <p><tt>This&nbsp;module&nbsp;generates&nbsp;the&nbsp;main&nbsp;game.</tt></p>
+    <p><tt>This&nbsp;module&nbsp;generates&nbsp;the&nbsp;main&nbsp;menu,&nbsp;connects&nbsp;with&nbsp;database&nbsp;and&nbsp;provides&nbsp;savedata&nbsp;for&nbsp;the&nbsp;board&nbsp;to&nbsp;use&nbsp;to&nbsp;initialize&nbsp;games.<br>
+&nbsp;<br>
+Authors:&nbsp;Arjun&nbsp;Atwal,&nbsp;Ryan&nbsp;Chwiecko,&nbsp;Jin&nbsp;Zhao,&nbsp;Sahej&nbsp;Chawla,&nbsp;Comments&nbsp;by&nbsp;Jin&nbsp;Zhao</tt></p>
 <p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#aa55cc">
@@ -82,8 +84,17 @@ Data descriptors defined here:<br>
 <font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
     
 <tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><dl><dt><a name="-after_login_screen"><strong>after_login_screen</strong></a>()</dt><dd><tt>Generate&nbsp;screen&nbsp;displaying&nbsp;options&nbsp;for&nbsp;the&nbsp;user&nbsp;upon&nbsp;successful&nbsp;login.</tt></dd></dl>
- <dl><dt><a name="-change_highscores"><strong>change_highscores</strong></a>()</dt><dd><tt>Generates&nbsp;screen&nbsp;to&nbsp;change&nbsp;highscores.</tt></dd></dl>
+<td width="100%"><dl><dt><a name="-after_login_screen"><strong>after_login_screen</strong></a>()</dt><dd><tt>Generate&nbsp;screen&nbsp;displaying&nbsp;options&nbsp;for&nbsp;the&nbsp;user&nbsp;upon&nbsp;successful&nbsp;login.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int:&nbsp;The&nbsp;command&nbsp;input&nbsp;representing&nbsp;a&nbsp;screen&nbsp;chosen&nbsp;through&nbsp;mouse&nbsp;click&nbsp;by&nbsp;user.</tt></dd></dl>
+ <dl><dt><a name="-change_highscores"><strong>change_highscores</strong></a>()</dt><dd><tt>Generates&nbsp;screen&nbsp;to&nbsp;change&nbsp;highscores.<br>
+&nbsp;<br>
+args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;None<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int:&nbsp;The&nbsp;command&nbsp;input&nbsp;representing&nbsp;a&nbsp;screen&nbsp;chosen&nbsp;through&nbsp;mouse&nbsp;click&nbsp;by&nbsp;user.</tt></dd></dl>
  <dl><dt><a name="-drawText"><strong>drawText</strong></a>(text, fontname, fontsize, text_col, x, y)</dt><dd><tt>Generates&nbsp;text&nbsp;of&nbsp;a&nbsp;specific&nbsp;size&nbsp;and&nbsp;font&nbsp;at&nbsp;a&nbsp;specified&nbsp;position.<br>
 &nbsp;<br>
 Args:<br>
@@ -101,17 +112,38 @@ Returns:<br>
 &nbsp;<br>
 Returns:&nbsp;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;boolean:&nbsp;Whether&nbsp;the&nbsp;menu&nbsp;is&nbsp;drawn&nbsp;(True)&nbsp;or&nbsp;not&nbsp;(False).</tt></dd></dl>
- <dl><dt><a name="-draw_heading"><strong>draw_heading</strong></a>()</dt><dd><tt>Generate&nbsp;text&nbsp;for&nbsp;a&nbsp;screen&nbsp;header.</tt></dd></dl>
+ <dl><dt><a name="-draw_heading"><strong>draw_heading</strong></a>()</dt><dd><tt>Generate&nbsp;personal&nbsp;info&nbsp;as&nbsp;text&nbsp;for&nbsp;a&nbsp;screen&nbsp;header.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;none</tt></dd></dl>
  <dl><dt><a name="-draw_highscore_screen"><strong>draw_highscore_screen</strong></a>()</dt><dd><tt>Generate&nbsp;highscore&nbsp;screen&nbsp;showing&nbsp;top&nbsp;players&nbsp;in&nbsp;the&nbsp;game.</tt></dd></dl>
  <dl><dt><a name="-draw_menu"><strong>draw_menu</strong></a>() -&gt; int</dt><dd><tt>Generates&nbsp;game&nbsp;initial&nbsp;main&nbsp;menu&nbsp;screen.<br>
 &nbsp;<br>
 Returns:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;int:&nbsp;The&nbsp;command&nbsp;input&nbsp;representing&nbsp;a&nbsp;screen&nbsp;chosen&nbsp;through&nbsp;mouse&nbsp;click&nbsp;by&nbsp;user.</tt></dd></dl>
- <dl><dt><a name="-draw_password_screen"><strong>draw_password_screen</strong></a>()</dt><dd><tt>Generates&nbsp;screen&nbsp;prompting&nbsp;user&nbsp;to&nbsp;enter&nbsp;password.</tt></dd></dl>
- <dl><dt><a name="-draw_player_details"><strong>draw_player_details</strong></a>()</dt><dd><tt>Generates&nbsp;text&nbsp;to&nbsp;display&nbsp;player&nbsp;details.</tt></dd></dl>
- <dl><dt><a name="-draw_player_login"><strong>draw_player_login</strong></a>()</dt><dd><tt>Generate&nbsp;player&nbsp;login&nbsp;screen.</tt></dd></dl>
- <dl><dt><a name="-draw_save_screen"><strong>draw_save_screen</strong></a>()</dt><dd><tt>Generate&nbsp;game&nbsp;save&nbsp;screen&nbsp;displaying&nbsp;save&nbsp;slots&nbsp;for&nbsp;3&nbsp;games.</tt></dd></dl>
- <dl><dt><a name="-generate_game_data"><strong>generate_game_data</strong></a>()</dt><dd><tt>Generates&nbsp;data&nbsp;on&nbsp;a&nbsp;saved&nbsp;game&nbsp;and&nbsp;displays&nbsp;it&nbsp;for&nbsp;developer&nbsp;to&nbsp;manipulate.</tt></dd></dl>
+ <dl><dt><a name="-draw_password_screen"><strong>draw_password_screen</strong></a>()</dt><dd><tt>Generates&nbsp;screen&nbsp;prompting&nbsp;user&nbsp;to&nbsp;enter&nbsp;password.<br>
+&nbsp;<br>
+args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;None<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int:&nbsp;The&nbsp;command&nbsp;input&nbsp;representing&nbsp;a&nbsp;screen&nbsp;chosen&nbsp;through&nbsp;mouse&nbsp;click&nbsp;by&nbsp;user.</tt></dd></dl>
+ <dl><dt><a name="-draw_player_details"><strong>draw_player_details</strong></a>()</dt><dd><tt>Generates&nbsp;text&nbsp;to&nbsp;display&nbsp;player&nbsp;details.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int:&nbsp;The&nbsp;command&nbsp;input&nbsp;representing&nbsp;a&nbsp;screen&nbsp;chosen&nbsp;through&nbsp;mouse&nbsp;click&nbsp;by&nbsp;user.</tt></dd></dl>
+ <dl><dt><a name="-draw_player_login"><strong>draw_player_login</strong></a>()</dt><dd><tt>Generate&nbsp;player&nbsp;login&nbsp;screen.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int:&nbsp;Number&nbsp;representing&nbsp;the&nbsp;user&nbsp;mouse&nbsp;input.</tt></dd></dl>
+ <dl><dt><a name="-draw_save_screen"><strong>draw_save_screen</strong></a>()</dt><dd><tt>Generate&nbsp;game&nbsp;save&nbsp;screen&nbsp;displaying&nbsp;save&nbsp;slots&nbsp;for&nbsp;3&nbsp;games.&nbsp;Requires&nbsp;player&nbsp;login&nbsp;to&nbsp;access&nbsp;save&nbsp;files.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int:&nbsp;The&nbsp;command&nbsp;input&nbsp;representing&nbsp;a&nbsp;screen&nbsp;chosen&nbsp;through&nbsp;mouse&nbsp;click&nbsp;by&nbsp;user.</tt></dd></dl>
+ <dl><dt><a name="-generate_game_data"><strong>generate_game_data</strong></a>()</dt><dd><tt>Generates&nbsp;data&nbsp;on&nbsp;a&nbsp;saved&nbsp;game&nbsp;and&nbsp;displays&nbsp;it&nbsp;for&nbsp;developer&nbsp;to&nbsp;manipulate.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int:&nbsp;The&nbsp;command&nbsp;input&nbsp;representing&nbsp;a&nbsp;screen&nbsp;chosen&nbsp;through&nbsp;mouse&nbsp;click&nbsp;by&nbsp;user.</tt></dd></dl>
  <dl><dt><a name="-show_tutorial"><strong>show_tutorial</strong></a>(tutorial_state)</dt><dd><tt>Generates&nbsp;screens&nbsp;for&nbsp;the&nbsp;game&nbsp;tutorial.<br>
 &nbsp;<br>
 Args:<br>
@@ -146,9 +178,6 @@ Args:<br>
 <strong>bg</strong> = &lt;Surface(100x100x32, global_alpha=255)&gt;<br>
 <strong>client</strong> = MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=True)<br>
 <strong>db</strong> = Database(MongoClient(host=['localhost:27017'], d...ict, tz_aware=False, connect=True), 'mydatabase')<br>
-<strong>dev_button</strong> = &lt;main_menu_2.Button object&gt;<br>
-<strong>draw_next_button</strong> = &lt;main_menu_2.Button object&gt;<br>
-<strong>draw_prev_button</strong> = &lt;main_menu_2.Button object&gt;<br>
 <strong>entering_user_data</strong> = False<br>
 <strong>event</strong> = &lt;Event(256-Quit {})&gt;<br>
 <strong>exit_menu</strong> = False<br>
@@ -156,17 +185,13 @@ Args:<br>
 <strong>font_heading</strong> = &lt;pygame.font.Font object&gt;<br>
 <strong>game_data</strong> = None<br>
 <strong>games</strong> = Collection(Database(MongoClient(host=['localhost...are=False, connect=True), 'mydatabase'), 'games')<br>
-<strong>instructor_button</strong> = &lt;main_menu_2.Button object&gt;<br>
 <strong>logo</strong> = &lt;Surface(100x100x32, global_alpha=255)&gt;<br>
 <strong>main_menu</strong> = False<br>
-<strong>menu_btn</strong> = &lt;main_menu_2.Button object&gt;<br>
 <strong>menu_command</strong> = 0<br>
-<strong>mouse_pos</strong> = (746, 627)<br>
 <strong>new_game</strong> = None<br>
 <strong>other_font</strong> = 'freesansbold.ttf'<br>
 <strong>password_enter</strong> = ''<br>
-<strong>password_enter_active</strong> = True<br>
-<strong>player_button</strong> = &lt;main_menu_2.Button object&gt;<br>
+<strong>password_enter_active</strong> = False<br>
 <strong>player_list</strong> = []<br>
 <strong>run</strong> = False<br>
 <strong>screen</strong> = &lt;Surface(Dead Display)&gt;<br>
@@ -174,8 +199,8 @@ Args:<br>
 <strong>show_existing_user</strong> = False<br>
 <strong>show_no_user_error</strong> = False<br>
 <strong>show_too_many_user_error</strong> = False<br>
-<strong>state</strong> = 'draw_details'<br>
-<strong>timer</strong> = &lt;Clock(fps=61.35)&gt;<br>
+<strong>state</strong> = ''<br>
+<strong>timer</strong> = &lt;Clock(fps=60.98)&gt;<br>
 <strong>tutorial1</strong> = &lt;Surface(600x400x32, global_alpha=255)&gt;<br>
 <strong>tutorial2</strong> = &lt;Surface(600x400x32, global_alpha=255)&gt;<br>
 <strong>tutorial3</strong> = &lt;Surface(600x400x32, global_alpha=255)&gt;<br>

@@ -1,8 +1,8 @@
-from pymongo import MongoClient
 """A class to manage game-related database operations.
 
 Authors: Arjun Atwal, comments by Sonia
- """
+"""
+from pymongo import MongoClient
 
 # Create a client
 client = MongoClient('mongodb://localhost:27017/')
