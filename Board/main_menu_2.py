@@ -221,7 +221,7 @@ def draw_password_screen():
                                 elif event.type == pygame.MOUSEBUTTONDOWN:
                                     if draw_back_button():
                                         return 0
-                            after_login_screen()
+                                after_login_screen()
                             pygame.display.flip()
                         return password, username
                     
