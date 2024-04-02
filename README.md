@@ -73,4 +73,4 @@ To start a game, you will need to give each player a name and a password.
 Follow the same steps as accessing Developer tools.
 
 ## Additional Information
-To access documentation, open the Documentation folder in file explorer and open the html files in your webpage
+To access documentation, open the Documentation folder in file explorer and open the html files in your webpage.
