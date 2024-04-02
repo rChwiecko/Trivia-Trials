@@ -1,3 +1,6 @@
+'''Author: Jin, Sonia
+'''
+
 import Instructor
 import IncorrectPasswordException
 
