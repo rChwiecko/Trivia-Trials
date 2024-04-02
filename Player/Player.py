@@ -1,3 +1,5 @@
+'''Author: Jin'''
+
 import random
 
 class Player:

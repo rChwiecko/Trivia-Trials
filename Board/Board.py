@@ -1,3 +1,8 @@
+'''
+Description: This class is responsible for rendering the game board, providing methods that will ensure proper gameplay mechanics are delivered and also provides menus to save and exit games.  This class is branched into from the main.py file
+Authors: Ryan, Sonia for pause and comments'''
+
+
 import pygame # Import pygame modules
 from questionGeneration import * # import question generation functions
 import random

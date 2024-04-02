@@ -1,3 +1,4 @@
+'''Author: Jin, Sonia'''
 import Player
 import IncorrectPasswordException
 
@@ -35,15 +36,3 @@ class Instructor:
             int: The permission level of this user.
         '''
         return self.__permissionValue
-    
-
-
-    # # verifies whether the pin entered by user matches the instructor pin or not and returns a boolean of the status 
-    # def verifyInstructorPin(self, pinInput): # recieve input from user and store it 
-    #     if pinInput == self.__instructorPin: # if the input by user matches the pin, run the following code
-    #         self.__instructorStatus = True # set the intrusctor status to true, allowing the user to conitnue as an instructior 
-    #     else: # else, if the user enters any other input (including strings, space, incorrect pin integers, etc)
-    #         self.__instructorStatus = False # set the instructor status to false, to deny access of the instructor mode
-    #         raise IncorrectPasswordException()
-
-    #     return self.__instructorStatus # return the instructor status 

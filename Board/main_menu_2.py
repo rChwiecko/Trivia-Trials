@@ -1,6 +1,6 @@
-'''This module generates the main game.
+'''This module generates the main menu, connects with database and provides savedata for the board to use to initialize games.
 
-Author: Arjun Atwal, Ryan Chwiecko, Jin Zhao, Sahej Chawla
+Authors: Arjun Atwal, Ryan Chwiecko, Jin Zhao, Sahej Chawla, Comments by Jin Zhao
 '''
 
 import pygame
@@ -776,7 +776,7 @@ def draw_save_screen():
                 game_data = find_game_by_id(1)
                 new_game = False
                 player_info = player_info_by_saved_game(1)  # Get player info for gameid(1)
-                print(player_info)
+                # print(player_info)
                 
                 
                 password1 = ''
@@ -934,7 +934,7 @@ def draw_save_screen():
                                     new_game = False
                                     game(new_game=new_game, game_data=game_data)                                   
                                 else:
-                                    print("Incorrect username or password. Returning to main menu.")
+                                    # print("Incorrect username or password. Returning to main menu.")
                                     return 0
                         if event.type == pygame.KEYDOWN:
                             if password1_active:
@@ -1004,7 +1004,7 @@ def draw_save_screen():
                 game_data = find_game_by_id(2)
                 new_game = False
                 player_info = player_info_by_saved_game(2)  # Get player info for gameid(1)
-                print(player_info)
+                # print(player_info)
                 
                 
                 password1 = ''
@@ -1161,7 +1161,7 @@ def draw_save_screen():
                                     new_game = False
                                     game(new_game=new_game, game_data=game_data)                                   
                                 else:
-                                    print("Incorrect username or password. Returning to main menu.")
+                                    # print("Incorrect username or password. Returning to main menu.")
                                     return 0
                                 
                         if event.type == pygame.KEYDOWN:
@@ -1234,7 +1234,7 @@ def draw_save_screen():
                 game_data = find_game_by_id(3)
                 new_game = False
                 player_info = player_info_by_saved_game(3)  # Get player info for gameid(1)
-                print(player_info)
+                # print(player_info)
                 
                 
                 password1 = ''
@@ -1391,7 +1391,7 @@ def draw_save_screen():
                                     new_game = False
                                     game(new_game=new_game, game_data=game_data)                                   
                                 else:
-                                    print("Incorrect username or password. Returning to main menu.")
+                                    # print("Incorrect username or password. Returning to main menu.")
                                     return 0
                                 
                         if event.type == pygame.KEYDOWN:
