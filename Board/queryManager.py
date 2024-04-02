@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 """A class to manage game-related database operations.
 
-Authors: Arjun Atwal
+Authors: Arjun Atwal, comments by Sonia
  """
 
 # Create a client

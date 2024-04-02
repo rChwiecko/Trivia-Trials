@@ -1,3 +1,7 @@
+'''
+Description: Testing for the queryManager module.
+Author: Arjun'''
+
 import unittest # import the unittest module for writing and executing tests
 from queryManager import * # import all functions and classes from the queryManager module
 

@@ -1,6 +1,6 @@
-'''This module generates the main game.
+'''This module generates the main menu, connects with database and provides savedata for the board to use to initialize games.
 
-Author: Arjun Atwal, Ryan Chwiecko, Jin Zhao, Sahej Chawla
+Authors: Arjun Atwal, Ryan Chwiecko, Jin Zhao, Sahej Chawla
 '''
 
 import pygame

@@ -1,3 +1,7 @@
+'''
+Description: This file contains the test cases for the Board class.
+Author: Ryan'''
+
 import unittest
 from Board import *
 from queryManager import *

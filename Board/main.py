@@ -1,6 +1,7 @@
-# import required module
+'''
+Description: This class is responsible for rendering the game board, providing methods that will ensure proper gameplay mechanics are delivered and also provides menus to save and exit games.  This class is branched into from the main.py file
+Author : Ryan and Sonia; Sonia contributed on the pause screen UI and button reactions'''
 
-# Author : Ryan and Sonia; Sonia contributed on the pause screen UI and button reactions 
 import pygame, pygame_gui
 from Board import * 
 import json

@@ -1,4 +1,6 @@
-# Description: This file contains the questionGeneration class and its subclasses
+'''Description: This file contains the questionGeneration class and its subclasses
+
+Author: Arjun, comments by Sonia'''
 
 import random
 import math
