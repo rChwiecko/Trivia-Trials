@@ -892,9 +892,15 @@ def draw_save_screen():
 
 
                             if submit_button.check_clicked():
-                                if username1 in player_info and password1 in player_info[username1] and username2 in player_info and password2 in player_info[username2] and username3 in player_info and password3 in player_info[username3]:
+                                if len(player_info) == 1 and username1 in player_info and password1 in player_info[username1]:
                                     new_game = False
                                     game(new_game=new_game, game_data=game_data)
+                                elif len(player_info) == 2 and username1 in player_info and password1 in player_info[username1] and username2 in player_info and password2 in player_info[username2]:
+                                    new_game = False
+                                    game(new_game=new_game, game_data=game_data)
+                                elif len(player_info) == 3 and username1 in player_info and password1 in player_info[username1] and username2 in player_info and password2 in player_info[username2] and username3 in player_info and password3 in player_info[username3]:
+                                    new_game = False
+                                    game(new_game=new_game, game_data=game_data)                                   
                                 else:
                                     print("Incorrect username or password. Returning to main menu.")
                                     return 0
@@ -1112,14 +1118,20 @@ def draw_save_screen():
                                 username3_active = False
                             username3_color = 'white' if username3_active else 'black'
 
-
                             if submit_button.check_clicked():
-                                if username1 in player_info and password1 in player_info[username1] and username2 in player_info and password2 in player_info[username2] and username3 in player_info and password3 in player_info[username3]:
+                                if len(player_info) == 1 and username1 in player_info and password1 in player_info[username1]:
                                     new_game = False
                                     game(new_game=new_game, game_data=game_data)
+                                elif len(player_info) == 2 and username1 in player_info and password1 in player_info[username1] and username2 in player_info and password2 in player_info[username2]:
+                                    new_game = False
+                                    game(new_game=new_game, game_data=game_data)
+                                elif len(player_info) == 3 and username1 in player_info and password1 in player_info[username1] and username2 in player_info and password2 in player_info[username2] and username3 in player_info and password3 in player_info[username3]:
+                                    new_game = False
+                                    game(new_game=new_game, game_data=game_data)                                   
                                 else:
                                     print("Incorrect username or password. Returning to main menu.")
                                     return 0
+                                
                         if event.type == pygame.KEYDOWN:
                             if password1_active:
                                 
@@ -1336,14 +1348,20 @@ def draw_save_screen():
                                 username3_active = False
                             username3_color = 'white' if username3_active else 'black'
 
-
                             if submit_button.check_clicked():
-                                if username1 in player_info and password1 in player_info[username1] and username2 in player_info and password2 in player_info[username2] and username3 in player_info and password3 in player_info[username3]:
+                                if len(player_info) == 1 and username1 in player_info and password1 in player_info[username1]:
                                     new_game = False
                                     game(new_game=new_game, game_data=game_data)
+                                elif len(player_info) == 2 and username1 in player_info and password1 in player_info[username1] and username2 in player_info and password2 in player_info[username2]:
+                                    new_game = False
+                                    game(new_game=new_game, game_data=game_data)
+                                elif len(player_info) == 3 and username1 in player_info and password1 in player_info[username1] and username2 in player_info and password2 in player_info[username2] and username3 in player_info and password3 in player_info[username3]:
+                                    new_game = False
+                                    game(new_game=new_game, game_data=game_data)                                   
                                 else:
                                     print("Incorrect username or password. Returning to main menu.")
                                     return 0
+                                
                         if event.type == pygame.KEYDOWN:
                             if password1_active:
                                 
